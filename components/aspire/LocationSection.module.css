@@ -1,0 +1,49 @@
+/* Custom marker styles for Leaflet map */
+.customMarker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.markerCard {
+  background: white;
+  border: 2px solid #01588d;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: fit-content;
+}
+
+.markerTitle {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #1a1a1a;
+}
+
+.markerSubtitle {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #1a1a1a;
+}
+
+.markerArrow {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 12px solid #01588d;
+  margin-top: -2px;
+}
+
+.markerDot {
+  width: 12px;
+  height: 12px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-top: -2px;
+}

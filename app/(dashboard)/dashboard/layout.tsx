@@ -4,7 +4,15 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Users, Settings, Shield, Activity, Menu } from 'lucide-react';
+import {
+  Users,
+  Settings,
+  Shield,
+  Activity,
+  Menu,
+  CreditCard,
+  UserPlus,
+} from 'lucide-react';
 
 export default function DashboardLayout({
   children
@@ -18,7 +26,12 @@ export default function DashboardLayout({
     { href: '/dashboard', icon: Users, label: 'Team' },
     { href: '/dashboard/general', icon: Settings, label: 'General' },
     { href: '/dashboard/activity', icon: Activity, label: 'Activity' },
-    { href: '/dashboard/security', icon: Shield, label: 'Security' }
+    { href: '/dashboard/security', icon: Shield, label: 'Security' },
+  ];
+
+  const mobileOnlyItems = [
+    { href: '/pricing', icon: CreditCard, label: 'Pricing' },
+    { href: '/sign-up', icon: UserPlus, label: 'Sign Up' },
   ];
 
   return (
@@ -48,6 +61,7 @@ export default function DashboardLayout({
           }`}
         >
           <nav className="h-full overflow-y-auto p-4">
+            {/* Dashboard navigation items */}
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} passHref>
                 <Button
@@ -62,6 +76,24 @@ export default function DashboardLayout({
                 </Button>
               </Link>
             ))}
+
+            {/* Mobile-only items - visible only on mobile */}
+            <div className="lg:hidden mt-6 pt-6 border-t border-gray-200">
+              {mobileOnlyItems.map((item) => (
+                <Link key={item.href} href={item.href} passHref>
+                  <Button
+                    variant={pathname === item.href ? 'secondary' : 'ghost'}
+                    className={`shadow-none my-1 w-full justify-start ${
+                      pathname === item.href ? 'bg-gray-100' : ''
+                    }`}
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {item.label}
+                  </Button>
+                </Link>
+              ))}
+            </div>
           </nav>
         </aside>
 
