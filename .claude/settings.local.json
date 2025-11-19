@@ -21,7 +21,10 @@
       "mcp__TalkToFigma__read_my_design",
       "Bash(npm run build:*)",
       "Bash(curl -I http://localhost:3002)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:aspireacademics.au)"
     ],
     "deny": [],
     "ask": []

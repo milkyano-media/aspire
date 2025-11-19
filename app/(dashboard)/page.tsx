@@ -8,6 +8,7 @@ import { HowItWorksSection } from '@/components/aspire/HowItWorksSection';
 import { TestimonialsSection } from '@/components/aspire/TestimonialsSection';
 import { LocationSection } from '@/components/aspire/LocationSection';
 import { FaqSection } from '@/components/aspire/FaqSection';
+import { ConsultationFormSection } from '@/components/aspire/ConsultationFormSection';
 import { Footer } from '@/components/aspire/Footer';
 
 export default function HomePage() {
@@ -46,8 +47,11 @@ export default function HomePage() {
       {/* Final CTA Section */}
       <CtaSection
         title="Let's Make This School Year Count"
-        description="Get the academic support your child deserves. Book your free trial now — no obligations"
+        description="Get the academic support your child deserves. Book your free trial now, no obligations"
       />
+
+      {/* Consultation Form Section */}
+      <ConsultationFormSection />
 
       {/* Footer - Contact information */}
       <Footer />
