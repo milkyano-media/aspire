@@ -34,13 +34,25 @@ function UserMenu() {
     return (
       <>
         <Link
-          href="/pricing"
-          className="text-sm font-medium  hover:text-gray-900 text-gray-200"
+          href="/courses"
+          className="text-sm font-medium hover:text-gray-900 text-gray-200"
         >
-          Pricing
+          Courses
         </Link>
-        <Button asChild className="rounded-full">
-          <Link href="/sign-up">Sign Up</Link>
+        <Link
+          href="/about"
+          className="text-sm font-medium hover:text-gray-900 text-gray-200"
+        >
+          About Us
+        </Link>
+        <Link
+          href="/contact"
+          className="text-sm font-medium hover:text-gray-900 text-gray-200"
+        >
+          Contact Us
+        </Link>
+        <Button asChild className="rounded-full bg-orange-500 hover:bg-orange-600 text-white">
+          <Link href="/#form">Book Free Trial</Link>
         </Button>
       </>
     );
@@ -144,18 +156,32 @@ function Header() {
             {/* Navigation links */}
             <nav className="px-4 py-4 space-y-3">
               <Link
-                href="/pricing"
+                href="/courses"
                 className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Pricing
+                Courses
               </Link>
               <Link
-                href="/sign-up"
-                className="block px-4 py-3 text-sm font-medium text-white bg-black hover:bg-gray-800 rounded-3xl text-center"
+                href="/about"
+                className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Sign Up
+                About Us
+              </Link>
+              <Link
+                href="/contact"
+                className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Contact Us
+              </Link>
+              <Link
+                href="/#form"
+                className="block px-4 py-3 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-3xl text-center"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Book Free Trial
               </Link>
             </nav>
           </div>

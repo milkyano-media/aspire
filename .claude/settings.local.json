@@ -22,7 +22,9 @@
       "Bash(npm run build:*)",
       "Bash(curl -I http://localhost:3002)",
       "Bash(pnpm add:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:aspireacademics.au)"
     ],
     "deny": [],
     "ask": []
