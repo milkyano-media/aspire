@@ -87,7 +87,7 @@ function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center h-full">
         <Link href="/" className="flex items-center">
           <Image
-            src="/logo.webp"
+            src="/logo.svg"
             alt="Aspire Logo"
             width={40}
             height={40}

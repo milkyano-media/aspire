@@ -59,7 +59,7 @@ export function SubjectsSection() {
               {/* Placeholder for subjects image */}
               <div className="relative h-[245.8125px] lg:h-[400px] w-full bg-gray-700">
                 <Image
-                  src={"/marketing/subject/photo-3.webp"}
+                  src={"/marketing/subject/photo-3.png"}
                   alt="Image"
                   fill
                   className="object-cover"

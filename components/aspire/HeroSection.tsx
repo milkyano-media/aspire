@@ -73,11 +73,7 @@ export function HeroSection() {
         {/* Hero Image */}
         <FadeInSection delay={1.0} duration={0.8}>
           <div className="relative mt-8 h-[280px] md:h-[800px] w-full overflow-hidden rounded-lg">
-            <Image
-              src={"/marketing/hero/photo-1.webp"}
-              alt="Hero Image"
-              fill
-            />
+            <Image src={"/marketing/hero/photo-1.png"} alt="Hero Image" fill />
             <div className="absolute inset-0 bg-gradient-to-t from-aspire-dark-blue via-transparent to-transparent" />
             {/* Placeholder for hero image - will be replaced with actual image */}
             <div className="h-full w-full bg-gray-700" />

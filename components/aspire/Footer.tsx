@@ -14,7 +14,7 @@ export function Footer() {
               <div className="text-center max-w-3xl">
                 <div className="mb-2 lg:mb-4 flex items-center justify-center gap-2">
                   <Image
-                    src="/logo.webp"
+                    src="/logo.svg"
                     alt="Aspire Academics Logo"
                     width={82}
                     height={82}
@@ -23,7 +23,8 @@ export function Footer() {
                 </div>
                 <p className="text-lg lg:text-xl leading-relaxed">
                   Learning is the process of acquiring new understanding,
-                  knowledge, behaviors, skills, values, attitudes, and preferences
+                  knowledge, behaviors, skills, values, attitudes, and
+                  preferences
                 </p>
               </div>
             </div>

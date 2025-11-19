@@ -52,7 +52,7 @@ export function ComparisonTableSection() {
             {/* Placeholder for image */}
             <div className="absolute inset-0 bg-gray-600">
               <Image
-                src={"/marketing/comparison/photo-4.webp"}
+                src={"/marketing/comparison/photo-4.png"}
                 alt="Image"
                 fill
                 className="object-cover w-full h-full"
@@ -74,59 +74,59 @@ export function ComparisonTableSection() {
             {/* Comparison Table (shadcn `Table` component) */}
             <div className="mx-auto w-[calc(100%-1rem)] overflow-hidden rounded-lg bg-white shadow border-2 border-aspire-medium-blue">
               <Table>
-              <TableHeader>
-                <TableRow className="border-b-2 border-aspire-medium-blue">
-                  <TableHead className="w-[50%] p-4 text-aspire-text-dark font-extrabold">
-                    Feature
-                  </TableHead>
-                  <TableHead className="w-[25%] p-4 text-center text-aspire-text-dark font-extrabold border-l-1 border-aspire-medium-blue">
-                    Aspire
-                    <br />
-                    Academics
-                  </TableHead>
-                  <TableHead className="w-[25%] p-4 text-center text-aspire-text-dark font-extrabold border-l-1 border-aspire-medium-blue">
-                    Other
-                    <br />
-                    Tutoring Options
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {features.map((feature, index) => (
-                  <TableRow
-                    key={index}
-                    className={
-                      index !== features.length - 1
-                        ? "border-b border-aspire-medium-blue"
-                        : ""
-                    }
-                  >
-                    <TableCell className="p-4 text-left text-sm font-semibold text-aspire-text-dark align-middle">
-                      <span className="whitespace-pre-line leading-tight">
-                        {feature.name}
-                      </span>
-                    </TableCell>
-
-                    <TableCell className="p-4 text-center border-l-1 border-aspire-medium-blue align-middle">
-                      <div className="flex items-center justify-center">
-                        <span className="text-2xl">✅</span>
-                      </div>
-                    </TableCell>
-
-                    <TableCell className="p-4 text-center align-middle border-l-1 border-aspire-medium-blue">
-                      {feature.others === false ? (
-                        <div className="flex items-center justify-center">
-                          <span className="text-2xl">❌</span>
-                        </div>
-                      ) : (
-                        <span className="text-xl font-semibold text-aspire-text-dark">
-                          {String(feature.others)}
-                        </span>
-                      )}
-                    </TableCell>
+                <TableHeader>
+                  <TableRow className="border-b-2 border-aspire-medium-blue">
+                    <TableHead className="w-[50%] p-4 text-aspire-text-dark font-extrabold">
+                      Feature
+                    </TableHead>
+                    <TableHead className="w-[25%] p-4 text-center text-aspire-text-dark font-extrabold border-l-1 border-aspire-medium-blue">
+                      Aspire
+                      <br />
+                      Academics
+                    </TableHead>
+                    <TableHead className="w-[25%] p-4 text-center text-aspire-text-dark font-extrabold border-l-1 border-aspire-medium-blue">
+                      Other
+                      <br />
+                      Tutoring Options
+                    </TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
+                </TableHeader>
+                <TableBody>
+                  {features.map((feature, index) => (
+                    <TableRow
+                      key={index}
+                      className={
+                        index !== features.length - 1
+                          ? "border-b border-aspire-medium-blue"
+                          : ""
+                      }
+                    >
+                      <TableCell className="p-4 text-left text-sm font-semibold text-aspire-text-dark align-middle">
+                        <span className="whitespace-pre-line leading-tight">
+                          {feature.name}
+                        </span>
+                      </TableCell>
+
+                      <TableCell className="p-4 text-center border-l-1 border-aspire-medium-blue align-middle">
+                        <div className="flex items-center justify-center">
+                          <span className="text-2xl">✅</span>
+                        </div>
+                      </TableCell>
+
+                      <TableCell className="p-4 text-center align-middle border-l-1 border-aspire-medium-blue">
+                        {feature.others === false ? (
+                          <div className="flex items-center justify-center">
+                            <span className="text-2xl">❌</span>
+                          </div>
+                        ) : (
+                          <span className="text-xl font-semibold text-aspire-text-dark">
+                            {String(feature.others)}
+                          </span>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
               </Table>
             </div>
           </div>
