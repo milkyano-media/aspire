@@ -34,6 +34,12 @@ function UserMenu() {
     return (
       <>
         <Link
+          href="/"
+          className="text-sm font-medium hover:text-gray-900 text-gray-200"
+        >
+          Home
+        </Link>
+        <Link
           href="/courses"
           className="text-sm font-medium hover:text-gray-900 text-gray-200"
         >
@@ -155,6 +161,13 @@ function Header() {
 
             {/* Navigation links */}
             <nav className="px-4 py-4 space-y-3">
+              <Link
+                href="/"
+                className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
               <Link
                 href="/courses"
                 className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
