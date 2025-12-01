@@ -58,14 +58,17 @@ function UserMenu() {
         >
           Contact Us
         </Link>
-        <Link
-          href="/student-login"
-          className="text-sm font-medium hover:text-gray-900 text-gray-200"
+        <Button
+          asChild
+          className="rounded-full bg-orange-500 hover:bg-orange-600 text-white"
         >
-          Student Login
-        </Link>
-        <Button asChild className="rounded-full bg-orange-500 hover:bg-orange-600 text-white">
           <SmoothScrollLink href="/#form">Book Free Trial</SmoothScrollLink>
+        </Button>
+        <Button
+          asChild
+          className="rounded-full bg-white hover:bg-gray-100 text-[#002366] border border-white"
+        >
+          <Link href="/student-login">Portal Login</Link>
         </Button>
       </>
     );
@@ -196,13 +199,6 @@ function Header() {
               >
                 Contact Us
               </Link>
-              <Link
-                href="/student-login"
-                className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Student Login
-              </Link>
               <SmoothScrollLink
                 href="/#form"
                 className="block px-4 py-3 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-3xl text-center"
@@ -210,6 +206,13 @@ function Header() {
               >
                 Book Free Trial
               </SmoothScrollLink>
+              <Link
+                href="/student-login"
+                className="block px-4 py-3 text-sm font-medium text-[#002366] bg-white hover:bg-gray-100 rounded-3xl text-center border border-white"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Portal Login
+              </Link>
             </nav>
           </div>
         </>

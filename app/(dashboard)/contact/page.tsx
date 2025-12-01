@@ -5,8 +5,36 @@ import { Footer } from '@/components/aspire/Footer';
 import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
+import { useEffect, useRef } from 'react';
 
 export default function ContactPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInitialized = useRef(false);
+
+  useEffect(() => {
+    // Skip if already initialized or container doesn't exist
+    if (isInitialized.current || !containerRef.current) return;
+
+    // Check if container already has content
+    if (containerRef.current.children.length > 0) return;
+
+    // Mark as initialized before loading
+    isInitialized.current = true;
+
+    // Create and inject the TutorBird contact form script
+    const script = document.createElement("script");
+    script.src =
+      "https://app.tutorbird.com/Widget/v4/Widget.ashx?settings=eyJTY2hvb2xJRCI6InNjaF9wV1RKVCIsIldlYnNpdGVJRCI6Indic181ZnZKViIsIldlYnNpdGVCbG9ja0lEIjoid2JiX2NZcG5KNSJ9";
+    script.async = true;
+
+    containerRef.current.appendChild(script);
+
+    // Cleanup function
+    return () => {
+      // Don't cleanup - let the widget persist
+      // This prevents re-initialization on StrictMode remount
+    };
+  }, []);
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -71,8 +99,28 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Contact Form Section */}
+      <section className="bg-white px-4 py-16">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-[#070b30] md:text-4xl">
+              Send Us a Message
+            </h2>
+            <div className="mx-auto mb-4 h-1 w-20 bg-orange-500" />
+            <p className="text-lg text-[#697585]">
+              Fill out the form below and we'll get back to you as soon as possible
+            </p>
+          </div>
+
+          <div className="rounded-2xl bg-gradient-to-br from-gray-50 to-white p-8 shadow-lg md:p-12">
+            {/* TutorBird Contact Form Widget Container */}
+            <div ref={containerRef} className="w-full" />
+          </div>
+        </div>
+      </section>
+
       {/* Social Media Section */}
-      <section className="bg-white px-4 py-12">
+      <section className="bg-gray-50 px-4 py-12">
         <div className="mx-auto max-w-7xl text-center">
           <h3 className="mb-6 text-2xl font-bold text-[#070b30]">
             Follow Us on Social Media
