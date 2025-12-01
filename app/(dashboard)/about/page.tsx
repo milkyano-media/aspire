@@ -1,8 +1,11 @@
+"use client";
+
 import { AboutUsHero } from '@/components/aspire/About/AboutUsHero';
 import { TutorGallery } from '@/components/aspire/About/TutorGallery';
 import { Footer } from '@/components/aspire/Footer';
 import Image from 'next/image';
 import { Star } from 'lucide-react';
+import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
 
 export default function AboutPage() {
   return (
@@ -168,12 +171,12 @@ export default function AboutPage() {
             Experience the difference that expert tutoring can make. Book your free
             trial today.
           </p>
-          <a
+          <SmoothScrollLink
             href="/#form"
             className="inline-block rounded-lg bg-white px-8 py-4 text-lg font-semibold text-orange-500 transition-all duration-300 hover:bg-gray-100 hover:shadow-lg"
           >
             Book Free Trial
-          </a>
+          </SmoothScrollLink>
         </div>
       </section>
 

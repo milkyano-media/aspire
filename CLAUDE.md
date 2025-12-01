@@ -4,16 +4,39 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Aspire** - A Learning Management System (LMS) landing page built for a client.
+**Aspire Academics** - A tutoring service landing page and website for VCE and high school students in Melbourne, Victoria, Australia.
 
-This project is based on a Next.js 15 SaaS starter template and is currently being developed as a landing page for Aspire LMS. The underlying infrastructure includes:
+This project is based on a Next.js 15 SaaS starter template and has been customized as a marketing and informational website for Aspire Academics. The underlying infrastructure includes:
 - **Next.js 15** with App Router, React Server Components, and Partial Prerendering (PPR)
 - **Postgres** database with **Drizzle ORM**
 - **Stripe** for subscription management (may be used for course/subscription payments)
 - **JWT-based authentication** stored in cookies
 - **shadcn/ui** components built on Radix UI
+- **TutorBird** widget integration for consultation form bookings
+- **Calendly** integration for scheduling consultations
+- Custom smooth scrolling implementation
 
-**Current Focus:** Building out the marketing landing page to showcase Aspire's learning management platform.
+**Current Focus:** Marketing landing page with sections for courses, testimonials, locations, and consultation booking.
+
+## Key Integrations
+
+### TutorBird Widget
+- Consultation form is handled by TutorBird's embedded widget
+- Located in `components/aspire/ConsultationForm/ConsultationForm.tsx`
+- Uses client-side script injection with ref-based container mounting
+- Prevents duplicate rendering with `isInitialized` ref guard
+
+### Calendly
+- Script loaded globally in `app/layout.tsx`
+- Used for scheduling free consultations after form submission
+- Widget CSS loaded in layout head
+
+### Smooth Scrolling
+- Custom `SmoothScrollLink` component in `components/ui/smooth-scroll-link.tsx`
+- Handles hash navigation (`/#form`) with smooth scroll behavior
+- Works across page navigations (e.g., from `/about` to `/#form`)
+- Used throughout the site for "Book Free Trial" CTAs
+- Fallback CSS `scroll-smooth` class on `<html>` element
 
 ## Development Commands
 

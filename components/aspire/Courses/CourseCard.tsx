@@ -1,4 +1,6 @@
-import Link from 'next/link';
+"use client";
+
+import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
 
 interface CourseCardProps {
   yearLevel: string;
@@ -54,12 +56,12 @@ export function CourseCard({
       )}
 
       {/* CTA Button */}
-      <Link
+      <SmoothScrollLink
         href="/#form"
         className="inline-block rounded-lg bg-orange-500 px-8 py-3 font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
       >
         Apply Now
-      </Link>
+      </SmoothScrollLink>
     </div>
   );
 }

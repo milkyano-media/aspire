@@ -16,6 +16,7 @@ import { signOut } from "@/app/(login)/actions";
 import { useRouter } from "next/navigation";
 import { User } from "@/lib/db/schema";
 import useSWR, { mutate } from "swr";
+import { SmoothScrollLink } from "@/components/ui/smooth-scroll-link";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -57,8 +58,17 @@ function UserMenu() {
         >
           Contact Us
         </Link>
-        <Button asChild className="rounded-full bg-orange-500 hover:bg-orange-600 text-white">
-          <Link href="/#form">Book Free Trial</Link>
+        <Button
+          asChild
+          className="rounded-full bg-orange-500 hover:bg-orange-600 text-white"
+        >
+          <SmoothScrollLink href="/#form">Book Free Trial</SmoothScrollLink>
+        </Button>
+        <Button
+          asChild
+          className="rounded-full bg-white hover:bg-gray-100 text-[#002366] border border-white"
+        >
+          <Link href="/student-login">Portal Login</Link>
         </Button>
       </>
     );
@@ -189,12 +199,19 @@ function Header() {
               >
                 Contact Us
               </Link>
-              <Link
+              <SmoothScrollLink
                 href="/#form"
                 className="block px-4 py-3 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-3xl text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Book Free Trial
+              </SmoothScrollLink>
+              <Link
+                href="/student-login"
+                className="block px-4 py-3 text-sm font-medium text-[#002366] bg-white hover:bg-gray-100 rounded-3xl text-center border border-white"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Portal Login
               </Link>
             </nav>
           </div>
