@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`bg-white dark:bg-gray-950 text-black dark:text-white ${urbanist.className}`}
+      className={`scroll-smooth bg-white dark:bg-gray-950 text-black dark:text-white ${urbanist.className}`}
     >
       <head>
         <link

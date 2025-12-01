@@ -1,7 +1,10 @@
+"use client";
+
 import { ContactHero } from '@/components/aspire/Contact/ContactHero';
 import { Footer } from '@/components/aspire/Footer';
 import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 import Link from 'next/link';
+import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
 
 export default function ContactPage() {
   return (
@@ -139,12 +142,12 @@ export default function ContactPage() {
               </h3>
               <p className="leading-relaxed text-[#697585]">
                 Please click on the{' '}
-                <Link
+                <SmoothScrollLink
                   href="/#form"
                   className="font-semibold text-orange-500 hover:underline"
                 >
                   Book Free Trial
-                </Link>{' '}
+                </SmoothScrollLink>{' '}
                 button from the top menu and fill the consultation form. Once the
                 form is submitted, our admin team will get in touch with you soon.
               </p>
@@ -182,12 +185,12 @@ export default function ContactPage() {
             Join hundreds of students who have achieved excellence with Aspire
             Academics
           </p>
-          <a
+          <SmoothScrollLink
             href="/#form"
             className="inline-block rounded-lg bg-orange-500 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
           >
             Book Free Trial
-          </a>
+          </SmoothScrollLink>
         </div>
       </section>
 

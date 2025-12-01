@@ -1,6 +1,9 @@
+"use client";
+
 import { CourseListHero } from '@/components/aspire/Courses/CourseListHero';
 import { CourseCard } from '@/components/aspire/Courses/CourseCard';
 import { Footer } from '@/components/aspire/Footer';
+import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
 
 const courses = [
   {
@@ -153,12 +156,12 @@ export default function CoursesPage() {
             Join hundreds of students who have achieved excellence with Aspire
             Academics. Book your free consultation today.
           </p>
-          <a
+          <SmoothScrollLink
             href="/#form"
             className="inline-block rounded-lg bg-orange-500 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
           >
             Enroll Now
-          </a>
+          </SmoothScrollLink>
         </div>
       </section>
 
