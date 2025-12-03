@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "./ui/Section";
 import { FadeInSection } from "./ui/FadeInSection";
+import { SmoothScrollLink } from "@/components/ui/smooth-scroll-link";
 
 interface CtaSectionProps {
   title: string;
@@ -27,12 +28,14 @@ export function CtaSection({
             </p>
           )}
 
-          <Button
-            size="lg"
-            className="h-[58px] lg:h-[70px] w-[224px] lg:w-[280px] rounded-md bg-aspire-orange text-lg lg:text-xl font-bold text-white hover:bg-aspire-orange/90 transition-all hover:scale-105"
-          >
-            {buttonText}
-          </Button>
+          <SmoothScrollLink href="/#form">
+            <Button
+              size="lg"
+              className="h-[58px] lg:h-[70px] w-[224px] lg:w-[280px] rounded-md bg-aspire-orange text-lg lg:text-xl font-bold text-white hover:bg-aspire-orange/90 transition-all hover:scale-105"
+            >
+              {buttonText}
+            </Button>
+          </SmoothScrollLink>
         </div>
       </FadeInSection>
     </Section>
