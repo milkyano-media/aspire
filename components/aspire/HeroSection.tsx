@@ -3,6 +3,7 @@ import { Section } from "./ui/Section";
 import { GradientOverlay } from "./ui/GradientOverlay";
 import Image from "next/image";
 import { FadeInSection } from "./ui/FadeInSection";
+import { SmoothScrollLink } from "@/components/ui/smooth-scroll-link";
 
 export function HeroSection() {
   return (
@@ -55,12 +56,14 @@ export function HeroSection() {
         {/* CTA and Location Info */}
         <FadeInSection delay={0.8} duration={0.6}>
           <div className="flex flex-col items-center space-y-4 pt-8">
-            <Button
-              size="lg"
-              className="h-[58px] w-[224px] rounded-md bg-aspire-orange text-lg font-bold text-white hover:bg-aspire-orange/90"
-            >
-              Book a Free Class
-            </Button>
+            <SmoothScrollLink href="/#form">
+              <Button
+                size="lg"
+                className="h-[58px] w-[224px] rounded-md bg-aspire-orange text-lg font-bold text-white hover:bg-aspire-orange/90"
+              >
+                Book a Free Class
+              </Button>
+            </SmoothScrollLink>
 
             <p className="max-w-[367px] text-center text-sm text-white">
               Located at 150 Palmers Rd, Truganina. In-person lessons.
