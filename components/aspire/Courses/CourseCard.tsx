@@ -1,6 +1,7 @@
 "use client";
 
 import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
+import { trackCTAClick } from '@/lib/gtm';
 
 interface CourseCardProps {
   yearLevel: string;
@@ -58,7 +59,8 @@ export function CourseCard({
       {/* CTA Button */}
       <SmoothScrollLink
         href="/#form"
-        className="inline-block rounded-lg bg-orange-500 px-8 py-3 font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
+        className="inline-block rounded-lg bg-orange-500 px-8 py-3 font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg cursor-pointer"
+        onClick={() => trackCTAClick('Apply Now', `course-card-${yearLevel}`)}
       >
         Apply Now
       </SmoothScrollLink>

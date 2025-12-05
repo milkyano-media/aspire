@@ -67,7 +67,11 @@ export function SmoothScrollLink({
   };
 
   return (
-    <Link href={href} className={className} onClick={handleClick}>
+    <Link
+      href={href}
+      className={`cursor-pointer ${className || ''}`}
+      onClick={handleClick}
+    >
       {children}
     </Link>
   );

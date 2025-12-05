@@ -6,6 +6,7 @@ import { Footer } from '@/components/aspire/Footer';
 import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
+import { trackCTAClick } from '@/lib/gtm';
 
 export default function AboutPage() {
   return (
@@ -173,7 +174,8 @@ export default function AboutPage() {
           </p>
           <SmoothScrollLink
             href="/#form"
-            className="inline-block rounded-lg bg-white px-8 py-4 text-lg font-semibold text-orange-500 transition-all duration-300 hover:bg-gray-100 hover:shadow-lg"
+            className="inline-block rounded-lg bg-white px-8 py-4 text-lg font-semibold text-orange-500 transition-all duration-300 hover:bg-gray-100 hover:shadow-lg cursor-pointer"
+            onClick={() => trackCTAClick('Book Free Trial', 'about-page-cta')}
           >
             Book Free Trial
           </SmoothScrollLink>
