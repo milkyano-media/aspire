@@ -1,9 +1,12 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Section } from "./ui/Section";
 import { GradientOverlay } from "./ui/GradientOverlay";
 import Image from "next/image";
 import { FadeInSection } from "./ui/FadeInSection";
 import { SmoothScrollLink } from "@/components/ui/smooth-scroll-link";
+import { trackCTAClick } from "@/lib/gtm";
 
 export function HeroSection() {
   return (
@@ -59,7 +62,8 @@ export function HeroSection() {
             <SmoothScrollLink href="/#form">
               <Button
                 size="lg"
-                className="h-[58px] w-[224px] rounded-md bg-aspire-orange text-lg font-bold text-white hover:bg-aspire-orange/90"
+                className="h-[58px] lg:h-[70px] w-[224px] lg:w-[280px] rounded-md bg-aspire-orange text-lg lg:text-xl font-bold text-white hover:bg-orange-600 transition-all hover:scale-105"
+                onClick={() => trackCTAClick('Book a Free Class', 'hero')}
               >
                 Book a Free Class
               </Button>

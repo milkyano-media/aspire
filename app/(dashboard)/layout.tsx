@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { User } from "@/lib/db/schema";
 import useSWR, { mutate } from "swr";
 import { SmoothScrollLink } from "@/components/ui/smooth-scroll-link";
+import { trackCTAClick } from "@/lib/gtm";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -36,25 +37,25 @@ function UserMenu() {
       <>
         <Link
           href="/"
-          className="text-sm font-medium hover:text-gray-900 text-gray-200"
+          className="text-base font-semibold hover:text-white text-gray-200 transition-colors"
         >
           Home
         </Link>
         <Link
           href="/courses"
-          className="text-sm font-medium hover:text-gray-900 text-gray-200"
+          className="text-base font-semibold hover:text-white text-gray-200 transition-colors"
         >
           Courses
         </Link>
         <Link
           href="/about"
-          className="text-sm font-medium hover:text-gray-900 text-gray-200"
+          className="text-base font-semibold hover:text-white text-gray-200 transition-colors"
         >
           About Us
         </Link>
         <Link
           href="/contact"
-          className="text-sm font-medium hover:text-gray-900 text-gray-200"
+          className="text-base font-semibold hover:text-white text-gray-200 transition-colors"
         >
           Contact Us
         </Link>
@@ -62,7 +63,7 @@ function UserMenu() {
           asChild
           className="rounded-full bg-orange-500 hover:bg-orange-600 text-white"
         >
-          <SmoothScrollLink href="/#form">Book Free Trial</SmoothScrollLink>
+          <SmoothScrollLink href="/#form" onClick={() => trackCTAClick('Book Free Trial', 'header')}>Book Free Trial</SmoothScrollLink>
         </Button>
         <Button
           asChild
@@ -173,42 +174,45 @@ function Header() {
             <nav className="px-4 py-4 space-y-3">
               <Link
                 href="/"
-                className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
+                className="block px-4 py-3 text-base font-semibold text-gray-200 hover:bg-gray-700 hover:text-white rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/courses"
-                className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
+                className="block px-4 py-3 text-base font-semibold text-gray-200 hover:bg-gray-700 hover:text-white rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Courses
               </Link>
               <Link
                 href="/about"
-                className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
+                className="block px-4 py-3 text-base font-semibold text-gray-200 hover:bg-gray-700 hover:text-white rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us
               </Link>
               <Link
                 href="/contact"
-                className="block px-4 py-3 text-sm font-medium text-gray-200 hover:bg-gray-700 rounded-md"
+                className="block px-4 py-3 text-base font-semibold text-gray-200 hover:bg-gray-700 hover:text-white rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact Us
               </Link>
               <SmoothScrollLink
                 href="/#form"
-                className="block px-4 py-3 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-3xl text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-4 py-3 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-3xl text-center transition-colors"
+                onClick={() => {
+                  trackCTAClick('Book Free Trial', 'mobile-menu');
+                  setIsMobileMenuOpen(false);
+                }}
               >
                 Book Free Trial
               </SmoothScrollLink>
               <Link
                 href="/student-login"
-                className="block px-4 py-3 text-sm font-medium text-[#002366] bg-white hover:bg-gray-100 rounded-3xl text-center border border-white"
+                className="block px-4 py-3 text-sm font-semibold text-[#002366] bg-white hover:bg-gray-100 rounded-3xl text-center border border-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Portal Login
