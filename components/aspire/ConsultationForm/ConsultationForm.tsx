@@ -2,11 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-interface ConsultationFormProps {
-  onSuccess?: () => void;
-}
-
-export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
+export function ConsultationForm() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInitialized = useRef(false);
 
