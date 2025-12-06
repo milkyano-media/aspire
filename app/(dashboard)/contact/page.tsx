@@ -6,6 +6,7 @@ import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
 import { useEffect, useRef } from 'react';
+import { trackCTAClick } from '@/lib/gtm';
 
 export default function ContactPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -193,6 +194,7 @@ export default function ContactPage() {
                 <SmoothScrollLink
                   href="/#form"
                   className="font-semibold text-orange-500 hover:underline"
+                  onClick={() => trackCTAClick('Book Free Trial', 'contact-page-text-link')}
                 >
                   Book Free Trial
                 </SmoothScrollLink>{' '}
@@ -235,7 +237,8 @@ export default function ContactPage() {
           </p>
           <SmoothScrollLink
             href="/#form"
-            className="inline-block rounded-lg bg-orange-500 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
+            className="inline-block rounded-lg bg-orange-500 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg cursor-pointer"
+            onClick={() => trackCTAClick('Book Free Trial', 'contact-page-cta')}
           >
             Book Free Trial
           </SmoothScrollLink>

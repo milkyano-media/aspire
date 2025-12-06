@@ -38,7 +38,7 @@ export default function StudentLoginPage() {
       <section className="bg-gradient-to-br from-[#070b30] via-[#0a1145] to-[#070b30] px-4 py-20">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-            Student Portal Login
+            Dashboard Portal Login
           </h1>
           <p className="text-lg text-white/80 md:text-xl">
             Access your learning dashboard, track progress, and connect with

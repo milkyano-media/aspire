@@ -158,7 +158,7 @@ export default function CoursesPage() {
           </p>
           <SmoothScrollLink
             href="/#form"
-            className="inline-block rounded-lg bg-orange-500 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
+            className="inline-block rounded-lg bg-orange-500 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg cursor-pointer"
           >
             Enroll Now
           </SmoothScrollLink>
