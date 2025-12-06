@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { consultationFormSchema, ConsultationFormData } from './schema';
-import { RoleToggle } from './RoleToggle';
-import { CountryCodeSelect } from './CountryCodeSelect';
-import { Input } from '@/components/ui/input';
-import { trackEvent } from '@/lib/gtm';
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { consultationFormSchema, ConsultationFormData } from "./schema";
+import { RoleToggle } from "./RoleToggle";
+import { CountryCodeSelect } from "./CountryCodeSelect";
+import { Input } from "@/components/ui/input";
+import { trackEvent } from "@/lib/gtm";
 
 interface ConsultationFormProps {
   onSuccess: () => void;
@@ -43,12 +43,12 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
   } = useForm<ConsultationFormData>({
     resolver: zodResolver(consultationFormSchema),
     defaultValues: {
-      role: 'Parent',
-      countryCode: '+61',
+      role: "Parent",
+      countryCode: "+61",
     },
   });
 
-  const role = watch('role');
+  const role = watch("role");
 
   const onSubmit = async (data: ConsultationFormData) => {
     try {
@@ -59,29 +59,29 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
         email: data.email,
         phone: `${data.countryCode} ${data.phone}`,
         city: data.city,
-        schoolYear: data.schoolYear || '',
+        schoolYear: data.schoolYear || "",
         program: data.program,
-        message: data.message || '',
+        message: data.message || "",
       };
 
       // Submit to Pabbly webhook
       await fetch(process.env.NEXT_PUBLIC_PABBLY_WEBHOOK_URL!, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submissionData),
       });
 
       // GTM Tracking
-      const nameParts = data.name.split(' ');
-      trackEvent('form_submit', {
+      const nameParts = data.name.split(" ");
+      trackEvent("form_submit", {
         email: data.email,
         phone: submissionData.phone,
         city: data.city,
-        first_name: nameParts[0] || '',
-        last_name: nameParts.slice(1).join(' ') || '',
+        first_name: nameParts[0] || "",
+        last_name: nameParts.slice(1).join(" ") || "",
         role: data.role,
-        form_id: 'consultForm',
-        form_name: 'Consultation Form',
+        form_id: "consultForm",
+        form_name: "Consultation Form",
       });
 
       // Show success screen
@@ -89,26 +89,26 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
 
       // Open Calendly popup after 1 second
       setTimeout(() => {
-        if (typeof window !== 'undefined' && window.Calendly) {
+        if (typeof window !== "undefined" && window.Calendly) {
           window.Calendly.initPopupWidget({
             url: process.env.NEXT_PUBLIC_CALENDLY_URL!,
             prefill: {
               name: data.name,
               email: data.email,
               customAnswers: {
-                a1: `City: ${data.city} - Program: ${data.program} - School Year: ${data.schoolYear || 'N/A'} - Message: ${data.message || 'N/A'}`,
+                a1: `City: ${data.city} - Program: ${data.program} - School Year: ${data.schoolYear || "N/A"} - Message: ${data.message || "N/A"}`,
               },
             },
             utm: {
-              utmSource: 'website',
-              utmMedium: 'consultation-form',
+              utmSource: "website",
+              utmMedium: "consultation-form",
             },
           });
         }
       }, 1000);
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Error submitting form. Please try again.');
+      console.error("Error submitting form:", error);
+      alert("Error submitting form. Please try again.");
     }
   };
 
@@ -134,7 +134,7 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
         {/* Name */}
         <div>
           <Input
-            {...register('name')}
+            {...register("name")}
             type="text"
             placeholder="Name"
             className="w-full rounded-lg border px-4 py-2 outline-none focus:ring-2 focus:ring-[#002366]"
@@ -149,13 +149,15 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
           {/* Email */}
           <div className="w-1/2">
             <Input
-              {...register('email')}
+              {...register("email")}
               type="email"
               placeholder="Email"
               className="w-full rounded-lg border px-4 py-2 outline-none focus:ring-2 focus:ring-[#002366]"
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+              <p className="mt-1 text-sm text-red-500">
+                {errors.email.message}
+              </p>
             )}
           </div>
 
@@ -166,18 +168,23 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
                 name="countryCode"
                 control={control}
                 render={({ field }) => (
-                  <CountryCodeSelect value={field.value} onChange={field.onChange} />
+                  <CountryCodeSelect
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
                 )}
               />
               <Input
-                {...register('phone')}
+                {...register("phone")}
                 type="tel"
                 placeholder="Phone"
                 className="flex-1 border-0 px-2 py-2 outline-none focus:ring-2 focus:ring-[#002366]"
               />
             </div>
             {errors.phone && (
-              <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>
+              <p className="mt-1 text-sm text-red-500">
+                {errors.phone.message}
+              </p>
             )}
           </div>
         </div>
@@ -185,7 +192,7 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
         {/* City */}
         <div>
           <select
-            {...register('city')}
+            {...register("city")}
             className="w-full rounded-lg border px-4 py-2 text-gray-500 outline-none focus:ring-2 focus:ring-[#002366]"
           >
             <option value="">Select City</option>
@@ -233,7 +240,7 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
         <div className="flex space-x-3">
           {/* School Year */}
           <select
-            {...register('schoolYear')}
+            {...register("schoolYear")}
             className="w-1/2 rounded-lg border px-4 py-2 text-gray-500 outline-none focus:ring-2 focus:ring-[#002366]"
           >
             <option value="">Current School Year</option>
@@ -251,7 +258,7 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
 
           {/* Program */}
           <select
-            {...register('program')}
+            {...register("program")}
             className="w-1/2 rounded-lg border px-4 py-2 text-gray-500 outline-none focus:ring-2 focus:ring-[#002366]"
           >
             <option value="">Select Program</option>
@@ -267,7 +274,7 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
 
         {/* Message */}
         <textarea
-          {...register('message')}
+          {...register("message")}
           rows={3}
           placeholder="Please provide an overview of your academic and extracurricular background and goals..."
           className="w-full rounded-lg border px-4 py-2 outline-none focus:ring-2 focus:ring-[#002366]"
@@ -277,7 +284,7 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
         <div>
           <label className="flex items-center space-x-2">
             <input
-              {...register('terms')}
+              {...register("terms")}
               type="checkbox"
               className="h-4 w-4 rounded border-gray-300"
             />
@@ -296,60 +303,9 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
           disabled={isSubmitting}
           className="mt-4 w-full rounded-lg bg-orange-500 py-3 font-medium text-white hover:bg-orange-600 disabled:opacity-50"
         >
-          {isSubmitting ? 'Submitting...' : 'Claim My Free Consultation'}
+          {isSubmitting ? "Submitting..." : "Claim My Free Consultation"}
         </button>
       </form>
     </div>
   );
 }
-
-
-// "use client";
-
-// import { useEffect, useRef } from "react";
-
-// interface ConsultationFormProps {
-//   onSuccess?: () => void;
-// }
-
-// export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
-//   const containerRef = useRef<HTMLDivElement>(null);
-//   const isInitialized = useRef(false);
-
-//   useEffect(() => {
-//     // Skip if already initialized or container doesn't exist
-//     if (isInitialized.current || !containerRef.current) return;
-
-//     // Check if container already has content
-//     if (containerRef.current.children.length > 0) return;
-
-//     // Mark as initialized before loading
-//     isInitialized.current = true;
-
-//     // Create and inject the TutorBird script
-//     const script = document.createElement("script");
-//     script.src =
-//       "https://app.tutorbird.com/Widget/v4/Widget.ashx?settings=eyJTY2hvb2xJRCI6InNjaF9wV1RKVCIsIldlYnNpdGVJRCI6Indic181ZnZKViIsIldlYnNpdGVCbG9ja0lEIjoid2JiX2NZNDlKdyJ9";
-//     script.async = true;
-
-//     containerRef.current.appendChild(script);
-
-//     // Cleanup function
-//     return () => {
-//       // Don't cleanup - let the widget persist
-//       // This prevents re-initialization on StrictMode remount
-//     };
-//   }, []);
-
-//   return (
-//     <div className="w-full max-w-lg rounded-xl bg-white p-8 shadow-lg">
-//       <h2 className="mb-4 text-2xl font-bold text-[#002366]">
-//         Get Your Free Consultation Today
-//       </h2>
-//       <div className="mb-6 h-0.5 w-16 bg-[#002366]" />
-
-//       {/* TutorBird Widget Container */}
-//       <div ref={containerRef} className="w-full" />
-//     </div>
-//   );
-// }

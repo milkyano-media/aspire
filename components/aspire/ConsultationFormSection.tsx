@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ConsultationForm } from './ConsultationForm/ConsultationForm';
-import { SuccessScreen } from './ConsultationForm/SuccessScreen';
+import { useState } from "react";
+import { ConsultationForm } from "./ConsultationForm/ConsultationForm";
+import { SuccessScreen } from "./ConsultationForm/SuccessScreen";
 
 export function ConsultationFormSection() {
   const [showSuccess, setShowSuccess] = useState(false);
