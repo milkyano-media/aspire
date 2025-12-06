@@ -48,7 +48,7 @@ export default function SignInPage() {
       <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4">
         <div className="w-full max-w-lg rounded-xl bg-white p-8 shadow-lg">
           <h2 className="mb-4 text-2xl font-bold text-[#002366]">
-            Get Your Free Consultation Today
+            Book a Free Trial Now
           </h2>
           <div className="mb-6 h-0.5 w-16 bg-[#002366]" />
 
