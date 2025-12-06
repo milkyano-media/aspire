@@ -1,3 +1,5 @@
+"use client";
+
 import { ConsultationForm } from "@/components/aspire/ConsultationForm/ConsultationForm";
 import { Footer } from "@/components/aspire/Footer";
 
