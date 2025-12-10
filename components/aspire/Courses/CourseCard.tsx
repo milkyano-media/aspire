@@ -1,6 +1,5 @@
 "use client";
 
-import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
 import { trackCTAClick } from '@/lib/gtm';
 
 interface CourseCardProps {
@@ -9,6 +8,12 @@ interface CourseCardProps {
   description: string;
   includes: string[];
   note?: string;
+  courseIndex: number;
+  onApplyClick: (courseIndex: number) => void;
+  tutorBirdScriptUrl?: string;
+  price?: string;
+  priceUnit?: string;
+  startDate?: string | null;
 }
 
 export function CourseCard({
@@ -17,15 +22,41 @@ export function CourseCard({
   description,
   includes,
   note,
+  courseIndex,
+  onApplyClick,
+  price,
+  priceUnit,
+  startDate,
 }: CourseCardProps) {
+  const handleApplyClick = () => {
+    trackCTAClick('Apply Now', `course-card-${yearLevel}`);
+    onApplyClick(courseIndex);
+  };
+
+  const formatDate = (dateString: string | null | undefined) => {
+    if (!dateString) return null;
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-AU', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/90 to-white/70 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl">
       {/* Decorative gradient overlay */}
       <div className="absolute right-0 top-0 h-32 w-32 bg-gradient-to-br from-orange-500/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
       {/* Year Level Badge */}
-      <div className="mb-4 inline-block rounded-full bg-[#070b30] px-4 py-2 text-sm font-semibold text-white">
-        {yearLevel}
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <div className="inline-block rounded-full bg-[#070b30] px-4 py-2 text-sm font-semibold text-white">
+          {yearLevel}
+        </div>
+        {startDate && (
+          <div className="inline-block rounded-full bg-orange-500/10 px-4 py-2 text-sm font-semibold text-orange-600">
+            Starts: {formatDate(startDate)}
+          </div>
+        )}
       </div>
 
       {/* Program Name */}
@@ -50,20 +81,30 @@ export function CourseCard({
       </div>
 
       {/* Note */}
-      {note && (
+      {note && note !== "-" && (
         <p className="mb-6 text-sm italic text-[#697585]">
           Note: {note}
         </p>
       )}
 
+      {/* Price Section */}
+      {price && (
+        <div className="mb-6 flex items-baseline gap-2 border-t border-gray-200 pt-6">
+          <span className="text-4xl font-bold text-[#070b30]">{price}</span>
+          {priceUnit && (
+            <span className="text-lg text-[#697585]">{priceUnit}</span>
+          )}
+        </div>
+      )}
+
       {/* CTA Button */}
-      <SmoothScrollLink
-        href="/#form"
+      <button
+        type="button"
         className="inline-block rounded-lg bg-orange-500 px-8 py-3 font-semibold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg cursor-pointer"
-        onClick={() => trackCTAClick('Apply Now', `course-card-${yearLevel}`)}
+        onClick={handleApplyClick}
       >
         Apply Now
-      </SmoothScrollLink>
+      </button>
     </div>
   );
 }

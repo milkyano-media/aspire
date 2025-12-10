@@ -24,7 +24,10 @@
       "Bash(pnpm add:*)",
       "Bash(taskkill:*)",
       "Bash(npm install:*)",
-      "WebFetch(domain:aspireacademics.au)"
+      "WebFetch(domain:aspireacademics.au)",
+      "Bash(find:*)",
+      "Bash(xargs grep:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": [],
     "ask": []

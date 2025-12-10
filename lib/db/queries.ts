@@ -1,11 +1,11 @@
-import { desc, and, eq, isNull } from 'drizzle-orm';
-import { db } from './drizzle';
-import { activityLogs, teamMembers, teams, users } from './schema';
-import { cookies } from 'next/headers';
-import { verifyToken } from '@/lib/auth/session';
+import { desc, and, eq, isNull } from "drizzle-orm";
+import { db } from "./drizzle";
+import { activityLogs, teamMembers, teams, users, courses } from "./schema";
+import { cookies } from "next/headers";
+import { verifyToken } from "@/lib/auth/session";
 
 export async function getUser() {
-  const sessionCookie = (await cookies()).get('session');
+  const sessionCookie = (await cookies()).get("session");
   if (!sessionCookie || !sessionCookie.value) {
     return null;
   }
@@ -14,7 +14,7 @@ export async function getUser() {
   if (
     !sessionData ||
     !sessionData.user ||
-    typeof sessionData.user.id !== 'number'
+    typeof sessionData.user.id !== "number"
   ) {
     return null;
   }
@@ -53,13 +53,13 @@ export async function updateTeamSubscription(
     stripeProductId: string | null;
     planName: string | null;
     subscriptionStatus: string;
-  }
+  },
 ) {
   await db
     .update(teams)
     .set({
       ...subscriptionData,
-      updatedAt: new Date()
+      updatedAt: new Date(),
     })
     .where(eq(teams.id, teamId));
 }
@@ -68,7 +68,7 @@ export async function getUserWithTeam(userId: number) {
   const result = await db
     .select({
       user: users,
-      teamId: teamMembers.teamId
+      teamId: teamMembers.teamId,
     })
     .from(users)
     .leftJoin(teamMembers, eq(users.id, teamMembers.userId))
@@ -81,7 +81,7 @@ export async function getUserWithTeam(userId: number) {
 export async function getActivityLogs() {
   const user = await getUser();
   if (!user) {
-    throw new Error('User not authenticated');
+    throw new Error("User not authenticated");
   }
 
   return await db
@@ -90,7 +90,7 @@ export async function getActivityLogs() {
       action: activityLogs.action,
       timestamp: activityLogs.timestamp,
       ipAddress: activityLogs.ipAddress,
-      userName: users.name
+      userName: users.name,
     })
     .from(activityLogs)
     .leftJoin(users, eq(activityLogs.userId, users.id))
@@ -116,15 +116,62 @@ export async function getTeamForUser() {
                 columns: {
                   id: true,
                   name: true,
-                  email: true
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                  email: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   });
 
   return result?.team || null;
+}
+
+export async function getCourses() {
+  const result = await db.select().from(courses).orderBy(courses.id);
+
+  return result.map((program) => ({
+    ...program,
+    includes: program.includes
+      ? program.includes.split(";").filter(Boolean)
+      : [],
+  }));
+}
+
+export async function getCourseById(id: number) {
+  const result = await db
+    .select()
+    .from(courses)
+    .where(eq(courses.id, id))
+    .limit(1);
+
+  if (result.length === 0) return null;
+
+  const course = result[0];
+  return {
+    ...course,
+    includes: course.includes ? course.includes.split(";").filter(Boolean) : [],
+  };
+}
+
+// @ts-ignore
+export async function createCourse(data: NewProgram) {
+  const [course] = await db.insert(courses).values(data).returning();
+  return course;
+}
+
+// @ts-ignore
+export async function updateCourse(id: number, data: Partial<NewProgram>) {
+  const [updated] = await db
+    .update(courses)
+    .set(data)
+    .where(eq(courses.id, id))
+    .returning();
+  return updated;
+}
+
+export async function deleteCourse(id: number) {
+  await db.delete(courses).where(eq(courses.id, id));
 }
