@@ -22,6 +22,7 @@ export function CourseTable({
   courses: CourseWithIncludes[];
 }) {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [createModalKey, setCreateModalKey] = useState(0);
   const [editingCourse, setEditingCourse] =
     useState<CourseWithIncludes | null>(null);
   const [deletingCourse, setDeletingCourse] =
@@ -31,7 +32,12 @@ export function CourseTable({
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Manage Courses</h2>
-        <Button onClick={() => setIsCreateModalOpen(true)}>
+        <Button
+          onClick={() => {
+            setCreateModalKey((prev) => prev + 1);
+            setIsCreateModalOpen(true);
+          }}
+        >
           Create Course
         </Button>
       </div>
@@ -41,6 +47,7 @@ export function CourseTable({
           <TableHeader>
             <TableRow>
               <TableHead>ID</TableHead>
+              <TableHead>Order</TableHead>
               <TableHead>Year Level</TableHead>
               <TableHead>Program Name</TableHead>
               <TableHead>Category</TableHead>
@@ -52,7 +59,7 @@ export function CourseTable({
           <TableBody>
             {courses.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="text-center text-gray-500">
+                <TableCell colSpan={8} className="text-center text-gray-500">
                   No courses found. Create your first course!
                 </TableCell>
               </TableRow>
@@ -60,6 +67,7 @@ export function CourseTable({
               courses.map((course) => (
                 <TableRow key={course.id}>
                   <TableCell>{course.id}</TableCell>
+                  <TableCell>{course.courseOrder ?? "-"}</TableCell>
                   <TableCell>{course.yearLevel}</TableCell>
                   <TableCell>{course.programName}</TableCell>
                   <TableCell>
@@ -67,6 +75,8 @@ export function CourseTable({
                       className={`inline-block rounded-full px-2 py-1 text-xs font-semibold ${
                         course.category === "PREMIUM"
                           ? "bg-orange-100 text-orange-700"
+                          : course.category === "VCE"
+                          ? "bg-purple-100 text-purple-700"
                           : "bg-blue-100 text-blue-700"
                       }`}
                     >
@@ -107,18 +117,21 @@ export function CourseTable({
       </div>
 
       <CourseFormModal
+        key={`create-${createModalKey}`}
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         course={null}
       />
 
       <CourseFormModal
+        key={editingCourse?.id || "edit"}
         isOpen={!!editingCourse}
         onClose={() => setEditingCourse(null)}
         course={editingCourse}
       />
 
       <DeleteConfirmDialog
+        key={deletingCourse?.id || "delete"}
         isOpen={!!deletingCourse}
         onClose={() => setDeletingCourse(null)}
         course={deletingCourse}

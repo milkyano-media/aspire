@@ -6,18 +6,26 @@ import { getCourses } from "@/lib/db/queries";
 import { CoursesClient } from "@/components/aspire/Courses/CoursesClient";
 
 export default async function CoursesPage() {
-  const coursesDb = await getCourses();
+  let coursesDb;
+  try {
+    coursesDb = await getCourses();
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    throw new Error(
+      `Failed to fetch courses: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
 
   const courses = coursesDb.map((course) => ({
-    yearLevel: course.yearLevel || "",
-    programName: course.programName || "",
-    description: course.description || "",
-    includes: course.includes || [],
-    note: course.note || "",
-    price: course.price || "",
-    priceUnit: course.priceUnit || "",
-    tutorBirdScriptUrl: course.tutorBirdScriptUrl || "",
-    startDate: course.startDate || null,
+    yearLevel: course.yearLevel ?? "",
+    programName: course.programName ?? "",
+    description: course.description ?? "",
+    includes: Array.isArray(course.includes) ? course.includes : [],
+    note: course.note ?? "",
+    price: course.price ?? "",
+    priceUnit: course.priceUnit ?? "",
+    tutorBirdScriptUrl: course.tutorBirdScriptUrl ?? "",
+    startDate: course.startDate ? String(course.startDate) : null,
   }));
 
   return (

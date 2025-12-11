@@ -125,6 +125,7 @@ export const courses = pgTable("courses", {
   tutorBirdScriptUrl: text("tutor_bird_script_url"),
   startDate: date("start_date"),
   category: varchar("category", { length: 255 }), // "STANDARD" or "PREMIUM"
+  courseOrder: integer("course_order"),
 });
 
 export type User = typeof users.$inferSelect;
