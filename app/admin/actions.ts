@@ -47,7 +47,8 @@ const courseSchema = z.object({
     .or(z.literal(""))
     .optional(),
   startDate: z.string().optional(), // Date string from input
-  category: z.enum(["STANDARD", "PREMIUM"]).optional(),
+  category: z.enum(["STANDARD", "PREMIUM", "VCE"]).optional(),
+  courseOrder: z.coerce.number().optional(),
 });
 
 export const createCourse = validatedAction(

@@ -39,11 +39,11 @@ export function CourseFormModal({
   // Handle successful creation/update
   useEffect(() => {
     // @ts-ignore
-    if (state.success) {
+    if (state.success && isOpen) {
       onClose();
     }
     // @ts-ignore
-  }, [state.success, onClose]);
+  }, [state.success, onClose, isOpen]);
 
   if (!isOpen) return null;
 

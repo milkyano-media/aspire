@@ -27,7 +27,13 @@
       "WebFetch(domain:aspireacademics.au)",
       "Bash(find:*)",
       "Bash(xargs grep:*)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(timeout 5 npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(psql:*)",
+      "Bash(npm run db:generate:*)",
+      "Bash(npm run db:migrate:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

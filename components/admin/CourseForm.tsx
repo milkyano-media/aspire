@@ -17,6 +17,22 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
       {/* Hidden ID for edit mode */}
       {course && <input type="hidden" name="id" value={course.id} />}
 
+      {/* Course Order */}
+      <div>
+        <Label htmlFor="courseOrder">Display Order</Label>
+        <Input
+          id="courseOrder"
+          name="courseOrder"
+          type="number"
+          defaultValue={course?.courseOrder?.toString() || ""}
+          placeholder="e.g., 1, 2, 3..."
+          disabled={isPending}
+        />
+        <p className="mt-1 text-sm text-gray-500">
+          Controls the order courses appear on the public page (lower numbers first)
+        </p>
+      </div>
+
       {/* Year Level */}
       <div>
         <Label htmlFor="yearLevel">Year Level</Label>
@@ -149,6 +165,7 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
           <option value="">Select category</option>
           <option value="STANDARD">Standard</option>
           <option value="PREMIUM">Premium</option>
+          <option value="VCE">VCE</option>
         </select>
       </div>
 

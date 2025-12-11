@@ -1,4 +1,4 @@
-import { desc, and, eq, isNull } from "drizzle-orm";
+import { desc, and, eq, isNull, asc } from "drizzle-orm";
 import { db } from "./drizzle";
 import { activityLogs, teamMembers, teams, users, courses } from "./schema";
 import { cookies } from "next/headers";
@@ -130,7 +130,7 @@ export async function getTeamForUser() {
 }
 
 export async function getCourses() {
-  const result = await db.select().from(courses).orderBy(courses.id);
+  const result = await db.select().from(courses).orderBy(asc(courses.courseOrder), asc(courses.id));
 
   return result.map((program) => ({
     ...program,
