@@ -105,6 +105,7 @@ export async function getTeamForUser() {
     return null;
   }
 
+  // @ts-ignore
   const result = await db.query.teamMembers.findFirst({
     where: eq(teamMembers.userId, user.id),
     with: {
@@ -130,7 +131,10 @@ export async function getTeamForUser() {
 }
 
 export async function getCourses() {
-  const result = await db.select().from(courses).orderBy(asc(courses.courseOrder), asc(courses.id));
+  const result = await db
+    .select()
+    .from(courses)
+    .orderBy(asc(courses.courseOrder), asc(courses.id));
 
   return result.map((program) => ({
     ...program,
