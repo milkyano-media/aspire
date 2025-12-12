@@ -11,7 +11,6 @@ export default async function AdminPage() {
         <h1 className="text-3xl font-bold mb-8 text-[#070b30]">
           Course Administration
         </h1>
-        {/* @ts-ignore */}
         <CourseTable courses={courses} />
       </div>
     </AdminAuth>

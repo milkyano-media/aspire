@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { CourseFormModal } from "./CourseFormModal";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 
-type CourseWithIncludes = Program & { includes: string[] };
+type CourseWithIncludes = Omit<Program, 'includes'> & { includes: string[] };
 
 export function CourseTable({
   courses,
