@@ -26,6 +26,7 @@ export default async function CoursesPage() {
     priceUnit: course.priceUnit ?? "",
     tutorBirdScriptUrl: course.tutorBirdScriptUrl ?? "",
     startDate: course.startDate ? String(course.startDate) : null,
+    category: course.category ?? null,
   }));
 
   return (

@@ -25,13 +25,11 @@ export function AdminAuth({ children }: { children: React.ReactNode }) {
 
   // Handle successful validation
   useEffect(() => {
-    // @ts-ignore
-    if (state.success) {
+    if ('success' in state && state.success) {
       sessionStorage.setItem(STORAGE_KEY, "true");
       setIsAuthenticated(true);
     }
-    // @ts-ignore
-  }, [state.success]);
+  }, [state]);
 
   if (isChecking) {
     return (

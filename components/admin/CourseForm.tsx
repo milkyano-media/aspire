@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Program } from "@/lib/db/schema";
 
 interface CourseFormProps {
-  course?: (Program & { includes: string[] }) | null;
+  course?: (Omit<Program, 'includes'> & { includes: string[] }) | null;
   isPending: boolean;
   error?: string;
 }

@@ -10,7 +10,7 @@ import { Program } from "@/lib/db/schema";
 interface CourseFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  course: (Program & { includes: string[] }) | null;
+  course: (Omit<Program, 'includes'> & { includes: string[] }) | null;
 }
 
 export function CourseFormModal({
@@ -38,12 +38,10 @@ export function CourseFormModal({
 
   // Handle successful creation/update
   useEffect(() => {
-    // @ts-ignore
-    if (state.success && isOpen) {
+    if ('success' in state && state.success && isOpen) {
       onClose();
     }
-    // @ts-ignore
-  }, [state.success, onClose, isOpen]);
+  }, [state, onClose, isOpen]);
 
   if (!isOpen) return null;
 

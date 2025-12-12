@@ -1,6 +1,6 @@
 import { desc, and, eq, isNull, asc } from "drizzle-orm";
 import { db } from "./drizzle";
-import { activityLogs, teamMembers, teams, users, courses } from "./schema";
+import { activityLogs, teamMembers, teams, users, courses, Program } from "./schema";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth/session";
 
@@ -105,7 +105,6 @@ export async function getTeamForUser() {
     return null;
   }
 
-  // @ts-ignore
   const result = await db.query.teamMembers.findFirst({
     where: eq(teamMembers.userId, user.id),
     with: {
@@ -130,7 +129,7 @@ export async function getTeamForUser() {
   return result?.team || null;
 }
 
-export async function getCourses() {
+export async function getCourses(): Promise<Array<Omit<Program, 'includes'> & { includes: string[] }>> {
   const result = await db
     .select()
     .from(courses)
@@ -160,14 +159,12 @@ export async function getCourseById(id: number) {
   };
 }
 
-// @ts-ignore
-export async function createCourse(data: NewProgram) {
+export async function createCourse(data: typeof courses.$inferInsert) {
   const [course] = await db.insert(courses).values(data).returning();
   return course;
 }
 
-// @ts-ignore
-export async function updateCourse(id: number, data: Partial<NewProgram>) {
+export async function updateCourse(id: number, data: Partial<typeof courses.$inferInsert>) {
   const [updated] = await db
     .update(courses)
     .set(data)

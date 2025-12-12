@@ -10,7 +10,7 @@ import { Program } from "@/lib/db/schema";
 interface DeleteConfirmDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  course: (Program & { includes: string[] }) | null;
+  course: (Omit<Program, 'includes'> & { includes: string[] }) | null;
 }
 
 export function DeleteConfirmDialog({
@@ -37,12 +37,10 @@ export function DeleteConfirmDialog({
 
   // Handle successful deletion
   useEffect(() => {
-    // @ts-ignore
-    if (state.success) {
+    if ('success' in state && state.success) {
       onClose();
     }
-    // @ts-ignore
-  }, [state.success, onClose]);
+  }, [state, onClose]);
 
   if (!isOpen || !course) return null;
 
