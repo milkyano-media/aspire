@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Program } from "@/lib/db/schema";
 import {
   Table,
@@ -13,8 +13,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { CourseFormModal } from "./CourseFormModal";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
+import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 
 type CourseWithIncludes = Omit<Program, 'includes'> & { includes: string[] };
+
+type SortField = "courseOrder" | "category" | "price" | "startDate";
+type SortDirection = "asc" | "desc" | null;
 
 export function CourseTable({
   courses,
@@ -27,6 +31,69 @@ export function CourseTable({
     useState<CourseWithIncludes | null>(null);
   const [deletingCourse, setDeletingCourse] =
     useState<CourseWithIncludes | null>(null);
+  const [sortField, setSortField] = useState<SortField | null>(null);
+  const [sortDirection, setSortDirection] = useState<SortDirection>(null);
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      // Cycle through: asc -> desc -> null
+      if (sortDirection === "asc") {
+        setSortDirection("desc");
+      } else if (sortDirection === "desc") {
+        setSortDirection(null);
+        setSortField(null);
+      }
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
+
+  const sortedCourses = useMemo(() => {
+    if (!sortField || !sortDirection) {
+      return courses;
+    }
+
+    return [...courses].sort((a, b) => {
+      let aValue: any;
+      let bValue: any;
+
+      switch (sortField) {
+        case "courseOrder":
+          aValue = a.courseOrder ?? Number.MAX_SAFE_INTEGER;
+          bValue = b.courseOrder ?? Number.MAX_SAFE_INTEGER;
+          break;
+        case "category":
+          aValue = a.category ?? "";
+          bValue = b.category ?? "";
+          break;
+        case "price":
+          aValue = a.price ?? 0;
+          bValue = b.price ?? 0;
+          break;
+        case "startDate":
+          aValue = a.startDate ? new Date(a.startDate).getTime() : 0;
+          bValue = b.startDate ? new Date(b.startDate).getTime() : 0;
+          break;
+        default:
+          return 0;
+      }
+
+      if (aValue < bValue) return sortDirection === "asc" ? -1 : 1;
+      if (aValue > bValue) return sortDirection === "asc" ? 1 : -1;
+      return 0;
+    });
+  }, [courses, sortField, sortDirection]);
+
+  const SortIcon = ({ field }: { field: SortField }) => {
+    if (sortField !== field) {
+      return <ArrowUpDown className="ml-2 h-4 w-4" />;
+    }
+    if (sortDirection === "asc") {
+      return <ArrowUp className="ml-2 h-4 w-4" />;
+    }
+    return <ArrowDown className="ml-2 h-4 w-4" />;
+  };
 
   return (
     <div className="space-y-4">
@@ -46,24 +113,60 @@ export function CourseTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Order</TableHead>
+              <TableHead>
+                <Button
+                  variant="ghost"
+                  onClick={() => handleSort("courseOrder")}
+                  className="h-auto p-0 font-semibold hover:bg-transparent"
+                >
+                  Order
+                  <SortIcon field="courseOrder" />
+                </Button>
+              </TableHead>
               <TableHead>Year Level</TableHead>
               <TableHead>Program Name</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>Start Date</TableHead>
+              <TableHead>
+                <Button
+                  variant="ghost"
+                  onClick={() => handleSort("category")}
+                  className="h-auto p-0 font-semibold hover:bg-transparent"
+                >
+                  Category
+                  <SortIcon field="category" />
+                </Button>
+              </TableHead>
+              <TableHead>
+                <Button
+                  variant="ghost"
+                  onClick={() => handleSort("price")}
+                  className="h-auto p-0 font-semibold hover:bg-transparent"
+                >
+                  Price
+                  <SortIcon field="price" />
+                </Button>
+              </TableHead>
+              <TableHead>
+                <Button
+                  variant="ghost"
+                  onClick={() => handleSort("startDate")}
+                  className="h-auto p-0 font-semibold hover:bg-transparent"
+                >
+                  Start Date
+                  <SortIcon field="startDate" />
+                </Button>
+              </TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {courses.length === 0 ? (
+            {sortedCourses.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={7} className="text-center text-gray-500">
                   No courses found. Create your first course!
                 </TableCell>
               </TableRow>
             ) : (
-              courses.map((course) => (
+              sortedCourses.map((course) => (
                 <TableRow key={course.id}>
                   <TableCell>{course.courseOrder ?? "-"}</TableCell>
                   <TableCell>{course.yearLevel}</TableCell>
