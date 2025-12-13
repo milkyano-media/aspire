@@ -46,7 +46,6 @@ export function CourseTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>ID</TableHead>
               <TableHead>Order</TableHead>
               <TableHead>Year Level</TableHead>
               <TableHead>Program Name</TableHead>
@@ -59,14 +58,13 @@ export function CourseTable({
           <TableBody>
             {courses.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={8} className="text-center text-gray-500">
+                <TableCell colSpan={7} className="text-center text-gray-500">
                   No courses found. Create your first course!
                 </TableCell>
               </TableRow>
             ) : (
               courses.map((course) => (
                 <TableRow key={course.id}>
-                  <TableCell>{course.id}</TableCell>
                   <TableCell>{course.courseOrder ?? "-"}</TableCell>
                   <TableCell>{course.yearLevel}</TableCell>
                   <TableCell>{course.programName}</TableCell>
