@@ -7,6 +7,7 @@ import { RoleToggle } from "./RoleToggle";
 import { CountryCodeSelect } from "./CountryCodeSelect";
 import { Input } from "@/components/ui/input";
 import { trackEvent } from "@/lib/gtm";
+import { submitToPabbly, submitToExternalAPI } from "@/lib/form-api";
 
 interface ConsultationFormProps {
   onSuccess: () => void;
@@ -64,12 +65,35 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
         message: data.message || "",
       };
 
-      // Submit to Pabbly webhook
-      await fetch(process.env.NEXT_PUBLIC_PABBLY_WEBHOOK_URL!, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submissionData),
-      });
+      // Submit to both APIs in parallel
+      const [pabblyResult, externalApiResult] = await Promise.allSettled([
+        submitToPabbly(submissionData),
+        submitToExternalAPI({
+          formData: {
+            ...submissionData,
+            submittedAt: new Date().toISOString(),
+          },
+          spreadsheetUrl: process.env.NEXT_PUBLIC_SPREADSHEET_URL!,
+          emailReceiver: process.env.NEXT_PUBLIC_FORM_EMAIL_RECEIVER!,
+          metadata: {
+            formType: "consultation_request",
+            subject: "New Aspire Academics Consultation Request",
+          },
+        }),
+      ]);
+
+      // Check Pabbly result (critical path)
+      if (pabblyResult.status === "rejected") {
+        console.error("Pabbly submission error:", pabblyResult.reason);
+        alert("Error submitting form. Please try again.");
+        return;
+      }
+
+      // Log external API errors silently
+      if (externalApiResult.status === "rejected") {
+        console.error("External API submission error:", externalApiResult.reason);
+        // Continue flow - silent failure as requested
+      }
 
       // GTM Tracking
       const nameParts = data.name.split(" ");
@@ -107,7 +131,7 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
         }
       }, 1000);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Unexpected error in form submission:", error);
       alert("Error submitting form. Please try again.");
     }
   };
