@@ -10,15 +10,15 @@ import "leaflet/dist/leaflet.css";
 // Dynamically import map components to avoid SSR issues
 const MapContainer = dynamic(
   () => import("react-leaflet").then((mod) => mod.MapContainer),
-  { ssr: false }
+  { ssr: false },
 );
 const TileLayer = dynamic(
   () => import("react-leaflet").then((mod) => mod.TileLayer),
-  { ssr: false }
+  { ssr: false },
 );
 const Marker = dynamic(
   () => import("react-leaflet").then((mod) => mod.Marker),
-  { ssr: false }
+  { ssr: false },
 );
 const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
   ssr: false,
@@ -49,7 +49,7 @@ export function LocationSection() {
   }, []);
 
   return (
-    <Section variant="medium-blue" className="bg-[#01588d] py-12">
+    <Section variant="medium-blue" className="bg-[#0144AB] py-12">
       <div className="space-y-6 max-w-2xl mx-auto">
         {/* Section Title */}
         <FadeInSection>
@@ -63,50 +63,50 @@ export function LocationSection() {
           <div className="overflow-hidden rounded-[24px] bg-white p-4 shadow-lg">
             {/* Map Area */}
             <div className="relative h-[300px] w-full overflow-hidden rounded-[16px]">
-            {typeof window !== "undefined" && (
-              <MapContainer
-                center={position}
-                zoom={16}
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  borderRadius: "16px",
-                }}
-                scrollWheelZoom={false}
-                zoomControl={false}
-                attributionControl={false}
-              >
-                {/* Satellite imagery base layer */}
-                <TileLayer
-                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                  maxZoom={19}
-                />
-                {/* Street labels and road names overlay */}
-                <TileLayer
-                  url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
-                  maxZoom={19}
-                />
-                {/* Place names and boundaries overlay */}
-                <TileLayer
-                  url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
-                  maxZoom={19}
-                />
-                {customIcon && (
-                  <Marker position={position} icon={customIcon}>
-                    <Popup>
-                      <div className="text-center">
-                        <p className="font-bold text-aspire-blue">
-                          Aspire Academics
-                        </p>
-                        <p className="text-xs">Unit 15, 150 Palmers Rd</p>
-                        <p className="text-xs">Truganina VIC 3029</p>
-                      </div>
-                    </Popup>
-                  </Marker>
-                )}
-              </MapContainer>
-            )}
-          </div>
+              {typeof window !== "undefined" && (
+                <MapContainer
+                  center={position}
+                  zoom={16}
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: "16px",
+                  }}
+                  scrollWheelZoom={false}
+                  zoomControl={false}
+                  attributionControl={false}
+                >
+                  {/* Satellite imagery base layer */}
+                  <TileLayer
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                    maxZoom={19}
+                  />
+                  {/* Street labels and road names overlay */}
+                  <TileLayer
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
+                    maxZoom={19}
+                  />
+                  {/* Place names and boundaries overlay */}
+                  <TileLayer
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+                    maxZoom={19}
+                  />
+                  {customIcon && (
+                    <Marker position={position} icon={customIcon}>
+                      <Popup>
+                        <div className="text-center">
+                          <p className="font-bold text-aspire-blue">
+                            Aspire Academics
+                          </p>
+                          <p className="text-xs">Unit 15, 150 Palmers Rd</p>
+                          <p className="text-xs">Truganina VIC 3029</p>
+                        </div>
+                      </Popup>
+                    </Marker>
+                  )}
+                </MapContainer>
+              )}
+            </div>
 
             {/* Address Info */}
             <div className="space-y-2 p-6 text-center">
@@ -114,8 +114,8 @@ export function LocationSection() {
                 Unit 15, 150 Palmers Rd, Truganina VIC 3029
               </p>
               <p className="text-sm text-gray-600">
-                Parking available. Easy access from Williams Landing, Tarneit, and
-                surrounding suburbs.
+                Parking available. Easy access from Williams Landing, Tarneit,
+                and surrounding suburbs.
               </p>
             </div>
           </div>

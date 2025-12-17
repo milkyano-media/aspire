@@ -27,7 +27,7 @@ export function SubjectsSection() {
   ];
 
   return (
-    <Section variant="gradient-blue" className="py-12 lg:py-20">
+    <Section variant="gradient-blue-right" className="py-12 lg:py-20">
       <div className="space-y-6 lg:space-y-12">
         {/* Section Title */}
         <FadeInSection>

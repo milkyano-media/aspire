@@ -24,7 +24,7 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <Section variant="medium-blue" className="bg-[#01588d] py-12 lg:py-20">
+    <Section variant="medium-blue" className="bg-[#0144AB] py-12 lg:py-20">
       <div className="space-y-6 lg:space-y-12 max-w-6xl mx-auto">
         {/* Section Title */}
         <FadeInSection>

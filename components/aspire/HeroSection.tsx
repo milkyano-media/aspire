@@ -10,7 +10,7 @@ import { trackCTAClick } from "@/lib/gtm";
 
 export function HeroSection() {
   return (
-    <Section variant="dark-blue" className="relative py-12">
+    <Section variant="gradient-blue-right" className="relative py-12">
       {/* Background gradient decoration */}
       <div className="absolute left-1/2 top-1/2 h-[532px] lg:h-[900px] w-[532px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-white/10 to-transparent opacity-50" />
 
@@ -19,7 +19,7 @@ export function HeroSection() {
         <div className="flex flex-col items-center space-y-8 text-center">
           {/* Headline */}
           <FadeInSection delay={0.2} duration={0.8}>
-            <h1 className="text-[48px] md:text-7xl text-center font-extrabold leading-[40px] md:leading-[60px] max-w-3xl">
+            <h1 className="text-[48px] md:text-7xl text-center font-extrabold leading-[40px] md:leading-[60px] max-w-3xl text-white">
               <span className="text-aspire-orange">
                 Tutoring That Gets Real Results
               </span>{" "}
@@ -63,7 +63,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 className="h-[58px] lg:h-[70px] w-[224px] lg:w-[280px] rounded-md bg-aspire-orange text-lg lg:text-xl font-bold text-white hover:bg-orange-600 transition-all hover:scale-105"
-                onClick={() => trackCTAClick('Book a Free Class', 'hero')}
+                onClick={() => trackCTAClick("Book a Free Class", "hero")}
               >
                 Book a Free Class
               </Button>

@@ -9,7 +9,8 @@ interface SectionProps {
     | "light-blue"
     | "white"
     | "gradient-blue"
-    | "gradient-blue-top";
+    | "gradient-blue-top"
+    | "gradient-blue-right";
   containerClassName?: string;
 }
 
@@ -28,6 +29,8 @@ export function Section({
       "bg-gradient-to-b from-aspire-medium-blue to-aspire-dark-blue text-white",
     "gradient-blue-top":
       "bg-gradient-to-t from-aspire-medium-blue to-aspire-dark-blue text-white",
+    "gradient-blue-right":
+      "bg-linear-90 from-[#0048B7] from-0% to-[#002051] to-100%",
   };
 
   return (
@@ -35,7 +38,7 @@ export function Section({
       <div
         className={cn(
           "mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8",
-          containerClassName
+          containerClassName,
         )}
       >
         {children}

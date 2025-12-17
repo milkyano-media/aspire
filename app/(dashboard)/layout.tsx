@@ -63,7 +63,12 @@ function UserMenu() {
           asChild
           className="rounded-full bg-orange-500 hover:bg-orange-600 text-white"
         >
-          <SmoothScrollLink href="/#form" onClick={() => trackCTAClick('Book Free Trial', 'header')}>Book Free Trial</SmoothScrollLink>
+          <SmoothScrollLink
+            href="/#form"
+            onClick={() => trackCTAClick("Book Free Trial", "header")}
+          >
+            Book Free Trial
+          </SmoothScrollLink>
         </Button>
         <Button
           asChild
@@ -112,7 +117,7 @@ function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-gray-700 bg-aspire-dark-blue h-[80px] w-full">
+    <header className="border-b border-[#364153] bg-gradient-blue-right h-[80px] w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center h-full">
         <Link href="/" className="flex items-center">
           <Image
@@ -204,7 +209,7 @@ function Header() {
                 href="/#form"
                 className="block px-4 py-3 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-3xl text-center transition-colors"
                 onClick={() => {
-                  trackCTAClick('Book Free Trial', 'mobile-menu');
+                  trackCTAClick("Book Free Trial", "mobile-menu");
                   setIsMobileMenuOpen(false);
                 }}
               >
