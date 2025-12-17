@@ -336,3 +336,9 @@
     animation: slide-in-left 0.8s ease-out;
   }
 }
+
+@layer components {
+  .bg-gradient-blue-right {
+    @apply bg-linear-90 from-[#0048B7] from-0% to-[#002051] to-100%;
+  }
+}

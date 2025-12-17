@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
 export function AboutUsHero() {
   return (
-    <section className="relative bg-gradient-to-br from-[#070b30] via-[#0a1045] to-[#070b30] px-4 py-20 text-white">
+    <section className="relative bg-[#002A6A] px-4 py-20 text-white">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-500/10 blur-3xl" />

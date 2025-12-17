@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-700 bg-[#052e4d] text-white">
+    <footer className="border-t border-gray-700 bg-[#00245C] text-white">
       {/* Logo and Tagline */}
       <div className="mx-auto max-w-7xl px-4 py-12 lg:py-16 sm:px-6 lg:px-8">
         <div className="space-y-8 lg:space-y-12">
@@ -46,7 +46,7 @@ export function Footer() {
               {/* Phone */}
               <FadeInSection delay={0.2}>
                 <div className="flex gap-4 lg:flex-col lg:items-center lg:text-center lg:gap-3">
-                  <Phone className="h-6 w-6 lg:h-8 lg:w-8 text-aspire-orange" />
+                  <Phone className="h-6 w-6 lg:h-8 lg:w-8 text-white" />
                   <a
                     href="tel:+61452092360"
                     className="text-lg lg:text-xl hover:text-aspire-orange transition-colors"
@@ -59,7 +59,7 @@ export function Footer() {
               {/* Email */}
               <FadeInSection delay={0.3}>
                 <div className="flex items-center justify-center gap-4 lg:flex-col lg:items-center lg:text-center lg:gap-3">
-                  <Mail className="h-6 w-6 lg:h-8 lg:w-8 text-aspire-orange" />
+                  <Mail className="h-6 w-6 lg:h-8 lg:w-8 text-white" />
                   <a
                     href="mailto:info@aspireacademics.au"
                     className="text-lg lg:text-xl hover:text-aspire-orange transition-colors"
@@ -72,7 +72,7 @@ export function Footer() {
               {/* Address */}
               <FadeInSection delay={0.4}>
                 <div className="flex gap-4 lg:flex-col lg:items-center lg:text-center lg:gap-3">
-                  <MapPin className="mt-1 lg:mt-0 h-6 w-6 lg:h-8 lg:w-8 text-aspire-orange flex-shrink-0" />
+                  <MapPin className="mt-1 lg:mt-0 h-6 w-6 lg:h-8 lg:w-8 text-white flex-shrink-0" />
                   <p className="text-lg lg:text-xl">
                     Unit 15, 150 Palmers Road
                     <br />
@@ -86,7 +86,7 @@ export function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="bg-aspire-medium-blue py-[40px] lg:py-[50px] px-[90px]">
+      <div className="bg-[#0144AB] py-[40px] lg:py-[50px] px-[90px]">
         <p className="text-center text-sm lg:text-base font-bold">
           © Copyright 2025 AspireAcademics.au Designed by Milkyano Digital
         </p>

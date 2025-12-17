@@ -19,7 +19,10 @@ export function WhyAspireSection() {
   ];
 
   return (
-    <Section variant="gradient-blue-top" className="py-12 lg:py-20">
+    <Section
+      variant="gradient-blue-top"
+      className="py-12 lg:py-20 bg-[#0144AB]"
+    >
       <div className="space-y-6 lg:space-y-12 max-w-5xl mx-auto">
         {/* Section Title */}
         <FadeInSection>

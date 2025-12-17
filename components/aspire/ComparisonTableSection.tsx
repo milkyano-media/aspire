@@ -29,7 +29,7 @@ export function ComparisonTableSection() {
   ];
 
   return (
-    <Section variant="medium-blue" className="py-12">
+    <Section variant="medium-blue" className="py-12 bg-[#0144AB]">
       <div className="space-y-8 text-center max-w-4xl mx-auto">
         <FadeInSection>
           <div className="mb-[-20px] relative z-10 w-fit mx-auto">

@@ -5,7 +5,7 @@ import { FadeInSection } from "./ui/FadeInSection";
 
 export function AboutSection() {
   return (
-    <Section variant="dark-blue" className="py-12">
+    <Section variant="gradient-blue-right" className="py-12">
       <div className="space-y-6 mx-auto max-w-4xl">
         {/* Section Title */}
         <FadeInSection>

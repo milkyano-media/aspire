@@ -18,7 +18,7 @@ export function CtaSection({
   buttonText = "Book a Free Class",
 }: CtaSectionProps) {
   return (
-    <Section variant="dark-blue" className="py-12 lg:py-20">
+    <Section variant="dark-blue" className="py-12 lg:py-20 bg-[#00245C]">
       <FadeInSection>
         <div className="flex flex-col items-center space-y-6 lg:space-y-8 text-center max-w-4xl mx-auto">
           <h2 className="text-2xl lg:text-4xl font-bold leading-tight lg:leading-tight text-white px-4">
@@ -35,7 +35,7 @@ export function CtaSection({
             <Button
               size="lg"
               className="h-[58px] lg:h-[70px] w-[224px] lg:w-[280px] rounded-md bg-aspire-orange text-lg lg:text-xl font-bold text-white hover:bg-orange-600 transition-all hover:scale-105"
-              onClick={() => trackCTAClick(buttonText, 'cta-section')}
+              onClick={() => trackCTAClick(buttonText, "cta-section")}
             >
               {buttonText}
             </Button>
