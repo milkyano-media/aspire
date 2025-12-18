@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { CourseCard } from "@/components/aspire/Courses/CourseCard";
 import { CourseSignupModal } from "@/components/aspire/Courses/CourseSignupModal";
+import { ConsultationForm } from "@/components/aspire/ConsultationForm/ConsultationForm";
 import { Button } from "@/components/ui/button";
 
 interface Course {
@@ -30,7 +30,6 @@ export function CoursesClient({ courses }: CoursesClientProps) {
   const [selectedPackages, setSelectedPackages] = useState<Set<PackageFilter>>(
     new Set()
   );
-  const router = useRouter();
 
   const handleCourseApplyClick = (courseIndex: number) => {
     const course = filteredCourses[courseIndex];
@@ -38,24 +37,16 @@ export function CoursesClient({ courses }: CoursesClientProps) {
       (c) =>
         c.programName === course.programName && c.yearLevel === course.yearLevel
     );
-    const originalCourse = courses[originalIndex];
-    const currentDate = new Date();
-
-    // Check if start_date exists and current date is greater than start_date
-    if (originalCourse.startDate) {
-      const startDate = new Date(originalCourse.startDate);
-      if (currentDate > startDate) {
-        // Redirect to /trial
-        router.push("/trial");
-        return;
-      }
-    }
-
-    // Otherwise, show modal
+    // Always show modal with consultation form
     setSelectedCourse(originalIndex);
   };
 
   const handleModalClose = () => {
+    setSelectedCourse(null);
+  };
+
+  const handleFormSuccess = () => {
+    // Close modal after successful form submission
     setSelectedCourse(null);
   };
 
@@ -114,15 +105,15 @@ export function CoursesClient({ courses }: CoursesClientProps) {
       </div>
 
       {/* Course Signup Modal */}
-      {selectedCourse !== null &&
-        courses[selectedCourse].tutorBirdScriptUrl && (
-          <CourseSignupModal
-            isOpen={true}
-            courseTitle={courses[selectedCourse].programName}
-            tutorBirdScriptUrl={courses[selectedCourse].tutorBirdScriptUrl}
-            onClose={handleModalClose}
-          />
-        )}
+      {selectedCourse !== null && (
+        <CourseSignupModal
+          isOpen={true}
+          courseTitle={courses[selectedCourse].programName}
+          onClose={handleModalClose}
+        >
+          <ConsultationForm onSuccess={handleFormSuccess} />
+        </CourseSignupModal>
+      )}
     </>
   );
 }
