@@ -6,8 +6,9 @@ import { X } from 'lucide-react';
 interface CourseSignupModalProps {
   isOpen: boolean;
   courseTitle: string;
-  tutorBirdScriptUrl: string;
+  tutorBirdScriptUrl?: string;
   onClose: () => void;
+  children?: React.ReactNode;
 }
 
 export function CourseSignupModal({
@@ -15,6 +16,7 @@ export function CourseSignupModal({
   courseTitle,
   tutorBirdScriptUrl,
   onClose,
+  children,
 }: CourseSignupModalProps) {
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const scriptRef = useRef<HTMLScriptElement | null>(null);
@@ -35,9 +37,9 @@ export function CourseSignupModal({
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  // Handle script injection
+  // Handle script injection (only if no children and tutorBirdScriptUrl is provided)
   useEffect(() => {
-    if (!isOpen || !widgetContainerRef.current) {
+    if (!isOpen || !widgetContainerRef.current || children || !tutorBirdScriptUrl) {
       return;
     }
 
@@ -61,7 +63,7 @@ export function CourseSignupModal({
         isInitializedRef.current = false;
       }
     };
-  }, [isOpen, tutorBirdScriptUrl]);
+  }, [isOpen, tutorBirdScriptUrl, children]);
 
   if (!isOpen) return null;
 
@@ -97,8 +99,12 @@ export function CourseSignupModal({
           {courseTitle}
         </h2>
 
-        {/* TutorBird Widget Container */}
-        <div ref={widgetContainerRef} className="w-full" />
+        {/* Render children if provided, otherwise TutorBird Widget Container */}
+        {children ? (
+          <div className="flex w-full items-center justify-center">{children}</div>
+        ) : (
+          <div ref={widgetContainerRef} className="w-full" />
+        )}
       </div>
     </div>
   );

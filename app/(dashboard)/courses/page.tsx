@@ -57,22 +57,17 @@ export default async function CoursesPage() {
       </section>
 
       {/* Courses Grid */}
-      <section className="bg-white px-4 py-16">
-        <div className="mb-8">
-          <TutorBirdCourseWidget />
+      <section className="bg-white px-4 py-16 mx-auto max-w-7xl">
+        <div className="mb-12 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-[#070b30] md:text-4xl">
+            Our Programs
+          </h2>
+          <p className="text-lg text-[#697585]">
+            Choose the right program for your child's year level
+          </p>
         </div>
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-[#070b30] md:text-4xl">
-              Our Programs
-            </h2>
-            <p className="text-lg text-[#697585]">
-              Choose the right program for your child's year level
-            </p>
-          </div>
 
-          <CoursesClient courses={courses} />
-        </div>
+        <CoursesClient courses={courses} />
       </section>
 
       {/* Bottom CTA Section */}
