@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from "react";
+import Image from "next/image";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const tutors = [
   {
     id: 1,
-    image: '/marketing/about/tutor1.webp',
-    alt: 'Ananya - Biology Tutor',
+    image: "/marketing/about/tutor1.webp",
+    alt: "Rafid Haider - Chemistry Tutor",
   },
   {
     id: 2,
-    image: '/marketing/about/tutor2.webp',
-    alt: 'Muhammad Faraz Ali - Chemistry Tutor',
+    image: "/marketing/about/tutor2.webp",
+    alt: "Tasneem Muntasir - Chemistry Tutor",
   },
   {
     id: 3,
-    image: '/marketing/about/tutor3.webp',
-    alt: 'Thiwanka Manuranga - Math Tutor',
+    image: "/marketing/about/tutor3.webp",
+    alt: "Yaseen - Math Tutor",
   },
   {
     id: 4,
-    image: '/marketing/about/tutor4.webp',
-    alt: 'Ananya - Chemistry Tutor',
+    image: "/marketing/about/tutor4.webp",
+    alt: "Ananya - Biology Tutor",
   },
 ];
 
@@ -40,13 +40,17 @@ export function TutorGallery() {
 
   const goToPrevious = () => {
     if (selectedImage !== null) {
-      setSelectedImage(selectedImage === 0 ? tutors.length - 1 : selectedImage - 1);
+      setSelectedImage(
+        selectedImage === 0 ? tutors.length - 1 : selectedImage - 1,
+      );
     }
   };
 
   const goToNext = () => {
     if (selectedImage !== null) {
-      setSelectedImage(selectedImage === tutors.length - 1 ? 0 : selectedImage + 1);
+      setSelectedImage(
+        selectedImage === tutors.length - 1 ? 0 : selectedImage + 1,
+      );
     }
   };
 
@@ -70,7 +74,9 @@ export function TutorGallery() {
             </div>
             {/* Overlay on hover */}
             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-[#070b30]/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <span className="text-sm font-semibold text-white">Click to view</span>
+              <span className="text-sm font-semibold text-white">
+                Click to view
+              </span>
             </div>
           </button>
         ))}
