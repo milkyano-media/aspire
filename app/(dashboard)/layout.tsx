@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { signOut } from "@/app/(login)/actions";
 import { useRouter } from "next/navigation";
 import { User } from "@/lib/db/schema";
 import useSWR, { mutate } from "swr";
@@ -27,7 +26,6 @@ function UserMenu() {
   const router = useRouter();
 
   async function handleSignOut() {
-    await signOut();
     mutate("/api/user");
     router.push("/");
   }
@@ -72,7 +70,7 @@ function UserMenu() {
         </Button>
         <Button
           asChild
-          className="rounded-full bg-white hover:bg-gray-100 text-[#002366] border border-white"
+          className="rounded-full bg-white hover:bg-gray-100 text-[#002366] border border-white hidden"
         >
           <Link href="/student-login">Portal Login</Link>
         </Button>
