@@ -1,6 +1,6 @@
 "use client";
 
-import { trackCTAClick } from '@/lib/gtm';
+import { trackCTAClick } from "@/lib/gtm";
 
 interface CourseCardProps {
   yearLevel: string;
@@ -8,12 +8,11 @@ interface CourseCardProps {
   description: string;
   includes: string[];
   note?: string;
-  courseIndex: number;
-  onApplyClick: (courseIndex: number) => void;
   tutorBirdScriptUrl?: string;
   price?: string;
   priceUnit?: string;
   startDate?: string | null;
+  wiseCourseId: string;
 }
 
 export function CourseCard({
@@ -22,24 +21,28 @@ export function CourseCard({
   description,
   includes,
   note,
-  courseIndex,
-  onApplyClick,
   price,
   priceUnit,
   startDate,
+  wiseCourseId,
 }: CourseCardProps) {
   const handleApplyClick = () => {
-    trackCTAClick('Apply Now', `course-card-${yearLevel}`);
-    onApplyClick(courseIndex);
+    trackCTAClick("Apply Now", `course-card-${yearLevel}`);
+    const wise_base_url = process.env.NEXT_PUBLIC_WISE_BASE_URL;
+    window.open(
+      `${wise_base_url}/courses/${wiseCourseId}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   const formatDate = (dateString: string | null | undefined) => {
     if (!dateString) return null;
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-AU', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+    return date.toLocaleDateString("en-AU", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
   };
   return (
@@ -82,9 +85,7 @@ export function CourseCard({
 
       {/* Note */}
       {note && note !== "-" && (
-        <p className="mb-6 text-sm italic text-[#697585]">
-          Note: {note}
-        </p>
+        <p className="mb-6 text-sm italic text-[#697585]">Note: {note}</p>
       )}
 
       {/* Price Section */}

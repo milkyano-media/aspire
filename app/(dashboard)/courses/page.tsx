@@ -1,6 +1,5 @@
 import { CourseListHero } from "@/components/aspire/Courses/CourseListHero";
 import { Footer } from "@/components/aspire/Footer";
-import { TutorBirdCourseWidget } from "@/components/aspire/TutorBirdCourseWidget";
 import { SmoothScrollLink } from "@/components/ui/smooth-scroll-link";
 import { getCourses } from "@/lib/db/queries";
 import { CoursesClient } from "@/components/aspire/Courses/CoursesClient";
@@ -27,6 +26,7 @@ export default async function CoursesPage() {
     tutorBirdScriptUrl: course.tutorBirdScriptUrl ?? "",
     startDate: course.startDate ? String(course.startDate) : null,
     category: course.category ?? null,
+    wiseCourseId: course.wiseCourseId,
   }));
 
   return (

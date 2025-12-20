@@ -15,6 +15,13 @@
       "when": 1765553370679,
       "tag": "0001_happy_maximus",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1766244087466,
+      "tag": "0002_bouncy_rick_jones",
+      "breakpoints": true
     }
   ]
 }
