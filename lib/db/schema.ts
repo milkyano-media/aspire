@@ -126,6 +126,7 @@ export const courses = pgTable("courses", {
   startDate: date("start_date"),
   category: varchar("category", { length: 255 }), // "STANDARD" or "PREMIUM"
   courseOrder: integer("course_order"),
+  wiseCourseId: text("wise_course_id").notNull().default(""),
 });
 
 export type User = typeof users.$inferSelect;

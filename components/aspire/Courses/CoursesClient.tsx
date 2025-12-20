@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { CourseCard } from "@/components/aspire/Courses/CourseCard";
-import { CourseSignupModal } from "@/components/aspire/Courses/CourseSignupModal";
-import { ConsultationForm } from "@/components/aspire/ConsultationForm/ConsultationForm";
 import { Button } from "@/components/ui/button";
 
 interface Course {
@@ -17,6 +15,7 @@ interface Course {
   tutorBirdScriptUrl?: string;
   startDate?: string | null;
   category?: string | null;
+  wiseCourseId: string;
 }
 
 interface CoursesClientProps {
@@ -26,29 +25,9 @@ interface CoursesClientProps {
 type PackageFilter = "STANDARD" | "PREMIUM" | "VCE";
 
 export function CoursesClient({ courses }: CoursesClientProps) {
-  const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [selectedPackages, setSelectedPackages] = useState<Set<PackageFilter>>(
-    new Set()
+    new Set(),
   );
-
-  const handleCourseApplyClick = (courseIndex: number) => {
-    const course = filteredCourses[courseIndex];
-    const originalIndex = courses.findIndex(
-      (c) =>
-        c.programName === course.programName && c.yearLevel === course.yearLevel
-    );
-    // Always show modal with consultation form
-    setSelectedCourse(originalIndex);
-  };
-
-  const handleModalClose = () => {
-    setSelectedCourse(null);
-  };
-
-  const handleFormSuccess = () => {
-    // Close modal after successful form submission
-    setSelectedCourse(null);
-  };
 
   const togglePackage = (packageType: PackageFilter) => {
     setSelectedPackages((prev) => {
@@ -98,22 +77,10 @@ export function CoursesClient({ courses }: CoursesClientProps) {
           <CourseCard
             key={index}
             {...course}
-            courseIndex={index}
-            onApplyClick={handleCourseApplyClick}
+            wiseCourseId={course.wiseCourseId}
           />
         ))}
       </div>
-
-      {/* Course Signup Modal */}
-      {selectedCourse !== null && (
-        <CourseSignupModal
-          isOpen={true}
-          courseTitle={courses[selectedCourse].programName}
-          onClose={handleModalClose}
-        >
-          <ConsultationForm onSuccess={handleFormSuccess} />
-        </CourseSignupModal>
-      )}
     </>
   );
 }
