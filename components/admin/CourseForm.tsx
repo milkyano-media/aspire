@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Program } from "@/lib/db/schema";
 
 interface CourseFormProps {
-  course?: (Omit<Program, 'includes'> & { includes: string[] }) | null;
+  course?: (Omit<Program, "includes"> & { includes: string[] }) | null;
   isPending: boolean;
   error?: string;
 }
@@ -29,7 +29,8 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
           disabled={isPending}
         />
         <p className="mt-1 text-sm text-gray-500">
-          Controls the order courses appear on the public page (lower numbers first)
+          Controls the order courses appear on the public page (lower numbers
+          first)
         </p>
       </div>
 
@@ -127,15 +128,14 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
         </div>
       </div>
 
-      {/* TutorBird Script URL */}
+      {/* WiseLMS Course ID */}
       <div>
-        <Label htmlFor="tutorBirdScriptUrl">TutorBird Script URL</Label>
+        <Label htmlFor="wiseCourseId">Wise Course ID</Label>
         <Input
-          id="tutorBirdScriptUrl"
-          name="tutorBirdScriptUrl"
-          type="url"
-          defaultValue={course?.tutorBirdScriptUrl || ""}
-          placeholder="https://app.tutorbird.com/Widget/v4/..."
+          id="wiseCourseId"
+          name="wiseCourseId"
+          type="text"
+          defaultValue={course?.wiseCourseId || ""}
           disabled={isPending}
         />
       </div>
@@ -177,8 +177,8 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
             ? "Updating..."
             : "Creating..."
           : course
-          ? "Update Course"
-          : "Create Course"}
+            ? "Update Course"
+            : "Create Course"}
       </Button>
     </div>
   );

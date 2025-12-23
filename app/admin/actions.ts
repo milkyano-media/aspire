@@ -29,7 +29,7 @@ export const validateAdminKey = validatedAction(
     }
 
     return { success: "Authenticated" };
-  }
+  },
 );
 
 // Zod schema for course validation
@@ -41,11 +41,7 @@ const courseSchema = z.object({
   note: z.string().optional(),
   price: z.string().optional(),
   priceUnit: z.string().optional(),
-  tutorBirdScriptUrl: z
-    .string()
-    .url("Invalid URL")
-    .or(z.literal(""))
-    .optional(),
+  wiseCourseId: z.string().or(z.literal("")).optional(),
   startDate: z.string().optional(), // Date string from input
   category: z.enum(["STANDARD", "PREMIUM", "VCE"]).optional(),
   courseOrder: z.coerce.number().optional(),
@@ -53,7 +49,7 @@ const courseSchema = z.object({
 
 export const createCourse = validatedAction(
   courseSchema,
-  async (data, formData): Promise<ActionState> => {
+  async (data, _formData): Promise<ActionState> => {
     try {
       await dbCreateCourse({
         ...data,
@@ -68,7 +64,7 @@ export const createCourse = validatedAction(
       console.error("Error creating course:", error);
       return { error: "Failed to create course" };
     }
-  }
+  },
 );
 
 const updateCourseSchema = courseSchema.extend({
@@ -77,7 +73,7 @@ const updateCourseSchema = courseSchema.extend({
 
 export const updateCourse = validatedAction(
   updateCourseSchema,
-  async (data, formData): Promise<ActionState> => {
+  async (data, _formData): Promise<ActionState> => {
     try {
       const { id, ...updateData } = data;
 
@@ -94,7 +90,7 @@ export const updateCourse = validatedAction(
       console.error("Error updating course:", error);
       return { error: "Failed to update course" };
     }
-  }
+  },
 );
 
 const deleteCourseSchema = z.object({
@@ -115,5 +111,5 @@ export const deleteCourse = validatedAction(
       console.error("Error deleting course:", error);
       return { error: "Failed to delete course" };
     }
-  }
+  },
 );
