@@ -8,6 +8,7 @@ import { CountryCodeSelect } from "./CountryCodeSelect";
 import { Input } from "@/components/ui/input";
 import { trackEvent } from "@/lib/gtm";
 import { submitToPabbly, submitToExternalAPI } from "@/lib/form-api";
+import { sendConsultationConfirmation } from "@/app/(dashboard)/actions/consultation";
 
 interface ConsultationFormProps {
   onSuccess: () => void;
@@ -65,8 +66,8 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
         message: data.message || "",
       };
 
-      // Submit to both APIs in parallel
-      const [pabblyResult, externalApiResult] = await Promise.allSettled([
+      // Submit to both APIs and send confirmation email in parallel
+      const [pabblyResult, externalApiResult, emailResult] = await Promise.allSettled([
         submitToPabbly(submissionData),
         submitToExternalAPI({
           formData: {
@@ -80,6 +81,7 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
             subject: "New Aspire Academics Consultation Request",
           },
         }),
+        sendConsultationConfirmation(data),
       ]);
 
       // Check Pabbly result (critical path)
@@ -93,6 +95,12 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
       if (externalApiResult.status === "rejected") {
         console.error("External API submission error:", externalApiResult.reason);
         // Continue flow - silent failure as requested
+      }
+
+      // Log confirmation email errors silently
+      if (emailResult.status === "rejected") {
+        console.error("Confirmation email error:", emailResult.reason);
+        // Continue flow - silent failure
       }
 
       // GTM Tracking
