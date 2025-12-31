@@ -15,20 +15,17 @@ import { CourseFormModal } from "./CourseFormModal";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 
-type CourseWithIncludes = Omit<Program, 'includes'> & { includes: string[] };
+type CourseWithIncludes = Omit<Program, "includes"> & { includes: string[] };
 
 type SortField = "courseOrder" | "category" | "price" | "startDate";
 type SortDirection = "asc" | "desc" | null;
 
-export function CourseTable({
-  courses,
-}: {
-  courses: CourseWithIncludes[];
-}) {
+export function CourseTable({ courses }: { courses: CourseWithIncludes[] }) {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [createModalKey, setCreateModalKey] = useState(0);
-  const [editingCourse, setEditingCourse] =
-    useState<CourseWithIncludes | null>(null);
+  const [editingCourse, setEditingCourse] = useState<CourseWithIncludes | null>(
+    null,
+  );
   const [deletingCourse, setDeletingCourse] =
     useState<CourseWithIncludes | null>(null);
   const [sortField, setSortField] = useState<SortField | null>(null);
@@ -177,8 +174,10 @@ export function CourseTable({
                         course.category === "PREMIUM"
                           ? "bg-orange-100 text-orange-700"
                           : course.category === "VCE"
-                          ? "bg-purple-100 text-purple-700"
-                          : "bg-blue-100 text-blue-700"
+                            ? "bg-purple-100 text-purple-700"
+                            : course.category === "SELECTIVE ENTRY"
+                              ? "bg-blue-100 text-blue-700"
+                              : "bg-yellow-100 text-yellow-700"
                       }`}
                     >
                       {course.category || "N/A"}
