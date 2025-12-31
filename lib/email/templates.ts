@@ -287,3 +287,201 @@ This is an automated confirmation email.
 
   return { html, text };
 }
+
+/**
+ * Convert HTML to plain text by removing tags
+ */
+function htmlToPlainText(html: string): string {
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n\n')
+    .replace(/<\/div>/gi, '\n')
+    .replace(/<li>/gi, '• ')
+    .replace(/<\/li>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/\n\n\n+/g, '\n\n')
+    .trim();
+}
+
+/**
+ * Generate HTML and plain text email templates for custom admin emails
+ * Wraps custom content in Aspire Academics branding
+ */
+export function generateCustomEmailTemplate(
+  subject: string,
+  customHtmlBody: string
+): EmailTemplate {
+  // Escape subject for HTML safety
+  const safeSubject = escapeHtml(subject);
+
+  // HTML Email Template with custom body
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${safeSubject} - Aspire Academics</title>
+  <style>
+    /* Rich text formatting styles */
+    .email-content h1 {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 0.67em 0;
+      color: #002366;
+    }
+    .email-content h2 {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 0.75em 0;
+      color: #002366;
+    }
+    .email-content h3 {
+      font-size: 1.17em;
+      font-weight: bold;
+      margin: 1em 0;
+      color: #002366;
+    }
+    .email-content p {
+      margin: 1em 0;
+    }
+    .email-content ul {
+      margin: 1em 0;
+      padding-left: 2em;
+      list-style-type: disc;
+    }
+    .email-content ol {
+      margin: 1em 0;
+      padding-left: 2em;
+      list-style-type: decimal;
+    }
+    .email-content li {
+      margin: 0.5em 0;
+    }
+    .email-content blockquote {
+      border-left: 4px solid #FF8C00;
+      padding-left: 1em;
+      margin: 1em 0;
+      color: #666;
+      font-style: italic;
+    }
+    .email-content pre {
+      background-color: #f5f5f5;
+      padding: 1em;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    .email-content code {
+      background-color: #f5f5f5;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9em;
+    }
+    .email-content strong {
+      font-weight: bold;
+    }
+    .email-content em {
+      font-style: italic;
+    }
+    .email-content u {
+      text-decoration: underline;
+    }
+    .email-content s {
+      text-decoration: line-through;
+    }
+    .email-content a {
+      color: #FF8C00;
+      text-decoration: underline;
+    }
+    .email-content hr {
+      border: none;
+      border-top: 2px solid #e0e0e0;
+      margin: 2em 0;
+    }
+    .email-content [style*="text-align: left"] {
+      text-align: left;
+    }
+    .email-content [style*="text-align: center"] {
+      text-align: center;
+    }
+    .email-content [style*="text-align: right"] {
+      text-align: right;
+    }
+    .email-content [style*="text-align: justify"] {
+      text-align: justify;
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Empowering Students to Achieve Excellence</p>
+            </td>
+          </tr>
+
+          <!-- Main Content (Custom Body) -->
+          <tr>
+            <td style="padding: 40px 30px; color: #333333; font-size: 16px; line-height: 1.6;">
+              <div class="email-content">
+                ${customHtmlBody}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim();
+
+  // Plain Text Email Template
+  const plainTextBody = htmlToPlainText(customHtmlBody);
+  const text = `
+ASPIRE ACADEMICS
+Empowering Students to Achieve Excellence
+
+${plainTextBody}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
+  `.trim();
+
+  return { html, text };
+}

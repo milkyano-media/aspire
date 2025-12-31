@@ -1,0 +1,111 @@
+/**
+ * TypeScript interfaces for WiseLMS API responses
+ */
+
+export interface WiseLMSParent {
+  _id: string;
+  email: string;
+  name: string;
+}
+
+export interface WiseLMSStudent {
+  _id: string;
+  name: string;
+  email: string;
+  phoneNumber?: string;
+  profilePicture?: string;
+  uuid: string;
+  joinedOn?: string;
+  activated?: boolean;
+  parents: WiseLMSParent[];
+}
+
+export interface WiseLMSApiResponse<T> {
+  status: number;
+  message: string;
+  data: T;
+}
+
+export interface WiseLMSParticipantsData {
+  _id: string;
+  userId: string;
+  pendingRequest: WiseLMSStudent[];
+  joinedRequest: WiseLMSStudent[];
+  coTeachers: Array<{
+    _id: string;
+    name: string;
+    profilePicture?: string;
+  }>;
+  instituteId: string;
+}
+
+/**
+ * WiseLMS Student Report (detailed student data including parents)
+ */
+export interface WiseLMSStudentReport {
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+    parentIds: string[];
+    profilePicture?: string;
+  };
+  parents: Array<{
+    _id: string;
+    email: string;
+    name: string;
+    profilePicture?: string;
+  }>;
+  institute: {
+    _id: string;
+    name: string;
+  };
+  classrooms: Array<{
+    _id: string;
+    name: string;
+    subject: string;
+  }>;
+}
+
+export interface WiseLMSStudentReportData {
+  studentReport: WiseLMSStudentReport;
+}
+
+/**
+ * WiseLMS Course/Class data
+ */
+export interface WiseLMSCourse {
+  _id: string;
+  name: string;
+  subject: string;
+  classType: 'LIVE' | 'RECORDED' | 'ONE_TO_ONE';
+  classNumber: number;
+  thumbnail: string;
+  published: boolean;
+  createdAt: string;
+  pendingRequest: string[];
+  joinedRequest: string[];
+  coTeachers: Array<{
+    _id: string;
+    name: string;
+    profilePicture: string;
+  }>;
+}
+
+export interface WiseLMSCoursesData {
+  classes: WiseLMSCourse[];
+  hiddenClasses: WiseLMSCourse[];
+  pendingClasses: WiseLMSCourse[];
+}
+
+/**
+ * Simplified student data with parent email for email composer
+ */
+export interface StudentWithParent {
+  studentId: string;
+  studentName: string;
+  studentEmail: string;
+  parentName: string;
+  parentEmail: string;
+  parentPhone?: string;
+}
