@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Program } from "@/lib/db/schema";
 
 interface CourseFormProps {
-  course?: (Omit<Program, 'includes'> & { includes: string[] }) | null;
+  course?: (Omit<Program, "includes"> & { includes: string[] }) | null;
   isPending: boolean;
   error?: string;
 }
@@ -29,7 +29,8 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
           disabled={isPending}
         />
         <p className="mt-1 text-sm text-gray-500">
-          Controls the order courses appear on the public page (lower numbers first)
+          Controls the order courses appear on the public page (lower numbers
+          first)
         </p>
       </div>
 
@@ -127,19 +128,6 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
         </div>
       </div>
 
-      {/* TutorBird Script URL */}
-      <div>
-        <Label htmlFor="tutorBirdScriptUrl">TutorBird Script URL</Label>
-        <Input
-          id="tutorBirdScriptUrl"
-          name="tutorBirdScriptUrl"
-          type="url"
-          defaultValue={course?.tutorBirdScriptUrl || ""}
-          placeholder="https://app.tutorbird.com/Widget/v4/..."
-          disabled={isPending}
-        />
-      </div>
-
       {/* Start Date */}
       <div>
         <Label htmlFor="startDate">Start Date</Label>
@@ -166,7 +154,20 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
           <option value="STANDARD">Standard</option>
           <option value="PREMIUM">Premium</option>
           <option value="VCE">VCE</option>
+          <option value="SELECTIVE ENTRY">Selective Entry</option>
         </select>
+      </div>
+
+      {/* Store Course ID */}
+      <div>
+        <Label htmlFor="wiseCourseId">Store Course ID</Label>
+        <Input
+          id="wiseCourseId"
+          name="wiseCourseId"
+          defaultValue={course?.wiseCourseId || ""}
+          placeholder="e.g., LMS Store Course ID"
+          disabled={isPending}
+        />
       </div>
 
       {error && <p className="text-sm text-red-500">{error}</p>}
@@ -177,8 +178,8 @@ export function CourseForm({ course, isPending, error }: CourseFormProps) {
             ? "Updating..."
             : "Creating..."
           : course
-          ? "Update Course"
-          : "Create Course"}
+            ? "Update Course"
+            : "Create Course"}
       </Button>
     </div>
   );
