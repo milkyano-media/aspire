@@ -6,8 +6,15 @@ import RegistrationHero from "@/components/aspire/Registration/RegistrationHero"
 import StudentForm from "@/components/aspire/Registration/StudentForm";
 import { Button } from "@/components/ui/button";
 import { PlusCircleIcon, ArrowRightIcon } from "lucide-react";
+import { useState } from "react";
 
 export default function RegistrationPage() {
+  const [studentCount, setStudentCount] = useState(1);
+
+  const handleAddStudent = () => {
+    setStudentCount((prev) => prev + 1);
+  };
+
   return (
     <main className="min-h-screen">
       <RegistrationHero />
@@ -16,10 +23,13 @@ export default function RegistrationPage() {
         <div className="max-w-[960px] mx-auto space-y-8">
           <ParentForm />
 
-          <StudentForm />
+          {Array.from({ length: studentCount }, (_, index) => (
+            <StudentForm key={index} studentNumber={index + 1} />
+          ))}
 
           <div className="flex flex-col md:flex-row gap-4 pt-4 pb-12">
             <Button
+              onClick={handleAddStudent}
               variant="outline"
               size="lg"
               className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-dashed border-blue-600/40 text-blue-600 font-bold hover:bg-blue-600/5 hover:border-blue-600 transition-all group"

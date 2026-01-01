@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BadgeIcon, MailIcon, PhoneIcon, UserRoundIcon } from "lucide-react";
+import { IdCardIcon, MailIcon, PhoneIcon, UserRoundIcon } from "lucide-react";
 
 export default function ParentForm() {
   return (
@@ -20,7 +20,7 @@ export default function ParentForm() {
               Full Name
             </Label>
             <div className="relative">
-              <BadgeIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <IdCardIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
               <Input
                 id="parentFullName"
                 placeholder="e.g. Jane Doe"
@@ -49,7 +49,10 @@ export default function ParentForm() {
 
           {/* Phone */}
           <div className="flex flex-col gap-2">
-            <Label className="text-sm font-semibold" htmlFor="parentPhoneNumber">
+            <Label
+              className="text-sm font-semibold"
+              htmlFor="parentPhoneNumber"
+            >
               Phone Number
             </Label>
             <div className="relative">

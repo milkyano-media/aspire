@@ -13,7 +13,11 @@ import { Separator } from "@/components/ui/separator";
 import { UserIcon } from "lucide-react";
 import { useState } from "react";
 
-export default function StudentForm() {
+interface StudentFormProps {
+  studentNumber: number;
+}
+
+export default function StudentForm({ studentNumber }: StudentFormProps) {
   const [selectedGrade, setSelectedGrade] = useState<string>("");
 
   const isVCEEnabled = selectedGrade === "I" || selectedGrade === "J";
@@ -23,7 +27,7 @@ export default function StudentForm() {
       <CardHeader className="px-6 py-5 border-b border-gray-100 bg-gray-50/50 flex flex-row justify-between items-center">
         <CardTitle className="text-xl font-bold flex items-center gap-2">
           <UserIcon className="text-blue-600" />
-          Student 1 Information
+          Student {studentNumber} Information
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6 md:p-8 space-y-6">
@@ -33,23 +37,26 @@ export default function StudentForm() {
             <div className="flex flex-col gap-2">
               <Label
                 className="text-sm font-semibold"
-                htmlFor="student1FullName"
+                htmlFor={`student${studentNumber}FullName`}
               >
                 Student Name
               </Label>
               <Input
-                id="student1FullName"
+                id={`student${studentNumber}FullName`}
                 placeholder="Full Name"
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Label className="text-sm font-semibold" htmlFor="student1Email">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor={`student${studentNumber}Email`}
+              >
                 Student Email
               </Label>
               <Input
                 type="email"
-                id="student1Email"
+                id={`student${studentNumber}Email`}
                 placeholder="Email Address"
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
@@ -57,13 +64,13 @@ export default function StudentForm() {
             <div className="flex flex-col gap-2">
               <Label
                 className="text-sm font-semibold"
-                htmlFor="student1PhoneNumber"
+                htmlFor={`student${studentNumber}PhoneNumber`}
               >
                 Student Phone
               </Label>
               <Input
                 type="tel"
-                id="student1PhoneNumber"
+                id={`student${studentNumber}PhoneNumber`}
                 placeholder="Phone Number"
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
@@ -79,30 +86,27 @@ export default function StudentForm() {
               <Label className="text-sm font-semibold">Gender</Label>
               <RadioGroup className="flex gap-4">
                 <div className="flex items-center gap-2">
-                  <RadioGroupItem value="male" id="student1GenderMale" />
+                  <RadioGroupItem
+                    value="A"
+                    id={`student${studentNumber}GenderMale`}
+                  />
                   <Label
-                    htmlFor="student1GenderMale"
+                    htmlFor={`student${studentNumber}GenderMale`}
                     className="cursor-pointer"
                   >
                     Male
                   </Label>
                 </div>
                 <div className="flex items-center gap-2">
-                  <RadioGroupItem value="female" id="student1GenderFemale" />
+                  <RadioGroupItem
+                    value="B"
+                    id={`student${studentNumber}GenderFemale`}
+                  />
                   <Label
-                    htmlFor="student1GenderFemale"
+                    htmlFor={`student${studentNumber}GenderFemale`}
                     className="cursor-pointer"
                   >
                     Female
-                  </Label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <RadioGroupItem value="other" id="student1GenderOther" />
-                  <Label
-                    htmlFor="student1GenderOther"
-                    className="cursor-pointer"
-                  >
-                    Other
                   </Label>
                 </div>
               </RadioGroup>
@@ -112,13 +116,13 @@ export default function StudentForm() {
             <div className="flex flex-col gap-2">
               <Label
                 className="text-sm font-semibold"
-                htmlFor="student1DateOfBirth"
+                htmlFor={`student${studentNumber}DateOfBirth`}
               >
                 Date of Birth
               </Label>
               <Input
                 type="date"
-                id="student1DateOfBirth"
+                id={`student${studentNumber}DateOfBirth`}
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
@@ -130,12 +134,15 @@ export default function StudentForm() {
             <div className="flex flex-col gap-2">
               <Label
                 className="text-sm font-semibold"
-                htmlFor="student1SchoolGrade"
+                htmlFor={`student${studentNumber}SchoolGrade`}
               >
                 School Grade
               </Label>
               <Select onValueChange={setSelectedGrade}>
-                <SelectTrigger className="w-full h-12 rounded-lg">
+                <SelectTrigger
+                  className="w-full h-12 rounded-lg"
+                  id={`student${studentNumber}SchoolGrade`}
+                >
                   <SelectValue placeholder="Select Grade" />
                 </SelectTrigger>
                 <SelectContent>
@@ -159,12 +166,15 @@ export default function StudentForm() {
             >
               <Label
                 className="text-sm font-semibold"
-                htmlFor="student1VceClassSubject"
+                htmlFor={`student${studentNumber}VceClassSubject`}
               >
                 VCE Class Subject
               </Label>
               <Select disabled={!isVCEEnabled}>
-                <SelectTrigger className="w-full h-12 rounded-lg">
+                <SelectTrigger
+                  className="w-full h-12 rounded-lg"
+                  id={`student${studentNumber}VceClassSubject`}
+                >
                   <SelectValue
                     placeholder={
                       isVCEEnabled
