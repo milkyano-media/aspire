@@ -7,6 +7,7 @@ export const WISELMS_CONFIG = {
   userId: process.env.WISELMS_USER_ID || '',
   instituteId: process.env.WISELMS_INSTITUTE_ID || '',
   userAgent: process.env.WISELMS_USER_AGENT || 'VendorIntegrations/aspireacademics',
+  webhookSecret: process.env.WISELMS_WEBHOOK_SECRET || '',
 } as const;
 
 /**

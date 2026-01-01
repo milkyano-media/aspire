@@ -109,3 +109,40 @@ export interface StudentWithParent {
   parentEmail: string;
   parentPhone?: string;
 }
+
+/**
+ * WiseLMS Webhook Events
+ */
+export interface WiseLMSWebhookClassroom {
+  _id: string;
+  name: string;
+  subject?: string;
+  classNumber?: number;
+}
+
+export interface WiseLMSWebhookStudent {
+  _id: string;
+  name: string;
+  email?: string;
+}
+
+export interface StudentAddedToClassroomPayload {
+  classroom: WiseLMSWebhookClassroom;
+  student: WiseLMSWebhookStudent;
+}
+
+export interface StudentRemovedFromClassroomPayload {
+  classroom: WiseLMSWebhookClassroom;
+  student: WiseLMSWebhookStudent;
+  remove: boolean;
+}
+
+export type WiseLMSWebhookEvent =
+  | {
+      event: 'StudentAddedToClassroomEvent';
+      payload: StudentAddedToClassroomPayload;
+    }
+  | {
+      event: 'StudentRemovedFromClassroomEvent';
+      payload: StudentRemovedFromClassroomPayload;
+    };
