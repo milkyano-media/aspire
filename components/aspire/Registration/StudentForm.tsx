@@ -1,13 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
@@ -17,112 +10,135 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { BookUserIcon, ChevronDownIcon } from "lucide-react";
+import { UserIcon } from "lucide-react";
 import { useState } from "react";
 
 export default function StudentForm() {
-  const [open, setOpen] = useState(false);
-  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [selectedGrade, setSelectedGrade] = useState<string>("");
+
+  const isVCEEnabled = selectedGrade === "I" || selectedGrade === "J";
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-3">
-          <BookUserIcon />
-          <h2>Student 1 Information</h2>
+    <Card className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group">
+      <CardHeader className="px-6 py-5 border-b border-gray-100 bg-gray-50/50 flex flex-row justify-between items-center">
+        <CardTitle className="text-xl font-bold flex items-center gap-2">
+          <UserIcon className="text-blue-600" />
+          Student 1 Information
         </CardTitle>
       </CardHeader>
-      <Separator />
-      <CardContent>
-        <form className="flex flex-col gap-9">
-          {/* Basic Information */}
-          <div className="flex gap-3">
-            <div className="grow">
-              <Label className="font-bold" htmlFor="student1FullName">
-                Full Name
+      <CardContent className="p-6 md:p-8 space-y-6">
+        <form className="space-y-6">
+          {/* Top Row: Name, Email, Phone */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex flex-col gap-2">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor="student1FullName"
+              >
+                Student Name
               </Label>
-              <Input id="student1FullName" placeholder="Full Name" />
+              <Input
+                id="student1FullName"
+                placeholder="Full Name"
+                className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
+              />
             </div>
-            <div className="grow">
-              <Label className="font-bold" htmlFor="student1Email">
-                Email
+            <div className="flex flex-col gap-2">
+              <Label className="text-sm font-semibold" htmlFor="student1Email">
+                Student Email
               </Label>
-              <Input type="email" id="student1Email" placeholder="Email" />
+              <Input
+                type="email"
+                id="student1Email"
+                placeholder="Email Address"
+                className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
+              />
             </div>
-            <div className="grow">
-              <Label className="font-bold" htmlFor="student1PhoneNumber">
-                Phone Number
+            <div className="flex flex-col gap-2">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor="student1PhoneNumber"
+              >
+                Student Phone
               </Label>
               <Input
                 type="tel"
                 id="student1PhoneNumber"
                 placeholder="Phone Number"
+                className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
           </div>
-          <Separator />
-          <div className="flex gap-3">
-            {/* Gender Field */}
-            <div className="grow">
-              <Label className="font-bold" htmlFor="student1Gender">
-                Gender
-              </Label>
-              <RadioGroup className="flex gap-3" id="student1Gender">
-                <div className="flex items-center gap-1">
-                  <RadioGroupItem value="A" id="student1GenderMale" />
-                  <Label htmlFor="student1GenderMale">Male</Label>
+
+          <Separator className="border-gray-100" />
+
+          {/* Middle Row: Gender & DOB */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Gender Radio Group */}
+            <div className="flex flex-col gap-3">
+              <Label className="text-sm font-semibold">Gender</Label>
+              <RadioGroup className="flex gap-4">
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="male" id="student1GenderMale" />
+                  <Label
+                    htmlFor="student1GenderMale"
+                    className="cursor-pointer"
+                  >
+                    Male
+                  </Label>
                 </div>
-                <div className="flex items-center gap-1">
-                  <RadioGroupItem value="B" id="student1GenderFemale" />
-                  <Label htmlFor="student1GenderFemale">Female</Label>
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="female" id="student1GenderFemale" />
+                  <Label
+                    htmlFor="student1GenderFemale"
+                    className="cursor-pointer"
+                  >
+                    Female
+                  </Label>
+                </div>
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="other" id="student1GenderOther" />
+                  <Label
+                    htmlFor="student1GenderOther"
+                    className="cursor-pointer"
+                  >
+                    Other
+                  </Label>
                 </div>
               </RadioGroup>
             </div>
 
-            {/* DoB Field */}
-            <div className="grow">
-              <Label className="font-bold" htmlFor="student1DateOfBirth">
+            {/* Date of Birth */}
+            <div className="flex flex-col gap-2">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor="student1DateOfBirth"
+              >
                 Date of Birth
               </Label>
-              <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    id="date"
-                    className="w-full justify-between font-normal"
-                  >
-                    {date ? date.toLocaleDateString() : "Select date"}
-                    <ChevronDownIcon />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent
-                  className="w-auto overflow-hidden p-0"
-                  align="start"
-                >
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    captionLayout="dropdown"
-                    onSelect={(date) => {
-                      setDate(date);
-                      setOpen(false);
-                    }}
-                  />
-                </PopoverContent>
-              </Popover>
+              <Input
+                type="date"
+                id="student1DateOfBirth"
+                className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
+              />
             </div>
           </div>
 
-          <div className="flex gap-3">
-            <div className="grow">
-              <Label className="font-bold" htmlFor="student1SchoolGrade">
+          {/* Bottom Row: Grade & Class */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            {/* School Grade */}
+            <div className="flex flex-col gap-2">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor="student1SchoolGrade"
+              >
                 School Grade
               </Label>
-              <Select>
-                <SelectTrigger className="w-full">
+              <Select onValueChange={setSelectedGrade}>
+                <SelectTrigger className="w-full h-12 rounded-lg">
                   <SelectValue placeholder="Select Grade" />
                 </SelectTrigger>
-                <SelectContent className="w-auto">
+                <SelectContent>
                   <SelectItem value="A">Year 3</SelectItem>
                   <SelectItem value="B">Year 4</SelectItem>
                   <SelectItem value="C">Year 5</SelectItem>
@@ -136,15 +152,28 @@ export default function StudentForm() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="grow">
-              <Label className="font-bold" htmlFor="student1VceClassSubject">
+
+            {/* VCE Class (Conditionally Disabled) */}
+            <div
+              className={`flex flex-col gap-2 ${!isVCEEnabled ? "opacity-50" : ""}`}
+            >
+              <Label
+                className="text-sm font-semibold"
+                htmlFor="student1VceClassSubject"
+              >
                 VCE Class Subject
               </Label>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Requires Year 11 or 12" />
+              <Select disabled={!isVCEEnabled}>
+                <SelectTrigger className="w-full h-12 rounded-lg">
+                  <SelectValue
+                    placeholder={
+                      isVCEEnabled
+                        ? "Select VCE Subject"
+                        : "Requires Year 11 or 12"
+                    }
+                  />
                 </SelectTrigger>
-                <SelectContent className="w-auto">
+                <SelectContent>
                   <SelectItem value="VCE Math Methods Unit 1 & 2">
                     VCE Math Methods Unit 1 & 2
                   </SelectItem>
