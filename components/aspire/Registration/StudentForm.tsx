@@ -10,17 +10,35 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { UserIcon } from "lucide-react";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { UserIcon, Trash2Icon } from "lucide-react";
+
+interface StudentData {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  gender: string;
+  dateOfBirth: string;
+  schoolGrade: string;
+  vceClass: string;
+}
 
 interface StudentFormProps {
   studentNumber: number;
+  data: StudentData;
+  onChange: (data: Partial<StudentData>) => void;
+  onRemove: () => void;
+  showRemove: boolean;
 }
 
-export default function StudentForm({ studentNumber }: StudentFormProps) {
-  const [selectedGrade, setSelectedGrade] = useState<string>("");
-
-  const isVCEEnabled = selectedGrade === "I" || selectedGrade === "J";
+export default function StudentForm({
+  studentNumber,
+  data,
+  onChange,
+  onRemove,
+  showRemove,
+}: StudentFormProps) {
+  const isVCEEnabled = data.schoolGrade === "I" || data.schoolGrade === "J";
 
   return (
     <Card className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group">
@@ -29,6 +47,16 @@ export default function StudentForm({ studentNumber }: StudentFormProps) {
           <UserIcon className="text-blue-600" />
           Student {studentNumber} Information
         </CardTitle>
+        {showRemove && (
+          <Button
+            onClick={onRemove}
+            variant="ghost"
+            size="icon"
+            className="text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors"
+          >
+            <Trash2Icon className="h-5 w-5" />
+          </Button>
+        )}
       </CardHeader>
       <CardContent className="p-6 md:p-8 space-y-6">
         <form className="space-y-6">
@@ -44,6 +72,8 @@ export default function StudentForm({ studentNumber }: StudentFormProps) {
               <Input
                 id={`student${studentNumber}FullName`}
                 placeholder="Full Name"
+                value={data.name}
+                onChange={(e) => onChange({ name: e.target.value })}
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
@@ -58,6 +88,8 @@ export default function StudentForm({ studentNumber }: StudentFormProps) {
                 type="email"
                 id={`student${studentNumber}Email`}
                 placeholder="Email Address"
+                value={data.email}
+                onChange={(e) => onChange({ email: e.target.value })}
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
@@ -72,6 +104,8 @@ export default function StudentForm({ studentNumber }: StudentFormProps) {
                 type="tel"
                 id={`student${studentNumber}PhoneNumber`}
                 placeholder="Phone Number"
+                value={data.phoneNumber}
+                onChange={(e) => onChange({ phoneNumber: e.target.value })}
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
@@ -84,7 +118,11 @@ export default function StudentForm({ studentNumber }: StudentFormProps) {
             {/* Gender Radio Group */}
             <div className="flex flex-col gap-3">
               <Label className="text-sm font-semibold">Gender</Label>
-              <RadioGroup className="flex gap-4">
+              <RadioGroup
+                className="flex gap-4"
+                value={data.gender}
+                onValueChange={(value) => onChange({ gender: value })}
+              >
                 <div className="flex items-center gap-2">
                   <RadioGroupItem
                     value="A"
@@ -123,6 +161,8 @@ export default function StudentForm({ studentNumber }: StudentFormProps) {
               <Input
                 type="date"
                 id={`student${studentNumber}DateOfBirth`}
+                value={data.dateOfBirth}
+                onChange={(e) => onChange({ dateOfBirth: e.target.value })}
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
@@ -138,7 +178,17 @@ export default function StudentForm({ studentNumber }: StudentFormProps) {
               >
                 School Grade
               </Label>
-              <Select onValueChange={setSelectedGrade}>
+              <Select
+                value={data.schoolGrade}
+                onValueChange={(value) => {
+                  // Reset VCE class if grade is not Year 11 or 12
+                  if (value !== "I" && value !== "J") {
+                    onChange({ schoolGrade: value, vceClass: "" });
+                  } else {
+                    onChange({ schoolGrade: value });
+                  }
+                }}
+              >
                 <SelectTrigger
                   className="w-full h-12 rounded-lg"
                   id={`student${studentNumber}SchoolGrade`}
@@ -170,7 +220,11 @@ export default function StudentForm({ studentNumber }: StudentFormProps) {
               >
                 VCE Class Subject
               </Label>
-              <Select disabled={!isVCEEnabled}>
+              <Select
+                disabled={!isVCEEnabled}
+                value={data.vceClass}
+                onValueChange={(value) => onChange({ vceClass: value })}
+              >
                 <SelectTrigger
                   className="w-full h-12 rounded-lg"
                   id={`student${studentNumber}VceClassSubject`}

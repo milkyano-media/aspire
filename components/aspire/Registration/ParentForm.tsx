@@ -3,7 +3,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { IdCardIcon, MailIcon, PhoneIcon, UserRoundIcon } from "lucide-react";
 
-export default function ParentForm() {
+interface ParentData {
+  name: string;
+  email: string;
+  phoneNumber: string;
+}
+
+interface ParentFormProps {
+  data: ParentData;
+  onChange: (data: Partial<ParentData>) => void;
+}
+
+export default function ParentForm({ data, onChange }: ParentFormProps) {
   return (
     <Card className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       <CardHeader className="px-6 py-5 border-b border-gray-100 bg-gray-50/50">
@@ -25,6 +36,8 @@ export default function ParentForm() {
                 id="parentFullName"
                 placeholder="e.g. Jane Doe"
                 required
+                value={data.name}
+                onChange={(e) => onChange({ name: e.target.value })}
                 className="w-full h-12 pl-12 pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
@@ -42,6 +55,8 @@ export default function ParentForm() {
                 id="parentEmail"
                 placeholder="e.g. jane@example.com"
                 required
+                value={data.email}
+                onChange={(e) => onChange({ email: e.target.value })}
                 className="w-full h-12 pl-12 pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
@@ -62,6 +77,8 @@ export default function ParentForm() {
                 id="parentPhoneNumber"
                 placeholder="e.g. (555) 123-4567"
                 required
+                value={data.phoneNumber}
+                onChange={(e) => onChange({ phoneNumber: e.target.value })}
                 className="w-full h-12 pl-12 pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
