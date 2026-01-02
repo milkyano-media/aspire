@@ -304,8 +304,9 @@ export default function RegistrationPage() {
             <div className="flex-grow"></div>
             <Button
               onClick={handleCompleteRegistration}
+              disabled={!acceptedTerms}
               size="lg"
-              className="flex-1 md:flex-none w-full md:w-auto min-w-[200px] flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 transition-all"
+              className="flex-1 md:flex-none w-full md:w-auto min-w-[200px] flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-blue-600/30"
             >
               Complete Registration
               <ArrowRightIcon />

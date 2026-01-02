@@ -1,10 +1,11 @@
 export async function POST(request: Request) {
   try {
-    const wiseBaseUrl = process.env.WISE_BASE_URL;
-    const wiseInstituteId = process.env.WISE_INSTITUTE_ID;
+    const wiseBaseUrl = process.env.WISELMS_API_HOST;
+    const wiseInstituteId = process.env.WISELMS_INSTITUTE_ID;
     const wiseAuthentication = process.env.WISE_AUTHENTICATION;
-    const wiseApiKey = process.env.WISE_API_KEY;
-    const wiseNamespace = process.env.WISE_NAMESPACE;
+    const wiseApiKey = process.env.WISELMS_API_KEY;
+    const wiseNamespace = process.env.WISELMS_NAMESPACE;
+    const wiseUserAgent = process.env.WISELMS_USER_AGENT;
     const vendorUserId = crypto.randomUUID();
     const reqBody = await request.json();
     const { student, parent } = reqBody;
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
       `createStudentResponseBody: ${JSON.stringify(createStudentResponseBody)}`,
     );
     const createStudentResponse = await fetch(
-      `${wiseBaseUrl}/vendors/institutes/${wiseInstituteId}/users`,
+      `https://${wiseBaseUrl}/vendors/institutes/${wiseInstituteId}/users`,
       {
         method: "POST",
         headers: {
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
           "x-api-key": `${wiseApiKey}`,
           "x-wise-namespace": `${wiseNamespace}`,
           "Content-Type": "application/json",
-          "User-Agent": "VendorIntegrations/aspireacademics",
+          "User-Agent": `${wiseUserAgent}`,
         },
         body: JSON.stringify(createStudentResponseBody),
       },
@@ -89,7 +90,7 @@ export async function POST(request: Request) {
       `updateStudentRegistrationFieldBody: ${JSON.stringify(updateStudentRegistrationFieldBody)}`,
     );
     const updateStudentRegistrationField = await fetch(
-      `${wiseBaseUrl}/institutes/${wiseInstituteId}/students/${studentId}/registration`,
+      `https://${wiseBaseUrl}/institutes/${wiseInstituteId}/students/${studentId}/registration`,
       {
         method: "PUT",
         headers: {
@@ -97,7 +98,7 @@ export async function POST(request: Request) {
           "x-api-key": `${wiseApiKey}`,
           "x-wise-namespace": `${wiseNamespace}`,
           "Content-Type": "application/json",
-          "User-Agent": "VendorIntegrations/aspireacademics",
+          "User-Agent": `${wiseUserAgent}`,
         },
         body: JSON.stringify(updateStudentRegistrationFieldBody),
       },
