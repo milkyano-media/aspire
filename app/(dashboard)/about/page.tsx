@@ -1,12 +1,12 @@
 "use client";
 
-import { AboutUsHero } from '@/components/aspire/About/AboutUsHero';
-import { TutorGallery } from '@/components/aspire/About/TutorGallery';
-import { Footer } from '@/components/aspire/Footer';
-import Image from 'next/image';
-import { Star } from 'lucide-react';
-import { SmoothScrollLink } from '@/components/ui/smooth-scroll-link';
-import { trackCTAClick } from '@/lib/gtm';
+import { AboutUsHero } from "@/components/aspire/About/AboutUsHero";
+import { TutorGallery } from "@/components/aspire/About/TutorGallery";
+import { Footer } from "@/components/aspire/Footer";
+import Image from "next/image";
+import { Star } from "lucide-react";
+import { SmoothScrollLink } from "@/components/ui/smooth-scroll-link";
+import { trackCTAClick } from "@/lib/gtm";
 
 export default function AboutPage() {
   return (
@@ -24,12 +24,12 @@ export default function AboutPage() {
             <div className="mx-auto mb-4 h-1 w-20 bg-orange-500" />
           </div>
           <p className="text-center text-lg leading-relaxed text-[#697585]">
-            The Aspire Education team consists exclusively of highly accomplished
-            former select-entry students, representing the top 1% of VCE candidates
-            from prestigious institutions such as{' '}
+            The Aspire Education team consists exclusively of highly
+            accomplished former select-entry students, representing the top 1%
+            of VCE candidates from prestigious institutions such as{" "}
             <span className="font-semibold text-[#070b30]">
-              Melbourne High School, Nossal, Suzanne Cory, and MacRobertson Girls
-              High School
+              Melbourne High School, Nossal, Suzanne Cory, and MacRobertson
+              Girls High School
             </span>
             .
           </p>
@@ -77,12 +77,13 @@ export default function AboutPage() {
               </h2>
               <div className="mb-6 h-1 w-16 bg-orange-500" />
               <p className="text-lg leading-relaxed text-[#697585]">
-                At Aspire, we ensure the highest quality education. Our tutors boast{' '}
+                At Aspire, we ensure the highest quality education. Our tutors
+                boast{" "}
                 <span className="font-semibold text-[#070b30]">
                   ATAR scores above 99.00
                 </span>
-                , placing them in the top 1% statewide, and have achieved a minimum
-                of{' '}
+                , placing them in the top 1% statewide, and have achieved a
+                minimum of{" "}
                 <span className="font-semibold text-[#070b30]">
                   5 superior scores on the select-entry ACER test
                 </span>
@@ -104,18 +105,19 @@ export default function AboutPage() {
               </h2>
               <div className="mb-6 h-1 w-16 bg-orange-500" />
               <p className="text-lg leading-relaxed text-[#697585]">
-                In overview, our aim at Aspire does not merely end at the entry into
-                Melbourne's top Selective Entry Schools, but to{' '}
+                In overview, our aim at Aspire does not merely end at the entry
+                into Melbourne's top Selective Entry Schools, but to{" "}
                 <span className="font-semibold text-[#070b30]">
                   excel far beyond the entry requirements
-                </span>{' '}
+                </span>{" "}
                 and to finish as high achievers from any school, irrespective of
-                Select entry or not. With{' '}
+                Select entry or not. With{" "}
                 <span className="font-semibold text-[#070b30]">
-                  personalised teaching to best fit your child's study requirements
+                  personalised teaching to best fit your child's study
+                  requirements
                 </span>
-                , we Aspire to produce the brightest stars both in and outside of the
-                classroom.
+                , we Aspire to produce the brightest stars both in and outside
+                of the classroom.
               </p>
             </div>
 
@@ -169,20 +171,19 @@ export default function AboutPage() {
             Ready to Join Aspire?
           </h2>
           <p className="mb-8 text-lg text-white/90">
-            Experience the difference that expert tutoring can make. Book your free
-            trial today.
+            Experience the difference that expert tutoring can make. Book your
+            free trial today.
           </p>
           <SmoothScrollLink
             href="/#form"
             className="inline-block rounded-lg bg-white px-8 py-4 text-lg font-semibold text-orange-500 transition-all duration-300 hover:bg-gray-100 hover:shadow-lg cursor-pointer"
-            onClick={() => trackCTAClick('Book Free Trial', 'about-page-cta')}
+            onClick={() => trackCTAClick("Book Free Trial", "about-page-cta")}
           >
             Book Free Trial
           </SmoothScrollLink>
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
     </main>
   );

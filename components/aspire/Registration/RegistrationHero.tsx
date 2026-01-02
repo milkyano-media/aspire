@@ -1,7 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 
-export function AboutUsHero() {
+export default function RegistrationHero() {
   return (
     <section className="relative bg-[#002A6A] px-4 py-20 text-white">
       {/* Background decorative elements */}
@@ -20,12 +19,12 @@ export function AboutUsHero() {
             Home
           </Link>
           <span className="text-white/50">/</span>
-          <span className="text-white">About Us</span>
+          <span className="text-white">Registration</span>
         </div>
 
         {/* Page Title */}
         <h1 className="mb-8 text-4xl font-bold md:text-5xl lg:text-6xl">
-          About Us
+          Registration
         </h1>
       </div>
     </section>
