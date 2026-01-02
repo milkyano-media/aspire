@@ -193,3 +193,106 @@ export async function getCourses(
     throw error;
   }
 }
+
+/**
+ * Enroll or unenroll a student in a course
+ *
+ * @param studentId - WiseLMS student ID (_id from user object)
+ * @param courseId - WiseLMS course/class ID (_id from class object)
+ * @param assign - true to enroll, false to unenroll
+ * @returns Promise that resolves when operation completes
+ */
+export async function assignStudentToCourse(
+  studentId: string,
+  courseId: string,
+  assign: boolean
+): Promise<void> {
+  try {
+    console.log(
+      `${assign ? 'Enrolling' : 'Unenrolling'} student ${studentId} ${
+        assign ? 'in' : 'from'
+      } course ${courseId}...`
+    );
+
+    const response = await wiseFetch<WiseLMSApiResponse<unknown>>(
+      `institutes/${WISELMS_CONFIG.instituteId}/assignClassToStudent`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          classId: courseId,
+          userId: studentId,
+          assign,
+        }),
+      }
+    );
+
+    console.log(
+      `✅ Successfully ${assign ? 'enrolled' : 'unenrolled'} student ${studentId}`
+    );
+  } catch (error) {
+    console.error(
+      `Failed to ${assign ? 'enroll' : 'unenroll'} student ${studentId}:`,
+      error
+    );
+    throw error;
+  }
+}
+
+/**
+ * Find Activities course matching a source course name
+ *
+ * @param sourceCourseName - Name of the source course (e.g., "Year 3", "Premium Package Year 7 - Advance B")
+ * @param courses - Array of all available courses (pass in to avoid refetching)
+ * @returns Matching Activities course or null if not found
+ */
+export function findActivitiesCourse(
+  sourceCourseName: string,
+  courses: WiseLMSCourse[]
+): WiseLMSCourse | null {
+  // Skip if source already contains "Activities" (prevent infinite loop)
+  if (sourceCourseName.toLowerCase().includes('activities')) {
+    console.log(
+      `Source course "${sourceCourseName}" is already an Activities course, skipping`
+    );
+    return null;
+  }
+
+  // Skip if source contains "VCE"
+  if (sourceCourseName.toUpperCase().includes('VCE')) {
+    console.log(
+      `Source course "${sourceCourseName}" contains VCE, skipping`
+    );
+    return null;
+  }
+
+  // Remove package prefixes if present
+  let baseName = sourceCourseName;
+  const packagePrefixes = ['Premium Package ', 'Standard Package '];
+
+  for (const prefix of packagePrefixes) {
+    if (sourceCourseName.startsWith(prefix)) {
+      baseName = sourceCourseName.replace(prefix, '');
+      console.log(
+        `Removed "${prefix.trim()}" prefix: "${sourceCourseName}" → "${baseName}"`
+      );
+      break;
+    }
+  }
+
+  // Look for "Activities {baseName}" pattern
+  const targetName = `Activities ${baseName}`;
+
+  const match = courses.find(
+    (course) => course.name === targetName && course.published
+  );
+
+  if (match) {
+    console.log(
+      `Found matching Activities course: "${match.name}" (${match._id})`
+    );
+  } else {
+    console.log(`No Activities course found for: "${targetName}"`);
+  }
+
+  return match || null;
+}

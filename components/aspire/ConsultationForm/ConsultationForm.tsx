@@ -262,6 +262,8 @@ export function ConsultationForm({ onSuccess }: ConsultationFormProps) {
             <option value="frankston">Frankston</option>
             <option value="dandenong">Dandenong</option>
             <option value="mornington">Mornington</option>
+            <option value="truganina">Truganina</option>
+            <option value="tarneit">Tarneit</option>
           </select>
           {errors.city && (
             <p className="mt-1 text-sm text-red-500">{errors.city.message}</p>
