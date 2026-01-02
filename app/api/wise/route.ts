@@ -109,12 +109,22 @@ export async function POST(request: Request) {
       throw new Error(updateStudentRegistrationFieldJson.message);
     }
 
-    return Response.json(null, {
-      status: 204,
-    });
+    return Response.json(
+      {
+        message: "success",
+      },
+      {
+        status: 200,
+      },
+    );
   } catch (err) {
-    return Response.json({
-      message: "",
-    });
+    return Response.json(
+      {
+        message: (err as Error).message,
+      },
+      {
+        status: 500,
+      },
+    );
   }
 }

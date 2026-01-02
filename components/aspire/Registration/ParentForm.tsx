@@ -14,7 +14,37 @@ interface ParentFormProps {
   onChange: (data: Partial<ParentData>) => void;
 }
 
+const formatAustralianPhoneNumber = (value: string): string => {
+  // Remove all non-numeric characters except +
+  let cleaned = value.replace(/[^\d+]/g, "");
+
+  // If empty, return empty
+  if (!cleaned) return "";
+
+  // If starts with 0, replace with +61
+  if (cleaned.startsWith("0")) {
+    cleaned = "+61" + cleaned.slice(1);
+  }
+  // If doesn't start with +61, add it
+  else if (!cleaned.startsWith("+61")) {
+    // If starts with 61 but no +, add the +
+    if (cleaned.startsWith("61")) {
+      cleaned = "+" + cleaned;
+    }
+    // Otherwise prepend +61
+    else if (!cleaned.startsWith("+")) {
+      cleaned = "+61" + cleaned;
+    }
+  }
+
+  return cleaned;
+};
+
 export default function ParentForm({ data, onChange }: ParentFormProps) {
+  const handlePhoneChange = (value: string) => {
+    const formatted = formatAustralianPhoneNumber(value);
+    onChange({ phoneNumber: formatted });
+  };
   return (
     <Card className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       <CardHeader className="px-6 py-5 border-b border-gray-100 bg-gray-50/50">
@@ -75,10 +105,10 @@ export default function ParentForm({ data, onChange }: ParentFormProps) {
               <Input
                 type="tel"
                 id="parentPhoneNumber"
-                placeholder="e.g. (555) 123-4567"
+                placeholder="e.g. +61 412 345 678"
                 required
                 value={data.phoneNumber}
-                onChange={(e) => onChange({ phoneNumber: e.target.value })}
+                onChange={(e) => handlePhoneChange(e.target.value)}
                 className="w-full h-12 pl-12 pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>

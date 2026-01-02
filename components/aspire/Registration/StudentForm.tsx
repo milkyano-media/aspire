@@ -31,6 +31,32 @@ interface StudentFormProps {
   showRemove: boolean;
 }
 
+const formatAustralianPhoneNumber = (value: string): string => {
+  // Remove all non-numeric characters except +
+  let cleaned = value.replace(/[^\d+]/g, "");
+
+  // If empty, return empty
+  if (!cleaned) return "";
+
+  // If starts with 0, replace with +61
+  if (cleaned.startsWith("0")) {
+    cleaned = "+61" + cleaned.slice(1);
+  }
+  // If doesn't start with +61, add it
+  else if (!cleaned.startsWith("+61")) {
+    // If starts with 61 but no +, add the +
+    if (cleaned.startsWith("61")) {
+      cleaned = "+" + cleaned;
+    }
+    // Otherwise prepend +61
+    else if (!cleaned.startsWith("+")) {
+      cleaned = "+61" + cleaned;
+    }
+  }
+
+  return cleaned;
+};
+
 export default function StudentForm({
   studentNumber,
   data,
@@ -39,6 +65,11 @@ export default function StudentForm({
   showRemove,
 }: StudentFormProps) {
   const isVCEEnabled = data.schoolGrade === "I" || data.schoolGrade === "J";
+
+  const handlePhoneChange = (value: string) => {
+    const formatted = formatAustralianPhoneNumber(value);
+    onChange({ phoneNumber: formatted });
+  };
 
   return (
     <Card className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group">
@@ -103,9 +134,9 @@ export default function StudentForm({
               <Input
                 type="tel"
                 id={`student${studentNumber}PhoneNumber`}
-                placeholder="Phone Number"
+                placeholder="e.g. +61 412 345 678"
                 value={data.phoneNumber}
-                onChange={(e) => onChange({ phoneNumber: e.target.value })}
+                onChange={(e) => handlePhoneChange(e.target.value)}
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
