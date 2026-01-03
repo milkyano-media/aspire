@@ -3,7 +3,7 @@ import 'server-only';
 import nodemailer from 'nodemailer';
 import type { Transporter } from 'nodemailer';
 import { ConsultationFormData } from '@/components/aspire/ConsultationForm/schema';
-import { generateEmailTemplate, generateCustomEmailTemplate } from './templates';
+import { generateEmailTemplate, generateCustomEmailTemplate, generateRegistrationEmailTemplate } from './templates';
 
 // Email data type without the terms checkbox
 type EmailFormData = Omit<ConsultationFormData, 'terms'>;
@@ -110,6 +110,89 @@ export async function sendConfirmationEmail(
     console.error('Failed to send confirmation email:', {
       error: errorMessage,
       recipient: data.email,
+    });
+
+    return {
+      success: false,
+      error: errorMessage,
+    };
+  }
+}
+
+interface RegistrationEmailData {
+  parent: {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    relationship: string;
+    address: string;
+  };
+  student: {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    gender: string;
+    dateOfBirth: string;
+    schoolGrade: string;
+    vceClass: string;
+    schoolName: string;
+    additionalDetails: string;
+    preference: string;
+  };
+}
+
+/**
+ * Send registration confirmation email to parent
+ *
+ * @param data - Registration data containing parent and student information
+ * @returns Promise with success status and optional error message
+ */
+export async function sendRegistrationConfirmationEmail(
+  data: RegistrationEmailData
+): Promise<EmailResult> {
+  try {
+    // Validate environment variables
+    if (!validateSmtpConfig()) {
+      return {
+        success: false,
+        error: 'Email service not configured - missing SMTP credentials',
+      };
+    }
+
+    // Create transporter
+    const transporter = createTransporter();
+
+    // Generate email templates
+    const { html, text } = generateRegistrationEmailTemplate(data);
+
+    // Email options
+    const mailOptions = {
+      from: {
+        name: process.env.SMTP_FROM_NAME || 'Aspire Academics',
+        address: process.env.SMTP_FROM_EMAIL || 'admin@aspireacademics.au',
+      },
+      to: data.parent.email,
+      subject: 'Registration Confirmation - Aspire Academics',
+      text: text,
+      html: html,
+    };
+
+    // Send email with 10-second timeout
+    const sendPromise = transporter.sendMail(mailOptions);
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('Email sending timeout after 10 seconds')), 10000)
+    );
+
+    await Promise.race([sendPromise, timeoutPromise]);
+
+    console.log(`Registration confirmation email sent successfully to: ${data.parent.email}`);
+
+    return { success: true };
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Failed to send registration confirmation email:', {
+      error: errorMessage,
+      recipient: data.parent.email,
     });
 
     return {
