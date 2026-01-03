@@ -73,6 +73,18 @@ export async function POST(request: Request) {
             student.vceClass.trim().length !== 0 ? student.vceClass : "None",
         },
         {
+          questionId: "08hn1i9g",
+          answer: student.schoolName,
+        },
+        {
+          questionId: "3r7joiav",
+          answer: student.additionalDetails,
+        },
+        {
+          questionId: "8ykravcf",
+          answer: student.preference,
+        },
+        {
           questionId: "z3xugv7s",
           answer: parent.name,
         },
@@ -83,6 +95,14 @@ export async function POST(request: Request) {
         {
           questionId: "auhyhiuy",
           answer: parent.phoneNumber,
+        },
+        {
+          questionId: "6p1zmkvj",
+          answer: parent.address,
+        },
+        {
+          questionId: "srxs890l",
+          answer: parent.relationship,
         },
       ],
     };

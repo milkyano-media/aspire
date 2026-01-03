@@ -11,7 +11,14 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { UserIcon, Trash2Icon } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  UserIcon,
+  Trash2Icon,
+  SchoolIcon,
+  FileTextIcon,
+  MonitorIcon,
+} from "lucide-react";
 
 interface StudentData {
   name: string;
@@ -21,6 +28,9 @@ interface StudentData {
   dateOfBirth: string;
   schoolGrade: string;
   vceClass: string;
+  schoolName: string;
+  additionalDetails: string;
+  preference: string;
 }
 
 interface StudentFormProps {
@@ -289,6 +299,83 @@ export default function StudentForm({
                   </SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+          </div>
+
+          <Separator className="border-gray-100" />
+
+          {/* School & Preference Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* School Name */}
+            <div className="flex flex-col gap-2">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor={`student${studentNumber}SchoolName`}
+              >
+                School Name
+              </Label>
+              <div className="relative">
+                <SchoolIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  id={`student${studentNumber}SchoolName`}
+                  placeholder="e.g. Melbourne High School"
+                  value={data.schoolName}
+                  onChange={(e) => onChange({ schoolName: e.target.value })}
+                  className="w-full h-12 pl-12 pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
+                />
+              </div>
+            </div>
+
+            {/* Learning Preference */}
+            <div className="flex flex-col gap-2">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor={`student${studentNumber}Preference`}
+              >
+                Learning Preference
+              </Label>
+              <div className="relative">
+                <MonitorIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 z-10 pointer-events-none" />
+                <Select
+                  value={data.preference}
+                  onValueChange={(value) => onChange({ preference: value })}
+                >
+                  <SelectTrigger
+                    className="w-full h-12 pl-12 pr-4 rounded-lg"
+                    id={`student${studentNumber}Preference`}
+                  >
+                    <SelectValue placeholder="Select Preference" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="A">Online</SelectItem>
+                    <SelectItem value="B">In-Person (Offline)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Details - Full Width */}
+          <div className="flex flex-col gap-2">
+            <Label
+              className="text-sm font-semibold"
+              htmlFor={`student${studentNumber}AdditionalDetails`}
+            >
+              Additional Details{" "}
+              <span className="text-gray-400 font-normal">(Optional)</span>
+            </Label>
+            <div className="relative">
+              <FileTextIcon className="absolute left-4 top-4 text-gray-400 w-5 h-5" />
+              <Textarea
+                id={`student${studentNumber}AdditionalDetails`}
+                placeholder="Any additional information about learning needs, goals, or preferences..."
+                value={data.additionalDetails}
+                onChange={(e) =>
+                  onChange({ additionalDetails: e.target.value })
+                }
+                rows={3}
+                className="w-full pl-12 pr-4 py-3 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all resize-none"
+              />
             </div>
           </div>
         </form>
