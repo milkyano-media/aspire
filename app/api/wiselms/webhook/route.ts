@@ -4,6 +4,10 @@ import {
   getCourses,
   assignStudentToCourse,
   findActivitiesCourse,
+  isPremiumPackageCourse,
+  createOneToOneCourse,
+  archiveOneToOneCourse,
+  findOneToOneCourseForStudent,
 } from '@/lib/wiselms/api';
 import type {
   WiseLMSWebhookEvent,
@@ -117,23 +121,47 @@ async function handleStudentAdded(
   // Find matching Activities course
   const activitiesCourse = findActivitiesCourse(classroom.name, courses);
 
-  if (!activitiesCourse) {
+  if (activitiesCourse) {
+    // Enroll student in Activities course
+    await assignStudentToCourse(
+      student._id,
+      activitiesCourse._id,
+      true // assign = true (enroll)
+    );
+
+    console.log(
+      `✅ Successfully enrolled ${student.name} in ${activitiesCourse.name}`
+    );
+  } else {
     console.log(
       `⚠️ No Activities course found for "${classroom.name}" - skipping enrollment`
     );
-    return;
   }
 
-  // Enroll student in Activities course
-  await assignStudentToCourse(
-    student._id,
-    activitiesCourse._id,
-    true // assign = true (enroll)
-  );
+  // NEW: 1:1 Consultation course creation for Premium Package
+  if (isPremiumPackageCourse(classroom.name)) {
+    console.log(`🎓 Premium Package enrollment detected: ${classroom.name}`);
 
-  console.log(
-    `✅ Successfully enrolled ${student.name} in ${activitiesCourse.name}`
-  );
+    // Check if 1:1 course already exists for this student
+    const existingCourse = findOneToOneCourseForStudent(
+      student._id,
+      student.name,
+      courses
+    );
+
+    if (existingCourse) {
+      console.log(
+        `⚠️ 1:1 course already exists: ${existingCourse.name} (${existingCourse._id})`
+      );
+      return;
+    }
+
+    // Create new 1:1 consultation course
+    const courseId = await createOneToOneCourse(student._id, student.name);
+    console.log(
+      `✅ Created 1:1 consultation course for ${student.name} (${courseId})`
+    );
+  }
 }
 
 /**
@@ -155,21 +183,45 @@ async function handleStudentRemoved(
   // Find matching Activities course
   const activitiesCourse = findActivitiesCourse(classroom.name, courses);
 
-  if (!activitiesCourse) {
+  if (activitiesCourse) {
+    // Unenroll student from Activities course
+    await assignStudentToCourse(
+      student._id,
+      activitiesCourse._id,
+      false // assign = false (unenroll)
+    );
+
+    console.log(
+      `✅ Successfully unenrolled ${student.name} from ${activitiesCourse.name}`
+    );
+  } else {
     console.log(
       `⚠️ No Activities course found for "${classroom.name}" - skipping unenrollment`
     );
-    return;
   }
 
-  // Unenroll student from Activities course
-  await assignStudentToCourse(
-    student._id,
-    activitiesCourse._id,
-    false // assign = false (unenroll)
-  );
+  // NEW: Archive 1:1 Consultation course for Premium Package removal
+  if (isPremiumPackageCourse(classroom.name)) {
+    console.log(`🎓 Premium Package removal detected: ${classroom.name}`);
 
-  console.log(
-    `✅ Successfully unenrolled ${student.name} from ${activitiesCourse.name}`
-  );
+    // Find the student's 1:1 course
+    const oneToOneCourse = findOneToOneCourseForStudent(
+      student._id,
+      student.name,
+      courses
+    );
+
+    if (!oneToOneCourse) {
+      console.log(
+        `⚠️ No 1:1 course found for ${student.name} - skipping archive`
+      );
+      return;
+    }
+
+    // Archive the course
+    await archiveOneToOneCourse(oneToOneCourse._id);
+    console.log(
+      `✅ Archived 1:1 consultation course for ${student.name} (${oneToOneCourse._id})`
+    );
+  }
 }

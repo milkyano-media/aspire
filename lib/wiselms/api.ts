@@ -8,6 +8,8 @@ import type {
   WiseLMSCoursesData,
   WiseLMSCourse,
   StudentWithParent,
+  CreateCourseResponse,
+  ArchiveCourseResponse,
 } from './types';
 
 /**
@@ -292,6 +294,112 @@ export function findActivitiesCourse(
     );
   } else {
     console.log(`No Activities course found for: "${targetName}"`);
+  }
+
+  return match || null;
+}
+
+/**
+ * Check if a course is a Premium Package course
+ *
+ * @param courseName - Name of the course to check
+ * @returns true if the course name starts with "Premium Package "
+ */
+export function isPremiumPackageCourse(courseName: string): boolean {
+  return courseName.startsWith('Premium Package ');
+}
+
+/**
+ * Create a 1:1 consultation course for a student
+ *
+ * @param studentId - WiseLMS student ID
+ * @param studentName - Student's name for course title
+ * @returns Created course ID
+ */
+export async function createOneToOneCourse(
+  studentId: string,
+  studentName: string
+): Promise<string> {
+  try {
+    console.log(
+      `Creating 1:1 consultation course for student: ${studentName} (${studentId})`
+    );
+
+    const response = await wiseFetch<WiseLMSApiResponse<CreateCourseResponse>>(
+      `institutes/${WISELMS_CONFIG.instituteId}/teacher/classes`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          name: `1:1 Consultation - ${studentName}`,
+          subject: 'Consultation',
+          adminId: WISELMS_CONFIG.consultationTeacherId,
+          teacherIds: [WISELMS_CONFIG.consultationTeacherId],
+          studentIds: [studentId],
+        }),
+      }
+    );
+
+    console.log(`✅ Successfully created 1:1 course: ${response.data._id}`);
+    return response.data._id;
+  } catch (error) {
+    console.error(
+      `Failed to create 1:1 consultation course for ${studentName}:`,
+      error
+    );
+    throw error;
+  }
+}
+
+/**
+ * Archive a 1:1 consultation course
+ *
+ * @param courseId - WiseLMS course ID to archive
+ */
+export async function archiveOneToOneCourse(courseId: string): Promise<void> {
+  try {
+    console.log(`Archiving 1:1 consultation course: ${courseId}`);
+
+    await wiseFetch<WiseLMSApiResponse<ArchiveCourseResponse>>(
+      `teacher/classes/${courseId}/hiddenStatus`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          hidden: true,
+        }),
+      }
+    );
+
+    console.log(`✅ Successfully archived course: ${courseId}`);
+  } catch (error) {
+    console.error(`Failed to archive course ${courseId}:`, error);
+    throw error;
+  }
+}
+
+/**
+ * Find a 1:1 consultation course for a specific student
+ *
+ * @param studentId - WiseLMS student ID
+ * @param studentName - Student's name to match course title
+ * @param courses - Array of all available courses
+ * @returns Matching 1:1 consultation course or null if not found
+ */
+export function findOneToOneCourseForStudent(
+  studentId: string,
+  studentName: string,
+  courses: WiseLMSCourse[]
+): WiseLMSCourse | null {
+  const targetName = `1:1 Consultation - ${studentName}`;
+
+  const match = courses.find(
+    (course) =>
+      course.name === targetName && course.joinedRequest.includes(studentId)
+  );
+
+  if (match) {
+    console.log(
+      `Found existing 1:1 course for ${studentName}: ${match._id}`
+    );
   }
 
   return match || null;
