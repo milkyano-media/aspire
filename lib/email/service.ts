@@ -1,12 +1,16 @@
-import 'server-only';
+import "server-only";
 
-import nodemailer from 'nodemailer';
-import type { Transporter } from 'nodemailer';
-import { ConsultationFormData } from '@/components/aspire/ConsultationForm/schema';
-import { generateEmailTemplate, generateCustomEmailTemplate, generateRegistrationEmailTemplate } from './templates';
+import nodemailer from "nodemailer";
+import type { Transporter } from "nodemailer";
+import { ConsultationFormData } from "@/components/aspire/ConsultationForm/schema";
+import {
+  generateEmailTemplate,
+  generateCustomEmailTemplate,
+  generateRegistrationEmailTemplate,
+} from "./templates";
 
 // Email data type without the terms checkbox
-type EmailFormData = Omit<ConsultationFormData, 'terms'>;
+type EmailFormData = Omit<ConsultationFormData, "terms">;
 
 interface EmailResult {
   success: boolean;
@@ -18,19 +22,19 @@ interface EmailResult {
  */
 function validateSmtpConfig(): boolean {
   const requiredVars = [
-    'SMTP_HOST',
-    'SMTP_PORT',
-    'SMTP_USER',
-    'SMTP_PASSWORD',
-    'SMTP_FROM_EMAIL',
-    'SMTP_FROM_NAME',
+    "SMTP_HOST",
+    "SMTP_PORT",
+    "SMTP_USER",
+    "SMTP_PASSWORD",
+    "SMTP_FROM_EMAIL",
+    "SMTP_FROM_NAME",
   ];
 
   const missing = requiredVars.filter((varName) => !process.env[varName]);
 
   if (missing.length > 0) {
     console.error(
-      `Email service not configured - missing environment variables: ${missing.join(', ')}`
+      `Email service not configured - missing environment variables: ${missing.join(", ")}`,
     );
     return false;
   }
@@ -44,14 +48,14 @@ function validateSmtpConfig(): boolean {
 function createTransporter(): Transporter {
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587', 10),
-    secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+    port: parseInt(process.env.SMTP_PORT || "587", 10),
+    secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASSWORD,
     },
     // Gmail-specific settings
-    service: 'gmail',
+    service: "gmail",
     tls: {
       rejectUnauthorized: true,
     },
@@ -65,14 +69,14 @@ function createTransporter(): Transporter {
  * @returns Promise with success status and optional error message
  */
 export async function sendConfirmationEmail(
-  data: EmailFormData
+  data: EmailFormData,
 ): Promise<EmailResult> {
   try {
     // Validate environment variables
     if (!validateSmtpConfig()) {
       return {
         success: false,
-        error: 'Email service not configured - missing SMTP credentials',
+        error: "Email service not configured - missing SMTP credentials",
       };
     }
 
@@ -85,11 +89,11 @@ export async function sendConfirmationEmail(
     // Email options
     const mailOptions = {
       from: {
-        name: process.env.SMTP_FROM_NAME || 'Aspire Academics',
-        address: process.env.SMTP_FROM_EMAIL || 'admin@aspireacademics.au',
+        name: process.env.SMTP_FROM_NAME || "Aspire Academics",
+        address: process.env.SMTP_FROM_EMAIL || "admin@aspireacademics.au",
       },
       to: data.email,
-      subject: 'Consultation Request Confirmation - Aspire Academics',
+      subject: "Consultation Request Confirmation - Aspire Academics",
       text: text,
       html: html,
     };
@@ -97,7 +101,10 @@ export async function sendConfirmationEmail(
     // Send email with 10-second timeout
     const sendPromise = transporter.sendMail(mailOptions);
     const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('Email sending timeout after 10 seconds')), 10000)
+      setTimeout(
+        () => reject(new Error("Email sending timeout after 10 seconds")),
+        10000,
+      ),
     );
 
     await Promise.race([sendPromise, timeoutPromise]);
@@ -106,8 +113,9 @@ export async function sendConfirmationEmail(
 
     return { success: true };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Failed to send confirmation email:', {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Failed to send confirmation email:", {
       error: errorMessage,
       recipient: data.email,
     });
@@ -148,14 +156,14 @@ interface RegistrationEmailData {
  * @returns Promise with success status and optional error message
  */
 export async function sendRegistrationConfirmationEmail(
-  data: RegistrationEmailData
+  data: RegistrationEmailData,
 ): Promise<EmailResult> {
   try {
     // Validate environment variables
     if (!validateSmtpConfig()) {
       return {
         success: false,
-        error: 'Email service not configured - missing SMTP credentials',
+        error: "Email service not configured - missing SMTP credentials",
       };
     }
 
@@ -163,16 +171,16 @@ export async function sendRegistrationConfirmationEmail(
     const transporter = createTransporter();
 
     // Generate email templates
-    const { html, text } = generateRegistrationEmailTemplate(data);
+    const { html, text } = generateRegistrationEmailTemplate();
 
     // Email options
     const mailOptions = {
       from: {
-        name: process.env.SMTP_FROM_NAME || 'Aspire Academics',
-        address: process.env.SMTP_FROM_EMAIL || 'admin@aspireacademics.au',
+        name: process.env.SMTP_FROM_NAME || "Aspire Academics",
+        address: process.env.SMTP_FROM_EMAIL || "admin@aspireacademics.au",
       },
       to: data.parent.email,
-      subject: 'Registration Confirmation - Aspire Academics',
+      subject: "Thank You for Completing Your Aspire Academics Registration",
       text: text,
       html: html,
     };
@@ -180,17 +188,23 @@ export async function sendRegistrationConfirmationEmail(
     // Send email with 10-second timeout
     const sendPromise = transporter.sendMail(mailOptions);
     const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('Email sending timeout after 10 seconds')), 10000)
+      setTimeout(
+        () => reject(new Error("Email sending timeout after 10 seconds")),
+        10000,
+      ),
     );
 
     await Promise.race([sendPromise, timeoutPromise]);
 
-    console.log(`Registration confirmation email sent successfully to: ${data.parent.email}`);
+    console.log(
+      `Registration confirmation email sent successfully to: ${data.parent.email}`,
+    );
 
     return { success: true };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Failed to send registration confirmation email:', {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Failed to send registration confirmation email:", {
       error: errorMessage,
       recipient: data.parent.email,
     });
@@ -212,7 +226,7 @@ export async function testSmtpConnection(): Promise<EmailResult> {
     if (!validateSmtpConfig()) {
       return {
         success: false,
-        error: 'SMTP configuration incomplete',
+        error: "SMTP configuration incomplete",
       };
     }
 
@@ -221,11 +235,12 @@ export async function testSmtpConnection(): Promise<EmailResult> {
     // Verify connection
     await transporter.verify();
 
-    console.log('SMTP connection test successful');
+    console.log("SMTP connection test successful");
     return { success: true };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('SMTP connection test failed:', errorMessage);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("SMTP connection test failed:", errorMessage);
 
     return {
       success: false,
@@ -260,7 +275,7 @@ export async function sendBulkCustomEmail(
   recipients: string[],
   subject: string,
   htmlBody: string,
-  attachments: EmailAttachment[] = []
+  attachments: EmailAttachment[] = [],
 ): Promise<BulkEmailResult> {
   try {
     // Validate environment variables
@@ -269,7 +284,7 @@ export async function sendBulkCustomEmail(
         success: false,
         successCount: 0,
         failedEmails: recipients,
-        error: 'Email service not configured - missing SMTP credentials',
+        error: "Email service not configured - missing SMTP credentials",
       };
     }
 
@@ -290,8 +305,8 @@ export async function sendBulkCustomEmail(
         // Email options
         const mailOptions: any = {
           from: {
-            name: process.env.SMTP_FROM_NAME || 'Aspire Academics',
-            address: process.env.SMTP_FROM_EMAIL || 'admin@aspireacademics.au',
+            name: process.env.SMTP_FROM_NAME || "Aspire Academics",
+            address: process.env.SMTP_FROM_EMAIL || "admin@aspireacademics.au",
           },
           to: recipientEmail,
           subject: subject,
@@ -303,7 +318,7 @@ export async function sendBulkCustomEmail(
         if (attachments && attachments.length > 0) {
           mailOptions.attachments = attachments.map((attachment) => ({
             filename: attachment.filename,
-            content: Buffer.from(attachment.content, 'base64'),
+            content: Buffer.from(attachment.content, "base64"),
             contentType: attachment.contentType,
           }));
         }
@@ -311,20 +326,23 @@ export async function sendBulkCustomEmail(
         // Send email with 15-second timeout
         const sendPromise = transporter.sendMail(mailOptions);
         const timeoutPromise = new Promise<never>((_, reject) =>
-          setTimeout(() => reject(new Error('Email timeout')), 15000)
+          setTimeout(() => reject(new Error("Email timeout")), 15000),
         );
 
         await Promise.race([sendPromise, timeoutPromise]);
 
         successCount++;
-        console.log(`Email sent successfully to: ${recipientEmail} (${successCount}/${recipients.length})`);
+        console.log(
+          `Email sent successfully to: ${recipientEmail} (${successCount}/${recipients.length})`,
+        );
 
         // Small delay to avoid spam filters (500ms between emails)
         if (recipients.indexOf(recipientEmail) < recipients.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 500));
+          await new Promise((resolve) => setTimeout(resolve, 500));
         }
       } catch (emailError) {
-        const errorMsg = emailError instanceof Error ? emailError.message : 'Unknown error';
+        const errorMsg =
+          emailError instanceof Error ? emailError.message : "Unknown error";
         console.error(`Failed to send email to ${recipientEmail}:`, errorMsg);
         failedEmails.push(recipientEmail);
       }
@@ -332,17 +350,22 @@ export async function sendBulkCustomEmail(
 
     const allSuccess = failedEmails.length === 0;
 
-    console.log(`Bulk email send complete: ${successCount}/${recipients.length} successful`);
+    console.log(
+      `Bulk email send complete: ${successCount}/${recipients.length} successful`,
+    );
 
     return {
       success: allSuccess,
       successCount,
       failedEmails,
-      error: allSuccess ? undefined : `Failed to send to ${failedEmails.length} recipients`,
+      error: allSuccess
+        ? undefined
+        : `Failed to send to ${failedEmails.length} recipients`,
     };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Failed to send bulk emails:', errorMessage);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Failed to send bulk emails:", errorMessage);
 
     return {
       success: false,
