@@ -326,15 +326,33 @@ export async function createOneToOneCourse(
     );
 
     const response = await wiseFetch<WiseLMSApiResponse<CreateCourseResponse>>(
-      `institutes/${WISELMS_CONFIG.instituteId}/teacher/classes`,
+      `teacher/addClass`,
       {
         method: 'POST',
         body: JSON.stringify({
           name: `1:1 Consultation - ${studentName}`,
           subject: 'Consultation',
-          adminId: WISELMS_CONFIG.consultationTeacherId,
-          teacherIds: [WISELMS_CONFIG.consultationTeacherId],
-          studentIds: [studentId],
+          instituteId: WISELMS_CONFIG.instituteId,
+          classType: 'ONE_TO_ONE',
+          teachers: [
+            {
+              _id: WISELMS_CONFIG.consultationTeacherId,
+            },
+          ],
+          admins: [WISELMS_CONFIG.consultationTeacherId],
+          student: {
+            _id: studentId,
+          },
+          settings: {
+            requireCreditsForSession: false,
+            studentSlotBooking: {
+              enabled: true,
+              sessionDurationMins: '60',
+              cancellationPolicyNote:
+                'If you cancel, <div>• 0 to 24 hours before the session, you will be charged 1 credit </div><div>• More than 24 hours before the session, you will be charged 0 credit</div>',
+            },
+          },
+          sessionCredits: '2',
         }),
       }
     );
