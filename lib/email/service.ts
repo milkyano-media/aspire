@@ -7,6 +7,17 @@ import {
   generateEmailTemplate,
   generateCustomEmailTemplate,
   generateRegistrationEmailTemplate,
+  generateYear3PricingEmailTemplate,
+  generateYear4PricingEmailTemplate,
+  generateYear5PricingEmailTemplate,
+  generateYear6PricingEmailTemplate,
+  generateYear7PricingEmailTemplate,
+  generateYear8PricingEmailTemplate,
+  generateYear9PricingEmailTemplate,
+  generateYear10PricingEmailTemplate,
+  generateYear11PricingEmailTemplate,
+  generateYear12PricingEmailTemplate,
+  generateSelectiveEntryPricingEmailTemplate,
 } from "./templates";
 
 // Email data type without the terms checkbox
@@ -207,6 +218,131 @@ export async function sendRegistrationConfirmationEmail(
     console.error("Failed to send registration confirmation email:", {
       error: errorMessage,
       recipient: data.parent.email,
+    });
+
+    return {
+      success: false,
+      error: errorMessage,
+    };
+  }
+}
+
+/**
+ * Send grade-specific pricing email to parent
+ *
+ * @param parentEmail - Parent's email address
+ * @param schoolGrade - Student's school grade (A-J representing Year 3-12)
+ * @returns Promise with success status and optional error message
+ */
+export async function sendGradePricingEmail(
+  parentEmail: string,
+  schoolGrade: string,
+): Promise<EmailResult> {
+  try {
+    // Validate environment variables
+    if (!validateSmtpConfig()) {
+      return {
+        success: false,
+        error: "Email service not configured - missing SMTP credentials",
+      };
+    }
+
+    // Create transporter
+    const transporter = createTransporter();
+
+    // Generate email template based on grade
+    let emailTemplate;
+    let subject;
+
+    switch (schoolGrade) {
+      case "A": // Year 3
+        emailTemplate = generateYear3PricingEmailTemplate();
+        subject = "Year 3 Program Details & Pricing - Aspire Academics";
+        break;
+      case "B": // Year 4
+        emailTemplate = generateYear4PricingEmailTemplate();
+        subject = "Year 4 Program Details & Pricing - Aspire Academics";
+        break;
+      case "C": // Year 5
+        emailTemplate = generateYear5PricingEmailTemplate();
+        subject = "Year 5 Program Details & Pricing - Aspire Academics";
+        break;
+      case "D": // Year 6
+        emailTemplate = generateYear6PricingEmailTemplate();
+        subject = "Year 6 Program Details & Pricing - Aspire Academics";
+        break;
+      case "E": // Year 7
+        emailTemplate = generateYear7PricingEmailTemplate();
+        subject = "Year 7 Program Details & Pricing - Aspire Academics";
+        break;
+      case "F": // Year 8
+        emailTemplate = generateYear8PricingEmailTemplate();
+        subject = "Year 8 Program Details & Pricing - Aspire Academics";
+        break;
+      case "G": // Year 9
+        emailTemplate = generateYear9PricingEmailTemplate();
+        subject = "Year 9 Program Details & Pricing - Aspire Academics";
+        break;
+      case "H": // Year 10
+        emailTemplate = generateYear10PricingEmailTemplate();
+        subject = "Year 10 Program Details & Pricing - Aspire Academics";
+        break;
+      case "I": // Year 11
+        emailTemplate = generateYear11PricingEmailTemplate();
+        subject = "VCE Year 11 Program Details & Pricing - Aspire Academics";
+        break;
+      case "J": // Year 12
+        emailTemplate = generateYear12PricingEmailTemplate();
+        subject = "VCE Year 12 Program Details & Pricing - Aspire Academics";
+        break;
+      case "K": // Selective Entry
+        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
+        subject = "Selective Entry Program Details & Pricing - Aspire Academics";
+        break;
+      default:
+        return {
+          success: false,
+          error: `No pricing template available for grade: ${schoolGrade}`,
+        };
+    }
+
+    const { html, text } = emailTemplate;
+
+    // Email options
+    const mailOptions = {
+      from: {
+        name: process.env.SMTP_FROM_NAME || "Aspire Academics",
+        address: process.env.SMTP_FROM_EMAIL || "admin@aspireacademics.au",
+      },
+      to: parentEmail,
+      subject: subject,
+      text: text,
+      html: html,
+    };
+
+    // Send email with 10-second timeout
+    const sendPromise = transporter.sendMail(mailOptions);
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(
+        () => reject(new Error("Email sending timeout after 10 seconds")),
+        10000,
+      ),
+    );
+
+    await Promise.race([sendPromise, timeoutPromise]);
+
+    console.log(
+      `Grade pricing email (${schoolGrade}) sent successfully to: ${parentEmail}`,
+    );
+
+    return { success: true };
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Failed to send grade pricing email:", {
+      error: errorMessage,
+      recipient: parentEmail,
+      grade: schoolGrade,
     });
 
     return {

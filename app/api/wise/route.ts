@@ -1,4 +1,4 @@
-import { sendRegistrationConfirmationEmail } from '@/lib/email/service';
+import { sendRegistrationConfirmationEmail, sendGradePricingEmail } from '@/lib/email/service';
 
 export async function POST(request: Request) {
   try {
@@ -161,6 +161,22 @@ export async function POST(request: Request) {
       }
     } catch (emailError) {
       console.error('Unexpected error sending registration confirmation email:', emailError);
+      // Continue - don't fail registration if email fails
+    }
+
+    // Send grade-specific pricing email to parent (non-blocking - silent failure)
+    try {
+      const pricingEmailResult = await sendGradePricingEmail(
+        parent.email,
+        student.schoolGrade
+      );
+
+      if (!pricingEmailResult.success) {
+        console.error('Failed to send grade pricing email:', pricingEmailResult.error);
+        // Continue - don't fail registration if email fails
+      }
+    } catch (pricingEmailError) {
+      console.error('Unexpected error sending grade pricing email:', pricingEmailError);
       // Continue - don't fail registration if email fails
     }
 
