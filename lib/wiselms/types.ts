@@ -146,3 +146,27 @@ export type WiseLMSWebhookEvent =
       event: 'StudentRemovedFromClassroomEvent';
       payload: StudentRemovedFromClassroomPayload;
     };
+
+/**
+ * 1:1 Consultation Course Creation
+ */
+export interface CreateOneToOneCoursePayload {
+  name: string;
+  subject: string;
+  adminId: string;
+  teacherIds: string[];
+  studentIds: string[];
+}
+
+export interface CreateCourseResponse {
+  _id: string;
+  name: string;
+  subject: string;
+  classType: string;
+  published: boolean;
+}
+
+export interface ArchiveCourseResponse {
+  success: boolean;
+  message: string;
+}
