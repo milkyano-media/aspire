@@ -147,9 +147,6 @@ export default function RegistrationPage() {
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(studentData.email)) {
         errors.push(`Student ${studentNum}: Email is invalid`);
       }
-      if (!studentData.phoneNumber.trim()) {
-        errors.push(`Student ${studentNum}: Phone number is required`);
-      }
       if (!studentData.gender) {
         errors.push(`Student ${studentNum}: Gender is required`);
       }

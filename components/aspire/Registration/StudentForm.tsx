@@ -139,7 +139,7 @@ export default function StudentForm({
                 className="text-sm font-semibold"
                 htmlFor={`student${studentNumber}PhoneNumber`}
               >
-                Student Phone
+                Student Phone <span className="text-gray-500">(Optional)</span>
               </Label>
               <Input
                 type="tel"
