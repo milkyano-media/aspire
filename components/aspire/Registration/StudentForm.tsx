@@ -247,6 +247,7 @@ export default function StudentForm({
                   <SelectItem value="H">Year 10</SelectItem>
                   <SelectItem value="I">Year 11</SelectItem>
                   <SelectItem value="J">Year 12</SelectItem>
+                  <SelectItem value="K">Selective Entry</SelectItem>
                 </SelectContent>
               </Select>
             </div>
