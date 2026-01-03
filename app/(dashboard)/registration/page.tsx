@@ -20,6 +20,8 @@ interface ParentData {
   name: string;
   email: string;
   phoneNumber: string;
+  relationship: string;
+  address: string;
 }
 
 interface StudentData {
@@ -30,6 +32,9 @@ interface StudentData {
   dateOfBirth: string;
   schoolGrade: string;
   vceClass: string;
+  schoolName: string;
+  additionalDetails: string;
+  preference: string;
 }
 
 export default function RegistrationPage() {
@@ -44,6 +49,8 @@ export default function RegistrationPage() {
     name: "",
     email: "",
     phoneNumber: "",
+    relationship: "",
+    address: "",
   });
   const [studentsData, setStudentsData] = useState<Record<number, StudentData>>(
     {
@@ -55,6 +62,9 @@ export default function RegistrationPage() {
         dateOfBirth: "",
         schoolGrade: "",
         vceClass: "",
+        schoolName: "",
+        additionalDetails: "",
+        preference: "",
       },
     },
   );
@@ -72,6 +82,9 @@ export default function RegistrationPage() {
         dateOfBirth: "",
         schoolGrade: "",
         vceClass: "",
+        schoolName: "",
+        additionalDetails: "",
+        preference: "",
       },
     }));
     setNextId((prev) => prev + 1);
@@ -114,6 +127,12 @@ export default function RegistrationPage() {
     if (!parentData.phoneNumber.trim()) {
       errors.push("Parent phone number is required");
     }
+    if (!parentData.relationship) {
+      errors.push("Parent relationship is required");
+    }
+    if (!parentData.address.trim()) {
+      errors.push("Parent address is required");
+    }
 
     // Validate each student
     students.forEach((student, index) => {
@@ -146,6 +165,12 @@ export default function RegistrationPage() {
         !studentData.vceClass
       ) {
         errors.push(`Student ${studentNum}: VCE class is required for Year 11/12`);
+      }
+      if (!studentData.schoolName.trim()) {
+        errors.push(`Student ${studentNum}: School name is required`);
+      }
+      if (!studentData.preference) {
+        errors.push(`Student ${studentNum}: Learning preference is required`);
       }
     });
 
