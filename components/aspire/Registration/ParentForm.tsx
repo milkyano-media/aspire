@@ -146,7 +146,7 @@ export default function ParentForm({ data, onChange }: ParentFormProps) {
                 onValueChange={(value) => onChange({ relationship: value })}
               >
                 <SelectTrigger
-                  className="w-full h-12 pl-12 pr-4 rounded-lg"
+                  className="w-full !h-12 !pl-12 !pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
                   id="parentRelationship"
                 >
                   <SelectValue placeholder="Select Relationship" />

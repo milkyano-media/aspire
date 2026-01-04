@@ -72,7 +72,9 @@ export async function POST(request: Request) {
         {
           questionId: "qb1epgwc",
           answer:
-            student.vceClass.trim().length !== 0 ? student.vceClass : "None",
+            Array.isArray(student.vceClass) && student.vceClass.length > 0
+              ? student.vceClass.join(", ")
+              : "None",
         },
         {
           questionId: "08hn1i9g",

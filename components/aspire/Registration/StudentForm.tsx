@@ -12,12 +12,19 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   UserIcon,
   Trash2Icon,
   SchoolIcon,
   FileTextIcon,
   MonitorIcon,
+  ChevronDownIcon,
 } from "lucide-react";
 
 interface StudentData {
@@ -27,7 +34,7 @@ interface StudentData {
   gender: string;
   dateOfBirth: string;
   schoolGrade: string;
-  vceClass: string;
+  vceClass: string[];
   schoolName: string;
   additionalDetails: string;
   preference: string;
@@ -224,14 +231,14 @@ export default function StudentForm({
                 onValueChange={(value) => {
                   // Reset VCE class if grade is not Year 11 or 12
                   if (value !== "I" && value !== "J") {
-                    onChange({ schoolGrade: value, vceClass: "" });
+                    onChange({ schoolGrade: value, vceClass: [] });
                   } else {
                     onChange({ schoolGrade: value });
                   }
                 }}
               >
                 <SelectTrigger
-                  className="w-full h-12 rounded-lg"
+                  className="w-full !h-12 !px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
                   id={`student${studentNumber}SchoolGrade`}
                 >
                   <SelectValue placeholder="Select Grade" />
@@ -252,7 +259,7 @@ export default function StudentForm({
               </Select>
             </div>
 
-            {/* VCE Class (Conditionally Disabled) */}
+            {/* VCE Class (Conditionally Disabled) - Multi-Select */}
             <div
               className={`flex flex-col gap-2 ${!isVCEEnabled ? "opacity-50" : ""}`}
             >
@@ -260,46 +267,65 @@ export default function StudentForm({
                 className="text-sm font-semibold"
                 htmlFor={`student${studentNumber}VceClassSubject`}
               >
-                VCE Class Subject
+                VCE Class Subject (Multi-select)
               </Label>
-              <Select
-                disabled={!isVCEEnabled}
-                value={data.vceClass}
-                onValueChange={(value) => onChange({ vceClass: value })}
-              >
-                <SelectTrigger
-                  className="w-full h-12 rounded-lg"
-                  id={`student${studentNumber}VceClassSubject`}
-                >
-                  <SelectValue
-                    placeholder={
-                      isVCEEnabled
-                        ? "Select VCE Subject"
-                        : "Requires Year 11 or 12"
-                    }
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="VCE Math Methods Unit 1 & 2">
-                    VCE Math Methods Unit 1 & 2
-                  </SelectItem>
-                  <SelectItem value="VCE Math Methods Unit 3 & 4">
-                    VCE Math Methods Unit 3 & 4
-                  </SelectItem>
-                  <SelectItem value="VCE Chemistry Unit 1 & 2">
-                    VCE Chemistry Unit 1 & 2
-                  </SelectItem>
-                  <SelectItem value="VCE Chemistry Unit 3 & 4">
-                    VCE Chemistry Unit 3 & 4
-                  </SelectItem>
-                  <SelectItem value="VCE Biology Unit 3 & 4">
-                    VCE Biology Unit 3 & 4
-                  </SelectItem>
-                  <SelectItem value="VCE General Math Unit 3 & 4">
-                    VCE General Math Unit 3 & 4
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    disabled={!isVCEEnabled}
+                    className="w-full !h-12 !px-4 !py-0 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all justify-between text-left font-normal"
+                    id={`student${studentNumber}VceClassSubject`}
+                  >
+                    <span className="truncate">
+                      {isVCEEnabled
+                        ? data.vceClass.length > 0
+                          ? data.vceClass.join(", ")
+                          : "Select VCE Subjects"
+                        : "Requires Year 11 or 12"}
+                    </span>
+                    <ChevronDownIcon className="h-4 w-4 opacity-50 flex-shrink-0" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-4" align="start">
+                  <div className="space-y-3">
+                    {[
+                      "VCE Math Methods Unit 1 & 2",
+                      "VCE Math Methods Unit 3 & 4",
+                      "VCE Chemistry Unit 1 & 2",
+                      "VCE Chemistry Unit 3 & 4",
+                      "VCE Biology Unit 3 & 4",
+                      "VCE General Math Unit 3 & 4",
+                    ].map((subject) => (
+                      <div key={subject} className="flex items-center gap-2">
+                        <Checkbox
+                          id={`${studentNumber}-${subject}`}
+                          checked={data.vceClass.includes(subject)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              onChange({
+                                vceClass: [...data.vceClass, subject],
+                              });
+                            } else {
+                              onChange({
+                                vceClass: data.vceClass.filter(
+                                  (item) => item !== subject,
+                                ),
+                              });
+                            }
+                          }}
+                        />
+                        <Label
+                          htmlFor={`${studentNumber}-${subject}`}
+                          className="cursor-pointer text-sm font-normal"
+                        >
+                          {subject}
+                        </Label>
+                      </div>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
 
@@ -342,7 +368,7 @@ export default function StudentForm({
                   onValueChange={(value) => onChange({ preference: value })}
                 >
                   <SelectTrigger
-                    className="w-full h-12 pl-12 pr-4 rounded-lg"
+                    className="w-full !h-12 !pl-12 !pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
                     id={`student${studentNumber}Preference`}
                   >
                     <SelectValue placeholder="Select Preference" />

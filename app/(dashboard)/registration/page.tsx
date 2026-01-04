@@ -31,7 +31,7 @@ interface StudentData {
   gender: string;
   dateOfBirth: string;
   schoolGrade: string;
-  vceClass: string;
+  vceClass: string[];
   schoolName: string;
   additionalDetails: string;
   preference: string;
@@ -61,7 +61,7 @@ export default function RegistrationPage() {
         gender: "",
         dateOfBirth: "",
         schoolGrade: "",
-        vceClass: "",
+        vceClass: [],
         schoolName: "",
         additionalDetails: "",
         preference: "",
@@ -81,7 +81,7 @@ export default function RegistrationPage() {
         gender: "",
         dateOfBirth: "",
         schoolGrade: "",
-        vceClass: "",
+        vceClass: [],
         schoolName: "",
         additionalDetails: "",
         preference: "",
@@ -159,10 +159,10 @@ export default function RegistrationPage() {
       // VCE class is required only for Year 11 (I) and Year 12 (J)
       if (
         (studentData.schoolGrade === "I" || studentData.schoolGrade === "J") &&
-        !studentData.vceClass
+        studentData.vceClass.length === 0
       ) {
         errors.push(
-          `Student ${studentNum}: VCE class is required for Year 11/12`,
+          `Student ${studentNum}: At least one VCE class is required for Year 11/12`,
         );
       }
       if (!studentData.schoolName.trim()) {
