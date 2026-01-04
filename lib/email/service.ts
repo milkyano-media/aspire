@@ -153,7 +153,7 @@ interface RegistrationEmailData {
     gender: string;
     dateOfBirth: string;
     schoolGrade: string;
-    vceClass: string;
+    vceClass: string[];
     schoolName: string;
     additionalDetails: string;
     preference: string;
