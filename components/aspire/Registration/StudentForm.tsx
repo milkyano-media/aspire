@@ -238,7 +238,7 @@ export default function StudentForm({
                 }}
               >
                 <SelectTrigger
-                  className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
+                  className="w-full !h-12 !px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
                   id={`student${studentNumber}SchoolGrade`}
                 >
                   <SelectValue placeholder="Select Grade" />
@@ -274,7 +274,7 @@ export default function StudentForm({
                   <Button
                     variant="outline"
                     disabled={!isVCEEnabled}
-                    className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all justify-between text-left font-normal"
+                    className="w-full !h-12 !px-4 !py-0 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all justify-between text-left font-normal"
                     id={`student${studentNumber}VceClassSubject`}
                   >
                     <span className="truncate">
@@ -368,7 +368,7 @@ export default function StudentForm({
                   onValueChange={(value) => onChange({ preference: value })}
                 >
                   <SelectTrigger
-                    className="w-full h-12 pl-12 pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
+                    className="w-full !h-12 !pl-12 !pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
                     id={`student${studentNumber}Preference`}
                   >
                     <SelectValue placeholder="Select Preference" />
