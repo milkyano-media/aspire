@@ -10,6 +10,8 @@ import type {
   StudentWithParent,
   CreateCourseResponse,
   ArchiveCourseResponse,
+  WiseLMSTeacher,
+  WiseLMSTeachersData,
 } from './types';
 
 /**
