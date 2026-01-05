@@ -42,3 +42,7 @@ postgres_data/
 
 # Claude
 .claude/
+
+# PNPM
+pnpm-lock.yaml
+pnpm-workspace.yaml

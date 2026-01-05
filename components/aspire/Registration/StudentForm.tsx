@@ -250,11 +250,11 @@ export default function StudentForm({
                   <SelectItem value="D">Year 6</SelectItem>
                   <SelectItem value="E">Year 7</SelectItem>
                   <SelectItem value="F">Year 8</SelectItem>
+                  <SelectItem value="K">Selective Entry</SelectItem>
                   <SelectItem value="G">Year 9</SelectItem>
                   <SelectItem value="H">Year 10</SelectItem>
                   <SelectItem value="I">Year 11</SelectItem>
                   <SelectItem value="J">Year 12</SelectItem>
-                  <SelectItem value="K">Selective Entry</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -294,8 +294,13 @@ export default function StudentForm({
                       "VCE Math Methods Unit 3 & 4",
                       "VCE Chemistry Unit 1 & 2",
                       "VCE Chemistry Unit 3 & 4",
+                      "VCE Biology unit 1 & 2",
                       "VCE Biology Unit 3 & 4",
+                      "VCE Specialist Maths Unit 1 & 2",
+                      "VCE Specialist Maths Unit 3 & 4",
                       "VCE General Math Unit 3 & 4",
+                      "VCE Psychology Unit 3 & 4",
+                      "VCE Health & Human Development unit 3 & 4",
                     ].map((subject) => (
                       <div key={subject} className="flex items-center gap-2">
                         <Checkbox
