@@ -1,1 +1,1 @@
-ALTER TABLE "courses" ADD COLUMN "wise_course_id" text DEFAULT '' NOT NULL;
+ALTER TABLE "courses" ADD COLUMN IF NOT EXISTS "wise_course_id" text DEFAULT '' NOT NULL;
