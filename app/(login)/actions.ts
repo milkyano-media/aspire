@@ -86,9 +86,16 @@ export const signIn = validatedAction(signInSchema, async (data, formData) => {
     };
   }
 
+  // Determine activity type based on user role
+  const activityType = foundUser.role === 'admin'
+    ? ActivityType.ADMIN_SIGN_IN
+    : foundUser.role === 'teacher'
+    ? ActivityType.TEACHER_SIGN_IN
+    : ActivityType.SIGN_IN;
+
   await Promise.all([
     setSession(foundUser),
-    logActivity(foundTeam?.id, foundUser.id, ActivityType.SIGN_IN),
+    logActivity(foundTeam?.id, foundUser.id, activityType),
   ]);
 
   const redirectTo = formData.get("redirect") as string | null;
@@ -97,7 +104,12 @@ export const signIn = validatedAction(signInSchema, async (data, formData) => {
     return createCheckoutSession({ team: foundTeam, priceId });
   }
 
-  redirect("/dashboard");
+  // Role-based redirect: admin/teacher → /admin, others → /dashboard
+  if (foundUser.role === 'admin' || foundUser.role === 'teacher') {
+    redirect("/admin");
+  } else {
+    redirect("/dashboard");
+  }
 });
 
 const signUpSchema = z.object({

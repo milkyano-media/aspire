@@ -9,6 +9,10 @@ import {
   UserMinus,
   Mail,
   CheckCircle,
+  Shield,
+  Edit,
+  Trash2,
+  Send,
   type LucideIcon,
 } from 'lucide-react';
 import { ActivityType } from '@/lib/db/schema';
@@ -25,6 +29,12 @@ const iconMap: Record<ActivityType, LucideIcon> = {
   [ActivityType.REMOVE_TEAM_MEMBER]: UserMinus,
   [ActivityType.INVITE_TEAM_MEMBER]: Mail,
   [ActivityType.ACCEPT_INVITATION]: CheckCircle,
+  [ActivityType.CREATE_TEACHER_ACCOUNT]: UserPlus,
+  [ActivityType.UPDATE_USER_ROLE]: Edit,
+  [ActivityType.DELETE_USER_ACCOUNT]: Trash2,
+  [ActivityType.ADMIN_SIGN_IN]: Shield,
+  [ActivityType.TEACHER_SIGN_IN]: UserCog,
+  [ActivityType.SEND_BULK_EMAIL]: Send,
 };
 
 function getRelativeTime(date: Date) {
@@ -63,6 +73,18 @@ function formatAction(action: ActivityType): string {
       return 'You invited a team member';
     case ActivityType.ACCEPT_INVITATION:
       return 'You accepted an invitation';
+    case ActivityType.CREATE_TEACHER_ACCOUNT:
+      return 'You created a teacher account';
+    case ActivityType.UPDATE_USER_ROLE:
+      return 'You updated a user role';
+    case ActivityType.DELETE_USER_ACCOUNT:
+      return 'You deleted a user account';
+    case ActivityType.ADMIN_SIGN_IN:
+      return 'You signed in as admin';
+    case ActivityType.TEACHER_SIGN_IN:
+      return 'You signed in as teacher';
+    case ActivityType.SEND_BULK_EMAIL:
+      return 'You sent bulk email to parents';
     default:
       return 'Unknown action occurred';
   }

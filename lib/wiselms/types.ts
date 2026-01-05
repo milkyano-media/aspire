@@ -108,6 +108,32 @@ export interface StudentWithParent {
   parentName: string;
   parentEmail: string;
   parentPhone?: string;
+  courseName?: string; // NEW: For email personalization
+}
+
+/**
+ * WiseLMS Teacher data structure
+ */
+export interface WiseLMSTeacher {
+  _id: string;
+  instituteId: string;
+  userId: {
+    _id: string;
+    name: string;
+    email: string;
+    phoneNumber?: string;
+    profilePicture?: string;
+    activated?: boolean;
+  };
+  relation: string;
+  status: string;
+  joinedOn: string;
+  updatedAt: string;
+  classes?: string[];
+}
+
+export interface WiseLMSTeachersData {
+  teachers: WiseLMSTeacher[];
 }
 
 /**
