@@ -1,3 +1,5 @@
+import { sendRegistrationConfirmationEmail, sendGradePricingEmail } from '@/lib/email/service';
+
 export async function POST(request: Request) {
   try {
     const wiseBaseUrl = process.env.WISELMS_API_HOST;
@@ -70,7 +72,21 @@ export async function POST(request: Request) {
         {
           questionId: "qb1epgwc",
           answer:
-            student.vceClass.trim().length !== 0 ? student.vceClass : "None",
+            Array.isArray(student.vceClass) && student.vceClass.length > 0
+              ? student.vceClass.join(", ")
+              : "None",
+        },
+        {
+          questionId: "08hn1i9g",
+          answer: student.schoolName,
+        },
+        {
+          questionId: "3r7joiav",
+          answer: student.additionalDetails,
+        },
+        {
+          questionId: "8ykravcf",
+          answer: student.preference,
         },
         {
           questionId: "z3xugv7s",
@@ -83,6 +99,14 @@ export async function POST(request: Request) {
         {
           questionId: "auhyhiuy",
           answer: parent.phoneNumber,
+        },
+        {
+          questionId: "6p1zmkvj",
+          answer: parent.address,
+        },
+        {
+          questionId: "srxs890l",
+          answer: parent.relationship,
         },
       ],
     };
@@ -107,6 +131,55 @@ export async function POST(request: Request) {
       await updateStudentRegistrationField.json();
     if (updateStudentRegistrationField.status !== 200) {
       throw new Error(updateStudentRegistrationFieldJson.message);
+    }
+
+    // Send confirmation email to parent (non-blocking - silent failure)
+    try {
+      const emailResult = await sendRegistrationConfirmationEmail({
+        parent: {
+          name: parent.name,
+          email: parent.email,
+          phoneNumber: parent.phoneNumber,
+          relationship: parent.relationship,
+          address: parent.address,
+        },
+        student: {
+          name: student.name,
+          email: student.email,
+          phoneNumber: student.phoneNumber,
+          gender: student.gender,
+          dateOfBirth: student.dateOfBirth,
+          schoolGrade: student.schoolGrade,
+          vceClass: student.vceClass,
+          schoolName: student.schoolName,
+          additionalDetails: student.additionalDetails,
+          preference: student.preference,
+        },
+      });
+
+      if (!emailResult.success) {
+        console.error('Failed to send registration confirmation email:', emailResult.error);
+        // Continue - don't fail registration if email fails
+      }
+    } catch (emailError) {
+      console.error('Unexpected error sending registration confirmation email:', emailError);
+      // Continue - don't fail registration if email fails
+    }
+
+    // Send grade-specific pricing email to parent (non-blocking - silent failure)
+    try {
+      const pricingEmailResult = await sendGradePricingEmail(
+        parent.email,
+        student.schoolGrade
+      );
+
+      if (!pricingEmailResult.success) {
+        console.error('Failed to send grade pricing email:', pricingEmailResult.error);
+        // Continue - don't fail registration if email fails
+      }
+    } catch (pricingEmailError) {
+      console.error('Unexpected error sending grade pricing email:', pricingEmailError);
+      // Continue - don't fail registration if email fails
     }
 
     return Response.json(

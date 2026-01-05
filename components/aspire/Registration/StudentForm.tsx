@@ -11,7 +11,21 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { UserIcon, Trash2Icon } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  UserIcon,
+  Trash2Icon,
+  SchoolIcon,
+  FileTextIcon,
+  MonitorIcon,
+  ChevronDownIcon,
+} from "lucide-react";
 
 interface StudentData {
   name: string;
@@ -20,7 +34,10 @@ interface StudentData {
   gender: string;
   dateOfBirth: string;
   schoolGrade: string;
-  vceClass: string;
+  vceClass: string[];
+  schoolName: string;
+  additionalDetails: string;
+  preference: string;
 }
 
 interface StudentFormProps {
@@ -129,7 +146,7 @@ export default function StudentForm({
                 className="text-sm font-semibold"
                 htmlFor={`student${studentNumber}PhoneNumber`}
               >
-                Student Phone
+                Student Phone <span className="text-gray-500">(Optional)</span>
               </Label>
               <Input
                 type="tel"
@@ -214,14 +231,14 @@ export default function StudentForm({
                 onValueChange={(value) => {
                   // Reset VCE class if grade is not Year 11 or 12
                   if (value !== "I" && value !== "J") {
-                    onChange({ schoolGrade: value, vceClass: "" });
+                    onChange({ schoolGrade: value, vceClass: [] });
                   } else {
                     onChange({ schoolGrade: value });
                   }
                 }}
               >
                 <SelectTrigger
-                  className="w-full h-12 rounded-lg"
+                  className="w-full !h-12 !px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
                   id={`student${studentNumber}SchoolGrade`}
                 >
                   <SelectValue placeholder="Select Grade" />
@@ -237,11 +254,12 @@ export default function StudentForm({
                   <SelectItem value="H">Year 10</SelectItem>
                   <SelectItem value="I">Year 11</SelectItem>
                   <SelectItem value="J">Year 12</SelectItem>
+                  <SelectItem value="K">Selective Entry</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            {/* VCE Class (Conditionally Disabled) */}
+            {/* VCE Class (Conditionally Disabled) - Multi-Select */}
             <div
               className={`flex flex-col gap-2 ${!isVCEEnabled ? "opacity-50" : ""}`}
             >
@@ -249,46 +267,142 @@ export default function StudentForm({
                 className="text-sm font-semibold"
                 htmlFor={`student${studentNumber}VceClassSubject`}
               >
-                VCE Class Subject
+                VCE Class Subject (Multi-select)
               </Label>
-              <Select
-                disabled={!isVCEEnabled}
-                value={data.vceClass}
-                onValueChange={(value) => onChange({ vceClass: value })}
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    disabled={!isVCEEnabled}
+                    className="w-full !h-12 !px-4 !py-0 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all justify-between text-left font-normal"
+                    id={`student${studentNumber}VceClassSubject`}
+                  >
+                    <span className="truncate">
+                      {isVCEEnabled
+                        ? data.vceClass.length > 0
+                          ? data.vceClass.join(", ")
+                          : "Select VCE Subjects"
+                        : "Requires Year 11 or 12"}
+                    </span>
+                    <ChevronDownIcon className="h-4 w-4 opacity-50 flex-shrink-0" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-4" align="start">
+                  <div className="space-y-3">
+                    {[
+                      "VCE Math Methods Unit 1 & 2",
+                      "VCE Math Methods Unit 3 & 4",
+                      "VCE Chemistry Unit 1 & 2",
+                      "VCE Chemistry Unit 3 & 4",
+                      "VCE Biology Unit 3 & 4",
+                      "VCE General Math Unit 3 & 4",
+                    ].map((subject) => (
+                      <div key={subject} className="flex items-center gap-2">
+                        <Checkbox
+                          id={`${studentNumber}-${subject}`}
+                          checked={data.vceClass.includes(subject)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              onChange({
+                                vceClass: [...data.vceClass, subject],
+                              });
+                            } else {
+                              onChange({
+                                vceClass: data.vceClass.filter(
+                                  (item) => item !== subject,
+                                ),
+                              });
+                            }
+                          }}
+                        />
+                        <Label
+                          htmlFor={`${studentNumber}-${subject}`}
+                          className="cursor-pointer text-sm font-normal"
+                        >
+                          {subject}
+                        </Label>
+                      </div>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
+          </div>
+
+          <Separator className="border-gray-100" />
+
+          {/* School & Preference Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* School Name */}
+            <div className="flex flex-col gap-2">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor={`student${studentNumber}SchoolName`}
               >
-                <SelectTrigger
-                  className="w-full h-12 rounded-lg"
-                  id={`student${studentNumber}VceClassSubject`}
+                School Name
+              </Label>
+              <div className="relative">
+                <SchoolIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  id={`student${studentNumber}SchoolName`}
+                  placeholder="e.g. Melbourne High School"
+                  value={data.schoolName}
+                  onChange={(e) => onChange({ schoolName: e.target.value })}
+                  className="w-full h-12 pl-12 pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
+                />
+              </div>
+            </div>
+
+            {/* Learning Preference */}
+            <div className="flex flex-col gap-2">
+              <Label
+                className="text-sm font-semibold"
+                htmlFor={`student${studentNumber}Preference`}
+              >
+                Learning Preference
+              </Label>
+              <div className="relative">
+                <MonitorIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 z-10 pointer-events-none" />
+                <Select
+                  value={data.preference}
+                  onValueChange={(value) => onChange({ preference: value })}
                 >
-                  <SelectValue
-                    placeholder={
-                      isVCEEnabled
-                        ? "Select VCE Subject"
-                        : "Requires Year 11 or 12"
-                    }
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="VCE Math Methods Unit 1 & 2">
-                    VCE Math Methods Unit 1 & 2
-                  </SelectItem>
-                  <SelectItem value="VCE Math Methods Unit 3 & 4">
-                    VCE Math Methods Unit 3 & 4
-                  </SelectItem>
-                  <SelectItem value="VCE Chemistry Unit 1 & 2">
-                    VCE Chemistry Unit 1 & 2
-                  </SelectItem>
-                  <SelectItem value="VCE Chemistry Unit 3 & 4">
-                    VCE Chemistry Unit 3 & 4
-                  </SelectItem>
-                  <SelectItem value="VCE Biology Unit 3 & 4">
-                    VCE Biology Unit 3 & 4
-                  </SelectItem>
-                  <SelectItem value="VCE General Math Unit 3 & 4">
-                    VCE General Math Unit 3 & 4
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+                  <SelectTrigger
+                    className="w-full !h-12 !pl-12 !pr-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
+                    id={`student${studentNumber}Preference`}
+                  >
+                    <SelectValue placeholder="Select Preference" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="A">Online</SelectItem>
+                    <SelectItem value="B">In-Person (Offline)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Details - Full Width */}
+          <div className="flex flex-col gap-2">
+            <Label
+              className="text-sm font-semibold"
+              htmlFor={`student${studentNumber}AdditionalDetails`}
+            >
+              Additional Details{" "}
+              <span className="text-gray-400 font-normal">(Optional)</span>
+            </Label>
+            <div className="relative">
+              <FileTextIcon className="absolute left-4 top-4 text-gray-400 w-5 h-5" />
+              <Textarea
+                id={`student${studentNumber}AdditionalDetails`}
+                placeholder="Any additional information about learning needs, goals, or preferences..."
+                value={data.additionalDetails}
+                onChange={(e) =>
+                  onChange({ additionalDetails: e.target.value })
+                }
+                rows={3}
+                className="w-full pl-12 pr-4 py-3 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all resize-none"
+              />
             </div>
           </div>
         </form>

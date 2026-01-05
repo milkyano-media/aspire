@@ -20,6 +20,8 @@ interface ParentData {
   name: string;
   email: string;
   phoneNumber: string;
+  relationship: string;
+  address: string;
 }
 
 interface StudentData {
@@ -29,7 +31,10 @@ interface StudentData {
   gender: string;
   dateOfBirth: string;
   schoolGrade: string;
-  vceClass: string;
+  vceClass: string[];
+  schoolName: string;
+  additionalDetails: string;
+  preference: string;
 }
 
 export default function RegistrationPage() {
@@ -44,6 +49,8 @@ export default function RegistrationPage() {
     name: "",
     email: "",
     phoneNumber: "",
+    relationship: "",
+    address: "",
   });
   const [studentsData, setStudentsData] = useState<Record<number, StudentData>>(
     {
@@ -54,7 +61,10 @@ export default function RegistrationPage() {
         gender: "",
         dateOfBirth: "",
         schoolGrade: "",
-        vceClass: "",
+        vceClass: [],
+        schoolName: "",
+        additionalDetails: "",
+        preference: "",
       },
     },
   );
@@ -71,7 +81,10 @@ export default function RegistrationPage() {
         gender: "",
         dateOfBirth: "",
         schoolGrade: "",
-        vceClass: "",
+        vceClass: [],
+        schoolName: "",
+        additionalDetails: "",
+        preference: "",
       },
     }));
     setNextId((prev) => prev + 1);
@@ -114,6 +127,12 @@ export default function RegistrationPage() {
     if (!parentData.phoneNumber.trim()) {
       errors.push("Parent phone number is required");
     }
+    if (!parentData.relationship) {
+      errors.push("Parent relationship is required");
+    }
+    if (!parentData.address.trim()) {
+      errors.push("Parent address is required");
+    }
 
     // Validate each student
     students.forEach((student, index) => {
@@ -128,9 +147,6 @@ export default function RegistrationPage() {
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(studentData.email)) {
         errors.push(`Student ${studentNum}: Email is invalid`);
       }
-      if (!studentData.phoneNumber.trim()) {
-        errors.push(`Student ${studentNum}: Phone number is required`);
-      }
       if (!studentData.gender) {
         errors.push(`Student ${studentNum}: Gender is required`);
       }
@@ -143,9 +159,17 @@ export default function RegistrationPage() {
       // VCE class is required only for Year 11 (I) and Year 12 (J)
       if (
         (studentData.schoolGrade === "I" || studentData.schoolGrade === "J") &&
-        !studentData.vceClass
+        studentData.vceClass.length === 0
       ) {
-        errors.push(`Student ${studentNum}: VCE class is required for Year 11/12`);
+        errors.push(
+          `Student ${studentNum}: At least one VCE class is required for Year 11/12`,
+        );
+      }
+      if (!studentData.schoolName.trim()) {
+        errors.push(`Student ${studentNum}: School name is required`);
+      }
+      if (!studentData.preference) {
+        errors.push(`Student ${studentNum}: Learning preference is required`);
       }
     });
 
@@ -194,7 +218,7 @@ export default function RegistrationPage() {
 
       if (failedStudents.length > 0) {
         setSubmitError(
-          `Failed to register student(s): ${failedStudents.join(", ")}. Please try again.`
+          `Failed to register student(s): ${failedStudents.join(", ")}. Please try again.`,
         );
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
@@ -204,7 +228,7 @@ export default function RegistrationPage() {
     } catch (err) {
       console.error(err);
       setSubmitError(
-        "An error occurred while submitting the registration. Please check your connection and try again."
+        "An error occurred while submitting the registration. Please check your connection and try again.",
       );
       window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
@@ -275,21 +299,22 @@ export default function RegistrationPage() {
             />
           ))}
 
+          <Button
+            onClick={handleAddStudent}
+            variant="outline"
+            size="lg"
+            className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-dashed border-blue-600/40 text-blue-600 font-bold hover:bg-blue-600/5 hover:border-blue-600 transition-all group"
+          >
+            <PlusCircleIcon className="group-hover:scale-110 transition-transform" />
+            Add Another Student
+          </Button>
+
           <TermAndCondition
             acceptedTerms={acceptedTerms}
             onChecked={setAcceptedTerms}
           />
 
           <div className="flex flex-col md:flex-row gap-4 pt-4 pb-12">
-            <Button
-              onClick={handleAddStudent}
-              variant="outline"
-              size="lg"
-              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-dashed border-blue-600/40 text-blue-600 font-bold hover:bg-blue-600/5 hover:border-blue-600 transition-all group"
-            >
-              <PlusCircleIcon className="group-hover:scale-110 transition-transform" />
-              Add Another Student
-            </Button>
             <div className="flex-grow"></div>
             <Button
               onClick={handleCompleteRegistration}
