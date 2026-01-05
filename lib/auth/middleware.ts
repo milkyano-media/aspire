@@ -73,3 +73,77 @@ export function withTeam<T>(action: ActionWithTeamFunction<T>) {
     return action(formData, team);
   };
 }
+
+export function validatedActionWithAdmin<S extends z.ZodType<any, any>, T>(
+  schema: S,
+  action: ValidatedActionWithUserFunction<S, T>
+) {
+  return async (prevState: ActionState, formData: FormData) => {
+    const user = await getUser();
+    if (!user) {
+      return { error: 'User is not authenticated' };
+    }
+
+    if (user.role !== 'admin') {
+      return { error: 'Unauthorized: Admin access required' };
+    }
+
+    const result = schema.safeParse(Object.fromEntries(formData));
+    if (!result.success) {
+      return { error: result.error.errors[0].message };
+    }
+
+    return action(result.data, formData, user);
+  };
+}
+
+export function validatedActionWithAdminOrTeacher<S extends z.ZodType<any, any>, T>(
+  schema: S,
+  action: ValidatedActionWithUserFunction<S, T>
+) {
+  return async (prevState: ActionState, formData: FormData) => {
+    const user = await getUser();
+    if (!user) {
+      return { error: 'User is not authenticated' };
+    }
+
+    if (user.role !== 'admin' && user.role !== 'teacher') {
+      return { error: 'Unauthorized: Admin or teacher access required' };
+    }
+
+    const result = schema.safeParse(Object.fromEntries(formData));
+    if (!result.success) {
+      return { error: result.error.errors[0].message };
+    }
+
+    return action(result.data, formData, user);
+  };
+}
+
+export async function requireAdmin(): Promise<User> {
+  const user = await getUser();
+
+  if (!user) {
+    redirect('/sign-in');
+  }
+
+  if (user.role !== 'admin') {
+    redirect('/');
+  }
+
+  return user;
+}
+
+export async function requireAdminOrTeacher(): Promise<User> {
+  const user = await getUser();
+
+  if (!user) {
+    redirect('/sign-in');
+  }
+
+  if (user.role !== 'admin' && user.role !== 'teacher') {
+    redirect('/');
+  }
+
+  return user;
+}

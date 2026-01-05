@@ -5,7 +5,7 @@ import type { Transporter } from "nodemailer";
 import { ConsultationFormData } from "@/components/aspire/ConsultationForm/schema";
 import {
   generateEmailTemplate,
-  generateCustomEmailTemplate,
+  generateCustomEmailTemplate, replaceTemplateVariables,
   generateRegistrationEmailTemplate,
   generateYear3PricingEmailTemplate,
   generateYear4PricingEmailTemplate,
@@ -398,17 +398,28 @@ interface EmailAttachment {
   contentType: string;
 }
 
+interface RecipientData {
+  studentId: string;
+  studentName: string;
+  studentEmail: string;
+  parentName: string;
+  parentEmail: string;
+  parentPhone?: string;
+  courseName?: string;
+}
+
 /**
  * Send custom email to multiple recipients (bulk send)
+ * Supports template variables for personalization
  *
- * @param recipients - Array of recipient email addresses
- * @param subject - Email subject line
- * @param htmlBody - Custom HTML body content (will be wrapped in Aspire template)
+ * @param recipients - Array of recipient data with student/parent info
+ * @param subject - Email subject line (supports template variables)
+ * @param htmlBody - Custom HTML body content (supports template variables, will be wrapped in Aspire template)
  * @param attachments - Optional array of file attachments
  * @returns Promise with success status and detailed results
  */
 export async function sendBulkCustomEmail(
-  recipients: string[],
+  recipients: RecipientData[],
   subject: string,
   htmlBody: string,
   attachments: EmailAttachment[] = [],
@@ -419,7 +430,7 @@ export async function sendBulkCustomEmail(
       return {
         success: false,
         successCount: 0,
-        failedEmails: recipients,
+        failedEmails: recipients.map(r => r.parentEmail),
         error: "Email service not configured - missing SMTP credentials",
       };
     }
@@ -433,10 +444,28 @@ export async function sendBulkCustomEmail(
     console.log(`Starting bulk email send to ${recipients.length} recipients`);
 
     // Send emails one by one (avoid spam filters with slight delays)
-    for (const recipientEmail of recipients) {
+    for (const recipient of recipients) {
       try {
-        // Generate email template with custom body
-        const { html, text } = generateCustomEmailTemplate(subject, htmlBody);
+        // Personalize subject
+        const personalizedSubject = replaceTemplateVariables(subject, {
+          parentName: recipient.parentName,
+          studentName: recipient.studentName,
+          courseName: recipient.courseName,
+          studentEmail: recipient.studentEmail,
+          parentEmail: recipient.parentEmail,
+        });
+
+        // Personalize body
+        const personalizedBody = replaceTemplateVariables(htmlBody, {
+          parentName: recipient.parentName,
+          studentName: recipient.studentName,
+          courseName: recipient.courseName,
+          studentEmail: recipient.studentEmail,
+          parentEmail: recipient.parentEmail,
+        });
+
+        // Generate email template with personalized body
+        const { html, text } = generateCustomEmailTemplate(personalizedSubject, personalizedBody);
 
         // Email options
         const mailOptions: any = {
@@ -444,8 +473,8 @@ export async function sendBulkCustomEmail(
             name: process.env.SMTP_FROM_NAME || "Aspire Academics",
             address: process.env.SMTP_FROM_EMAIL || "admin@aspireacademics.au",
           },
-          to: recipientEmail,
-          subject: subject,
+          to: recipient.parentEmail,
+          subject: personalizedSubject,
           text: text,
           html: html,
         };
@@ -469,18 +498,18 @@ export async function sendBulkCustomEmail(
 
         successCount++;
         console.log(
-          `Email sent successfully to: ${recipientEmail} (${successCount}/${recipients.length})`,
+          `Email sent successfully to: ${recipient.parentEmail} (${successCount}/${recipients.length})`,
         );
 
         // Small delay to avoid spam filters (500ms between emails)
-        if (recipients.indexOf(recipientEmail) < recipients.length - 1) {
+        if (recipients.indexOf(recipient) < recipients.length - 1) {
           await new Promise((resolve) => setTimeout(resolve, 500));
         }
       } catch (emailError) {
         const errorMsg =
           emailError instanceof Error ? emailError.message : "Unknown error";
-        console.error(`Failed to send email to ${recipientEmail}:`, errorMsg);
-        failedEmails.push(recipientEmail);
+        console.error(`Failed to send email to ${recipient.parentEmail}:`, errorMsg);
+        failedEmails.push(recipient.parentEmail);
       }
     }
 
@@ -506,7 +535,7 @@ export async function sendBulkCustomEmail(
     return {
       success: false,
       successCount: 0,
-      failedEmails: recipients,
+      failedEmails: recipients.map(r => r.parentEmail),
       error: errorMessage,
     };
   }

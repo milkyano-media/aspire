@@ -16,7 +16,7 @@ import { Eye, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 interface EmailComposerTabProps {
-  // No props needed - courses are fetched from WiseLMS
+  userRole: string;
 }
 
 /**
@@ -27,7 +27,7 @@ interface EmailComposerTabProps {
  * 3. Compose email
  * 4. Send
  */
-export function EmailComposerTab({}: EmailComposerTabProps) {
+export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
   // WiseLMS courses
   const [courses, setCourses] = useState<WiseLMSCourse[]>([]);
   const [isLoadingCourses, setIsLoadingCourses] = useState(true);
@@ -39,7 +39,7 @@ export function EmailComposerTab({}: EmailComposerTabProps) {
   // Step 2: Student data & selection
   const [students, setStudents] = useState<StudentWithParent[]>([]);
   const [isLoadingStudents, setIsLoadingStudents] = useState(false);
-  const [selectedRecipients, setSelectedRecipients] = useState<string[]>([]);
+  const [selectedRecipients, setSelectedRecipients] = useState<StudentWithParent[]>([]);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   // Step 3: Email composition
@@ -87,6 +87,10 @@ export function EmailComposerTab({}: EmailComposerTabProps) {
     setStudents([]);
     setSelectedRecipients([]);
 
+    // Find course name from selected course
+    const selectedCourse = courses.find(c => c._id === wiseCourseId);
+    const courseName = selectedCourse?.name || 'Course';
+
     try {
       // Create FormData for the action
       const formData = new FormData();
@@ -98,7 +102,12 @@ export function EmailComposerTab({}: EmailComposerTabProps) {
         setFetchError(result.error);
         setStudents([]);
       } else if ('success' in result && result.success && 'data' in result && result.data) {
-        setStudents(result.data as StudentWithParent[]);
+        // Add courseName to each student
+        const studentsWithCourse = (result.data as StudentWithParent[]).map(student => ({
+          ...student,
+          courseName: courseName
+        }));
+        setStudents(studentsWithCourse);
         setFetchError(null);
       }
     } catch (error) {
@@ -111,8 +120,8 @@ export function EmailComposerTab({}: EmailComposerTabProps) {
   };
 
   // Handle recipient selection change
-  const handleSelectionChange = useCallback((parentEmails: string[]) => {
-    setSelectedRecipients(parentEmails);
+  const handleSelectionChange = useCallback((recipients: StudentWithParent[]) => {
+    setSelectedRecipients(recipients);
   }, []);
 
   // Handle send email
@@ -163,7 +172,9 @@ export function EmailComposerTab({}: EmailComposerTabProps) {
       <div className="border-b pb-4">
         <h2 className="text-2xl font-bold text-[#002366]">Email Composer</h2>
         <p className="text-gray-600 mt-1">
-          Send custom emails to parents of students enrolled in courses
+          {userRole === 'admin'
+            ? 'Send custom emails to parents of students enrolled in courses'
+            : 'Send custom emails to parents in your assigned courses'}
         </p>
       </div>
 
@@ -336,6 +347,23 @@ export function EmailComposerTab({}: EmailComposerTabProps) {
         htmlBody={emailBody}
         isOpen={isPreviewOpen}
         onClose={() => setIsPreviewOpen(false)}
+        sampleRecipient={
+          selectedRecipients.length > 0
+            ? {
+                parentName: selectedRecipients[0].parentName,
+                studentName: selectedRecipients[0].studentName,
+                courseName: selectedRecipients[0].courseName,
+                studentEmail: selectedRecipients[0].studentEmail,
+                parentEmail: selectedRecipients[0].parentEmail,
+              }
+            : {
+                parentName: 'John Smith',
+                studentName: 'Emma Smith',
+                courseName: 'VCE Mathematics',
+                studentEmail: 'emma.smith@example.com',
+                parentEmail: 'john.smith@example.com',
+              }
+        }
       />
 
       {/* Toast Notifications */}

@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { validatedAction, ActionState } from "@/lib/auth/middleware";
+import { validatedAction, validatedActionWithAdmin, ActionState } from "@/lib/auth/middleware";
 import {
   createCourse as dbCreateCourse,
   updateCourse as dbUpdateCourse,
@@ -49,9 +49,9 @@ const courseSchema = z.object({
   wiseCourseId: z.string().min(1, "Store Course ID is required"),
 });
 
-export const createCourse = validatedAction(
+export const createCourse = validatedActionWithAdmin(
   courseSchema,
-  async (data, formData): Promise<ActionState> => {
+  async (data, formData, user): Promise<ActionState> => {
     try {
       await dbCreateCourse({
         ...data,
@@ -73,9 +73,9 @@ const updateCourseSchema = courseSchema.extend({
   id: z.coerce.number(),
 });
 
-export const updateCourse = validatedAction(
+export const updateCourse = validatedActionWithAdmin(
   updateCourseSchema,
-  async (data, formData): Promise<ActionState> => {
+  async (data, formData, user): Promise<ActionState> => {
     try {
       const { id, ...updateData } = data;
 
@@ -99,9 +99,9 @@ const deleteCourseSchema = z.object({
   id: z.coerce.number(),
 });
 
-export const deleteCourse = validatedAction(
+export const deleteCourse = validatedActionWithAdmin(
   deleteCourseSchema,
-  async (data, formData): Promise<ActionState> => {
+  async (data, formData, user): Promise<ActionState> => {
     try {
       await dbDeleteCourse(data.id);
 

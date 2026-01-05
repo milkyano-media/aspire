@@ -2033,3 +2033,53 @@ Director | Aspire Academics
 
   return { html, text };
 }
+
+/**
+ * Supported template variables for email personalization
+ */
+export const TEMPLATE_VARIABLES = {
+  parentName: '{{parentName}}',
+  studentName: '{{studentName}}',
+  courseName: '{{courseName}}',
+  studentEmail: '{{studentEmail}}',
+  parentEmail: '{{parentEmail}}',
+} as const;
+
+/**
+ * Replace template variables with actual values
+ * Escapes HTML in variable values for security
+ */
+export function replaceTemplateVariables(
+  content: string,
+  data: {
+    parentName: string;
+    studentName: string;
+    courseName?: string;
+    studentEmail: string;
+    parentEmail: string;
+  }
+): string {
+  let result = content;
+
+  // Replace with HTML-escaped values, use fallbacks for missing data
+  result = result.replace(/\{\{parentName\}\}/g, escapeHtml(data.parentName || 'Parent'));
+  result = result.replace(/\{\{studentName\}\}/g, escapeHtml(data.studentName || 'Student'));
+  result = result.replace(/\{\{courseName\}\}/g, escapeHtml(data.courseName || 'the course'));
+  result = result.replace(/\{\{studentEmail\}\}/g, escapeHtml(data.studentEmail || ''));
+  result = result.replace(/\{\{parentEmail\}\}/g, escapeHtml(data.parentEmail || ''));
+
+  return result;
+}
+
+/**
+ * Get list of available template variables with descriptions
+ */
+export function getAvailableVariables(): Array<{ variable: string; description: string }> {
+  return [
+    { variable: '{{parentName}}', description: "Parent's name" },
+    { variable: '{{studentName}}', description: "Student's name" },
+    { variable: '{{courseName}}', description: 'Course name' },
+    { variable: '{{studentEmail}}', description: "Student's email" },
+    { variable: '{{parentEmail}}', description: "Parent's email" },
+  ];
+}

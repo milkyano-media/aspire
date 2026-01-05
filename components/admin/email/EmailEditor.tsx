@@ -13,6 +13,13 @@ import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import { Button } from "@/components/ui/button";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { getAvailableVariables } from "@/lib/email/templates";
+import {
   Bold,
   Italic,
   Underline as UnderlineIcon,
@@ -36,6 +43,7 @@ import {
   Subscript as SubscriptIcon,
   Superscript as SuperscriptIcon,
   RemoveFormatting,
+  ChevronDown,
 } from "lucide-react";
 
 interface EmailEditorProps {
@@ -117,6 +125,10 @@ export function EmailEditor({
     if (color) {
       editor.chain().focus().setHighlight({ color }).run();
     }
+  };
+
+  const insertVariable = (variable: string) => {
+    editor?.chain().focus().insertContent(variable).run();
   };
 
   return (
@@ -358,6 +370,37 @@ export function EmailEditor({
 
           <div className="w-px h-8 bg-gray-300 mx-1" />
 
+          {/* Insert Variable Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                title="Insert Variable"
+              >
+                <span className="text-xs font-medium mr-1">Insert Variable</span>
+                <ChevronDown className="h-3 w-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56">
+              {getAvailableVariables().map(({ variable, description }) => (
+                <DropdownMenuItem
+                  key={variable}
+                  onClick={() => insertVariable(variable)}
+                  className="cursor-pointer"
+                >
+                  <div className="flex flex-col gap-1">
+                    <span className="font-mono text-xs text-[#002366]">{variable}</span>
+                    <span className="text-xs text-gray-500">{description}</span>
+                  </div>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <div className="w-px h-8 bg-gray-300 mx-1" />
+
           <Button
             type="button"
             variant="ghost"
@@ -392,6 +435,23 @@ export function EmailEditor({
           </Button>
         </div>
       </div>
+
+      {/* Variable Documentation */}
+      <details className="border-t bg-blue-50 px-4 py-2">
+        <summary className="cursor-pointer text-sm font-medium text-[#002366] select-none">
+          Available Template Variables
+        </summary>
+        <div className="mt-2 space-y-1">
+          {getAvailableVariables().map(({ variable, description }) => (
+            <div key={variable} className="flex items-center gap-2 text-xs">
+              <code className="font-mono bg-white px-2 py-1 rounded border text-[#002366]">
+                {variable}
+              </code>
+              <span className="text-gray-600">{description}</span>
+            </div>
+          ))}
+        </div>
+      </details>
 
       {/* Editor Content */}
       <div className="bg-white">

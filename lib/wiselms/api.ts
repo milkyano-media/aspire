@@ -10,6 +10,8 @@ import type {
   StudentWithParent,
   CreateCourseResponse,
   ArchiveCourseResponse,
+  WiseLMSTeacher,
+  WiseLMSTeachersData,
 } from './types';
 
 /**
@@ -421,4 +423,29 @@ export function findOneToOneCourseForStudent(
   }
 
   return match || null;
+}
+
+/**
+ * Fetch all teachers from WiseLMS institute
+ * Used for synchronizing teacher accounts with WiseLMS IDs
+ *
+ * @returns Array of teachers from WiseLMS
+ */
+export async function getTeachers(): Promise<WiseLMSTeacher[]> {
+  try {
+    console.log('Fetching teachers from WiseLMS...');
+
+    const response = await wiseFetch<WiseLMSApiResponse<WiseLMSTeachersData>>(
+      `institutes/${WISELMS_CONFIG.instituteId}/teachers`
+    );
+
+    const teachers = response.data.teachers || [];
+
+    console.log(`Found ${teachers.length} teachers in WiseLMS`);
+
+    return teachers;
+  } catch (error) {
+    console.error('Failed to fetch teachers from WiseLMS:', error);
+    throw error;
+  }
 }

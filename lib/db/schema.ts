@@ -15,6 +15,7 @@ export const users = pgTable("users", {
   email: varchar("email", { length: 255 }).notNull().unique(),
   passwordHash: text("password_hash").notNull(),
   role: varchar("role", { length: 20 }).notNull().default("member"),
+  wiseLmsTeacherId: text("wiselms_teacher_id"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
   deletedAt: timestamp("deleted_at"),
@@ -46,9 +47,7 @@ export const teamMembers = pgTable("team_members", {
 
 export const activityLogs = pgTable("activity_logs", {
   id: serial("id").primaryKey(),
-  teamId: integer("team_id")
-    .notNull()
-    .references(() => teams.id),
+  teamId: integer("team_id").references(() => teams.id),
   userId: integer("user_id").references(() => users.id),
   action: text("action").notNull(),
   timestamp: timestamp("timestamp").notNull().defaultNow(),
@@ -158,4 +157,10 @@ export enum ActivityType {
   REMOVE_TEAM_MEMBER = "REMOVE_TEAM_MEMBER",
   INVITE_TEAM_MEMBER = "INVITE_TEAM_MEMBER",
   ACCEPT_INVITATION = "ACCEPT_INVITATION",
+  CREATE_TEACHER_ACCOUNT = "CREATE_TEACHER_ACCOUNT",
+  UPDATE_USER_ROLE = "UPDATE_USER_ROLE",
+  DELETE_USER_ACCOUNT = "DELETE_USER_ACCOUNT",
+  ADMIN_SIGN_IN = "ADMIN_SIGN_IN",
+  TEACHER_SIGN_IN = "TEACHER_SIGN_IN",
+  SEND_BULK_EMAIL = "SEND_BULK_EMAIL",
 }

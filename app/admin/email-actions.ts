@@ -1,22 +1,56 @@
 "use server";
 
 import { z } from "zod";
-import { validatedAction, ActionState } from "@/lib/auth/middleware";
+import { validatedAction, validatedActionWithAdminOrTeacher, ActionState } from "@/lib/auth/middleware";
 import { getStudentsWithParents, getCourses } from "@/lib/wiselms/api";
 import { sendBulkCustomEmail } from "@/lib/email/service";
 import type { StudentWithParent, WiseLMSCourse } from "@/lib/wiselms/types";
+import { getUser } from "@/lib/db/queries";
 
 /**
  * Fetch all courses from WiseLMS
+ * Admins see all courses, teachers only see courses they're assigned to
  */
 export async function fetchWiseLMSCourses(): Promise<ActionState> {
+  const user = await getUser();
+  if (!user) {
+    return { error: 'User not authenticated' };
+  }
+
+  if (user.role !== 'admin' && user.role !== 'teacher') {
+    return { error: 'Unauthorized access' };
+  }
+
   try {
     const courses = await getCourses('LIVE');
 
-    return {
-      success: "Courses fetched successfully",
-      data: courses,
-    };
+    // ADMIN: Return all courses (no filtering)
+    if (user.role === 'admin') {
+      return {
+        success: "Courses fetched successfully",
+        data: courses,
+      };
+    }
+
+    // TEACHER: Filter to courses where user is listed as coTeacher
+    if (user.role === 'teacher') {
+      if (!user.wiseLmsTeacherId) {
+        return {
+          error: 'Teacher account not linked to WiseLMS. Contact admin.',
+        };
+      }
+
+      const filteredCourses = courses.filter(course =>
+        course.coTeachers.some(teacher => teacher._id === user.wiseLmsTeacherId)
+      );
+
+      return {
+        success: `Found ${filteredCourses.length} assigned courses`,
+        data: filteredCourses,
+      };
+    }
+
+    return { error: 'Invalid user role' };
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error";
@@ -66,7 +100,17 @@ const sendBulkEmailSchema = z.object({
   recipients: z.preprocess(
     (val) => (typeof val === 'string' ? JSON.parse(val) : val),
     z
-      .array(z.string().email("Invalid email address"))
+      .array(
+        z.object({
+          studentId: z.string(),
+          studentName: z.string(),
+          studentEmail: z.string().email(),
+          parentName: z.string(),
+          parentEmail: z.string().email(),
+          parentPhone: z.string().optional(),
+          courseName: z.string().optional(),
+        })
+      )
       .min(1, "At least one recipient is required")
       .max(100, "Maximum 100 recipients allowed per send")
   ),
@@ -96,9 +140,9 @@ const sendBulkEmailSchema = z.object({
   ),
 });
 
-export const sendBulkParentEmail = validatedAction(
+export const sendBulkParentEmail = validatedActionWithAdminOrTeacher(
   sendBulkEmailSchema,
-  async (data, formData): Promise<ActionState> => {
+  async (data, formData, user): Promise<ActionState> => {
     try {
       console.log(
         `Sending bulk email to ${data.recipients.length} parent(s)...`
@@ -110,6 +154,18 @@ export const sendBulkParentEmail = validatedAction(
         data.htmlBody,
         data.attachments
       );
+
+      // Log email send activity
+      const { db } = await import("@/lib/db/drizzle");
+      const { activityLogs } = await import("@/lib/db/schema");
+      const { ActivityType } = await import("@/lib/db/schema");
+
+      await db.insert(activityLogs).values({
+        teamId: null, // Admins/teachers may not have teams
+        userId: user.id,
+        action: ActivityType.SEND_BULK_EMAIL,
+        ipAddress: '',
+      });
 
       if (result.success) {
         return {

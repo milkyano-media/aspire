@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 
 interface StudentSelectionTableProps {
   students: StudentWithParent[];
-  onSelectionChange: (parentEmails: string[]) => void;
+  onSelectionChange: (recipients: StudentWithParent[]) => void;
 }
 
 /**
@@ -32,11 +32,11 @@ export function StudentSelectionTable({
 
   // Update parent selection whenever selectedStudentIds changes
   useEffect(() => {
-    const selectedParentEmails = students
-      .filter((student) => selectedStudentIds.has(student.studentId))
-      .map((student) => student.parentEmail);
+    // Return full student objects instead of just emails
+    const selectedRecipients = students
+      .filter((student) => selectedStudentIds.has(student.studentId));
 
-    onSelectionChange(selectedParentEmails);
+    onSelectionChange(selectedRecipients);
   }, [selectedStudentIds, students, onSelectionChange]);
 
   const handleSelectAll = () => {

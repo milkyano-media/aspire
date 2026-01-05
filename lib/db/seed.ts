@@ -2,75 +2,103 @@ import { stripe } from '../payments/stripe';
 import { db } from './drizzle';
 import { users, teams, teamMembers } from './schema';
 import { hashPassword } from '@/lib/auth/session';
+import { eq } from 'drizzle-orm';
 
-async function createStripeProducts() {
-  console.log('Creating Stripe products and prices...');
+// async function createStripeProducts() {
+//   console.log('Creating Stripe products and prices...');
 
-  const baseProduct = await stripe.products.create({
-    name: 'Base',
-    description: 'Base subscription plan',
-  });
+//   const baseProduct = await stripe.products.create({
+//     name: 'Base',
+//     description: 'Base subscription plan',
+//   });
 
-  await stripe.prices.create({
-    product: baseProduct.id,
-    unit_amount: 800, // $8 in cents
-    currency: 'usd',
-    recurring: {
-      interval: 'month',
-      trial_period_days: 7,
-    },
-  });
+//   await stripe.prices.create({
+//     product: baseProduct.id,
+//     unit_amount: 800, // $8 in cents
+//     currency: 'usd',
+//     recurring: {
+//       interval: 'month',
+//       trial_period_days: 7,
+//     },
+//   });
 
-  const plusProduct = await stripe.products.create({
-    name: 'Plus',
-    description: 'Plus subscription plan',
-  });
+//   const plusProduct = await stripe.products.create({
+//     name: 'Plus',
+//     description: 'Plus subscription plan',
+//   });
 
-  await stripe.prices.create({
-    product: plusProduct.id,
-    unit_amount: 1200, // $12 in cents
-    currency: 'usd',
-    recurring: {
-      interval: 'month',
-      trial_period_days: 7,
-    },
-  });
+//   await stripe.prices.create({
+//     product: plusProduct.id,
+//     unit_amount: 1200, // $12 in cents
+//     currency: 'usd',
+//     recurring: {
+//       interval: 'month',
+//       trial_period_days: 7,
+//     },
+//   });
 
-  console.log('Stripe products and prices created successfully.');
-}
+//   console.log('Stripe products and prices created successfully.');
+// }
 
 async function seed() {
-  const email = 'test@test.com';
-  const password = 'admin123';
-  const passwordHash = await hashPassword(password);
+  // const email = 'test@test.com';
+  // const password = 'admin123';
+  // const passwordHash = await hashPassword(password);
 
-  const [user] = await db
-    .insert(users)
-    .values([
-      {
-        email: email,
-        passwordHash: passwordHash,
-        role: "owner",
-      },
-    ])
-    .returning();
+  // const [user] = await db
+  //   .insert(users)
+  //   .values([
+  //     {
+  //       email: email,
+  //       passwordHash: passwordHash,
+  //       role: "owner",
+  //     },
+  //   ])
+  //   .returning();
 
-  console.log('Initial user created.');
+  // console.log('Initial user created.');
 
-  const [team] = await db
-    .insert(teams)
-    .values({
-      name: 'Test Team',
-    })
-    .returning();
+  // const [team] = await db
+  //   .insert(teams)
+  //   .values({
+  //     name: 'Test Team',
+  //   })
+  //   .returning();
 
-  await db.insert(teamMembers).values({
-    teamId: team.id,
-    userId: user.id,
-    role: 'owner',
-  });
+  // await db.insert(teamMembers).values({
+  //   teamId: team.id,
+  //   userId: user.id,
+  //   role: 'owner',
+  // });
 
-  await createStripeProducts();
+  // Create initial admin user for admin panel
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@aspireacademics.com.au';
+  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+  const adminPasswordHash = await hashPassword(adminPassword);
+
+  const existingAdmin = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, adminEmail))
+    .limit(1);
+
+  if (existingAdmin.length === 0) {
+    const [adminUser] = await db
+      .insert(users)
+      .values({
+        name: 'Admin',
+        email: adminEmail,
+        passwordHash: adminPasswordHash,
+        role: 'admin',
+      })
+      .returning();
+
+    console.log(`Admin user created: ${adminEmail}`);
+  } else {
+    console.log('Admin user already exists');
+  }
+
+  // await createStripeProducts();
 }
 
 seed()
