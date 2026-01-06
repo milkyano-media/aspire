@@ -1,13 +1,17 @@
-import { sendRegistrationConfirmationEmail, sendGradePricingEmail } from '@/lib/email/service';
+import {
+  sendRegistrationConfirmationEmail,
+  sendGradePricingEmail,
+} from "@/lib/email/service";
+
+const wiseBaseUrl = process.env.WISELMS_API_HOST;
+const wiseInstituteId = process.env.WISELMS_INSTITUTE_ID;
+const wiseAuthentication = process.env.WISE_AUTHENTICATION;
+const wiseApiKey = process.env.WISELMS_API_KEY;
+const wiseNamespace = process.env.WISELMS_NAMESPACE;
+const wiseUserAgent = process.env.WISELMS_USER_AGENT;
 
 export async function POST(request: Request) {
   try {
-    const wiseBaseUrl = process.env.WISELMS_API_HOST;
-    const wiseInstituteId = process.env.WISELMS_INSTITUTE_ID;
-    const wiseAuthentication = process.env.WISE_AUTHENTICATION;
-    const wiseApiKey = process.env.WISELMS_API_KEY;
-    const wiseNamespace = process.env.WISELMS_NAMESPACE;
-    const wiseUserAgent = process.env.WISELMS_USER_AGENT;
     const vendorUserId = crypto.randomUUID();
     const reqBody = await request.json();
     const { student, parent } = reqBody;
@@ -19,9 +23,10 @@ export async function POST(request: Request) {
       phoneNumber: student.phoneNumber,
       profile: "student",
     };
-    console.log(
+    console.debug(
       `createStudentResponseBody: ${JSON.stringify(createStudentResponseBody)}`,
     );
+
     const createStudentResponse = await fetch(
       `https://${wiseBaseUrl}/vendors/institutes/${wiseInstituteId}/users`,
       {
@@ -37,7 +42,7 @@ export async function POST(request: Request) {
       },
     );
     const createStudentJson = await createStudentResponse.json();
-    if (createStudentResponse.status !== 200) {
+    if (!createStudentResponse.ok) {
       throw new Error(createStudentJson.message);
     }
     const studentId = createStudentJson.data.user._id;
@@ -110,10 +115,10 @@ export async function POST(request: Request) {
         },
       ],
     };
-    console.log(
+    console.debug(
       `updateStudentRegistrationFieldBody: ${JSON.stringify(updateStudentRegistrationFieldBody)}`,
     );
-    const updateStudentRegistrationField = await fetch(
+    await fetch(
       `https://${wiseBaseUrl}/institutes/${wiseInstituteId}/students/${studentId}/registration`,
       {
         method: "PUT",
@@ -127,11 +132,6 @@ export async function POST(request: Request) {
         body: JSON.stringify(updateStudentRegistrationFieldBody),
       },
     );
-    const updateStudentRegistrationFieldJson =
-      await updateStudentRegistrationField.json();
-    if (updateStudentRegistrationField.status !== 200) {
-      throw new Error(updateStudentRegistrationFieldJson.message);
-    }
 
     // Send confirmation email to parent (non-blocking - silent failure)
     try {
@@ -158,11 +158,17 @@ export async function POST(request: Request) {
       });
 
       if (!emailResult.success) {
-        console.error('Failed to send registration confirmation email:', emailResult.error);
+        console.error(
+          "Failed to send registration confirmation email:",
+          emailResult.error,
+        );
         // Continue - don't fail registration if email fails
       }
     } catch (emailError) {
-      console.error('Unexpected error sending registration confirmation email:', emailError);
+      console.error(
+        "Unexpected error sending registration confirmation email:",
+        emailError,
+      );
       // Continue - don't fail registration if email fails
     }
 
@@ -170,15 +176,21 @@ export async function POST(request: Request) {
     try {
       const pricingEmailResult = await sendGradePricingEmail(
         parent.email,
-        student.schoolGrade
+        student.schoolGrade,
       );
 
       if (!pricingEmailResult.success) {
-        console.error('Failed to send grade pricing email:', pricingEmailResult.error);
+        console.error(
+          "Failed to send grade pricing email:",
+          pricingEmailResult.error,
+        );
         // Continue - don't fail registration if email fails
       }
     } catch (pricingEmailError) {
-      console.error('Unexpected error sending grade pricing email:', pricingEmailError);
+      console.error(
+        "Unexpected error sending grade pricing email:",
+        pricingEmailError,
+      );
       // Continue - don't fail registration if email fails
     }
 
