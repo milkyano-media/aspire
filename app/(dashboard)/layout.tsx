@@ -59,6 +59,12 @@ function UserMenu() {
         >
           Contact Us
         </Link>
+        <Link
+          href="/registration"
+          className="text-base font-semibold hover:text-white text-gray-200 transition-colors"
+        >
+          Registration
+        </Link>
         <Button
           asChild
           className="rounded-full bg-orange-500 hover:bg-orange-600 text-white"
@@ -74,7 +80,9 @@ function UserMenu() {
           asChild
           className="rounded-full bg-white hover:bg-gray-100 text-[#002366] border border-white "
         >
-          <Link href="https://aspireacademics.wise.live/login">Portal Login</Link>
+          <Link href="https://aspireacademics.wise.live/login">
+            Portal Login
+          </Link>
         </Button>
       </>
     );
