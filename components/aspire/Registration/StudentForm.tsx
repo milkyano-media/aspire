@@ -130,7 +130,10 @@ export default function StudentForm({
                 className="text-sm font-semibold"
                 htmlFor={`student${studentNumber}Email`}
               >
-                Student Email
+                Student Email{" "}
+                <span className="text-gray-500 text-xs">
+                  (Required for Authentication)
+                </span>
               </Label>
               <Input
                 type="email"
