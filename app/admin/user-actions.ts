@@ -180,6 +180,72 @@ export const updateTeacherWiseLmsId = validatedActionWithAdmin(
 );
 
 /**
+ * Update user details (admin only)
+ * Can update WiseLMS Teacher ID and/or password
+ * Works for both teachers and admins
+ */
+const updateUserSchema = z.object({
+  userId: z.coerce.number(),
+  wiseLmsTeacherId: z.string().optional(),
+  password: z.string().min(8, "Password must be at least 8 characters").optional(),
+});
+
+export const updateUser = validatedActionWithAdmin(
+  updateUserSchema,
+  async (data, formData, user): Promise<ActionState> => {
+    try {
+      // Validate that at least one field is being updated
+      if (!data.wiseLmsTeacherId && !data.password) {
+        return { error: "Please provide at least one field to update" };
+      }
+
+      // Build update object
+      const updateData: any = {
+        updatedAt: new Date(),
+      };
+
+      if (data.wiseLmsTeacherId) {
+        updateData.wiseLmsTeacherId = data.wiseLmsTeacherId;
+      }
+
+      if (data.password) {
+        updateData.passwordHash = await hashPassword(data.password);
+      }
+
+      const [updated] = await db
+        .update(users)
+        .set(updateData)
+        .where(eq(users.id, data.userId))
+        .returning();
+
+      if (!updated) {
+        return { error: "User not found" };
+      }
+
+      // Log activity
+      await db.insert(activityLogs).values({
+        teamId: null,
+        userId: user.id,
+        action: ActivityType.UPDATE_USER_ROLE,
+        ipAddress: "",
+      });
+
+      revalidatePath("/admin");
+
+      const updatedFields: string[] = [];
+      if (data.wiseLmsTeacherId) updatedFields.push("WiseLMS Teacher ID");
+      if (data.password) updatedFields.push("password");
+
+      return { success: `Successfully updated ${updatedFields.join(" and ")}` };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      console.error("Error updating user:", errorMessage);
+      return { error: `Failed to update user: ${errorMessage}` };
+    }
+  }
+);
+
+/**
  * Delete user (soft delete, admin only)
  */
 const deleteUserSchema = z.object({

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useActionState, useEffect, startTransition } from "react";
-import { deleteUser, updateTeacherWiseLmsId } from "@/app/admin/user-actions";
+import { deleteUser, updateUser } from "@/app/admin/user-actions";
 import {
   Table,
   TableBody,
@@ -21,7 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Trash2, Edit, Loader2 } from "lucide-react";
+import { Trash2, Edit, Loader2, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 
 interface User {
@@ -40,12 +40,14 @@ interface UserTableProps {
 
 export function UserTable({ users, onRefresh }: UserTableProps) {
   const [deleteState, deleteAction, isDeleting] = useActionState(deleteUser, {});
-  const [updateState, updateAction, isUpdating] = useActionState(updateTeacherWiseLmsId, {});
+  const [updateState, updateAction, isUpdating] = useActionState(updateUser, {});
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [editedTeacherId, setEditedTeacherId] = useState("");
+  const [editedPassword, setEditedPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   // Handle delete success/error
   useEffect(() => {
@@ -79,6 +81,8 @@ export function UserTable({ users, onRefresh }: UserTableProps) {
   const handleEditClick = (user: User) => {
     setSelectedUser(user);
     setEditedTeacherId(user.wiseLmsTeacherId || "");
+    setEditedPassword("");
+    setShowPassword(false);
     setEditDialogOpen(true);
   };
 
@@ -93,9 +97,22 @@ export function UserTable({ users, onRefresh }: UserTableProps) {
 
   const handleUpdateConfirm = () => {
     if (!selectedUser) return;
+
+    // Validate at least one field is filled
+    if (!editedTeacherId && !editedPassword) {
+      toast.error("Please provide at least one field to update");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("userId", selectedUser.id.toString());
-    formData.append("wiseLmsTeacherId", editedTeacherId);
+    if (editedTeacherId) {
+      formData.append("wiseLmsTeacherId", editedTeacherId);
+    }
+    if (editedPassword) {
+      formData.append("password", editedPassword);
+    }
+
     startTransition(() => {
       updateAction(formData);
     });
@@ -224,18 +241,21 @@ export function UserTable({ users, onRefresh }: UserTableProps) {
         </DialogContent>
       </Dialog>
 
-      {/* Edit WiseLMS ID Dialog */}
+      {/* Edit User Dialog */}
       <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
-            <DialogTitle>Edit WiseLMS Teacher ID</DialogTitle>
+            <DialogTitle>Edit User</DialogTitle>
             <DialogDescription>
-              Update the WiseLMS Teacher ID for {selectedUser?.name || selectedUser?.email}
+              Update WiseLMS Teacher ID and/or password for {selectedUser?.name || selectedUser?.email}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">WiseLMS Teacher ID</label>
+              <label className="text-sm font-medium">
+                WiseLMS Teacher ID
+                <span className="text-xs text-gray-500 ml-2">(Optional)</span>
+              </label>
               <Input
                 value={editedTeacherId}
                 onChange={(e) => setEditedTeacherId(e.target.value)}
@@ -243,7 +263,39 @@ export function UserTable({ users, onRefresh }: UserTableProps) {
                 disabled={isUpdating}
               />
               <p className="text-xs text-gray-500">
-                This ID must match the user's ID in WiseLMS coTeachers data
+                Leave empty to keep current value
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">
+                New Password
+                <span className="text-xs text-gray-500 ml-2">(Optional)</span>
+              </label>
+              <div className="relative">
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  value={editedPassword}
+                  onChange={(e) => setEditedPassword(e.target.value)}
+                  placeholder="Minimum 8 characters"
+                  disabled={isUpdating}
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  tabIndex={-1}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
+              <p className="text-xs text-gray-500">
+                Leave empty to keep current password
               </p>
             </div>
           </div>
@@ -257,7 +309,7 @@ export function UserTable({ users, onRefresh }: UserTableProps) {
             </Button>
             <Button
               onClick={handleUpdateConfirm}
-              disabled={isUpdating || !editedTeacherId}
+              disabled={isUpdating || (!editedTeacherId && !editedPassword)}
             >
               {isUpdating ? (
                 <>

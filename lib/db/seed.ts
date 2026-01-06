@@ -73,7 +73,7 @@ async function seed() {
 
   // Create initial admin user for admin panel
   const adminEmail = process.env.ADMIN_EMAIL || 'admin@aspireacademics.com.au';
-  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+  const adminPassword = process.env.ADMIN_PASSWORD || 'AspireOnTop1$';
   const adminPasswordHash = await hashPassword(adminPassword);
 
   const existingAdmin = await db

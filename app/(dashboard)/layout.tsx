@@ -17,6 +17,7 @@ import { User } from "@/lib/db/schema";
 import useSWR, { mutate } from "swr";
 import { SmoothScrollLink } from "@/components/ui/smooth-scroll-link";
 import { trackCTAClick } from "@/lib/gtm";
+import { signOut } from "@/app/(login)/actions";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -26,8 +27,9 @@ function UserMenu() {
   const router = useRouter();
 
   async function handleSignOut() {
+    await signOut();
     mutate("/api/user");
-    router.push("/");
+    router.push("/sign-in");
   }
 
   if (!user) {
