@@ -183,6 +183,8 @@ export async function POST(request: Request) {
     try {
       const pricingEmailResult = await sendGradePricingEmail(
         parent.email,
+        parent.name,
+        student.name,
         student.schoolGrade,
       );
 

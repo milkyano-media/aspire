@@ -231,11 +231,15 @@ export async function sendRegistrationConfirmationEmail(
  * Send grade-specific pricing email to parent
  *
  * @param parentEmail - Parent's email address
+ * @param parentName - Parent's name for personalization
+ * @param studentName - Student's name for personalization
  * @param schoolGrade - Student's school grade (A-J representing Year 3-12)
  * @returns Promise with success status and optional error message
  */
 export async function sendGradePricingEmail(
   parentEmail: string,
+  parentName: string,
+  studentName: string,
   schoolGrade: string,
 ): Promise<EmailResult> {
   try {
@@ -306,7 +310,23 @@ export async function sendGradePricingEmail(
         };
     }
 
-    const { html, text } = emailTemplate;
+    // Replace template variables with actual values
+    const personalizedHtml = replaceTemplateVariables(emailTemplate.html, {
+      parentName,
+      studentName,
+      parentEmail,
+      studentEmail: '', // Not used in pricing templates
+    });
+
+    const personalizedText = replaceTemplateVariables(emailTemplate.text, {
+      parentName,
+      studentName,
+      parentEmail,
+      studentEmail: '', // Not used in pricing templates
+    });
+
+    const html = personalizedHtml;
+    const text = personalizedText;
 
     // Email options
     const mailOptions = {

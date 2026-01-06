@@ -496,136 +496,277 @@ export function generateYear3PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 3 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Year 3 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 YEAR 3 - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for completing your child's registration for the Aspire Academics Year 3 program.</p>
-            <br />
-            <p>Below is an overview of the program structure, pricing, and next steps.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Year 3 Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $45 per week</p>
-            <ul>
-                <li>2 hours per week (English & Mathematics)</li>
-                <br />
-                <li>Structured weekly lessons</li>
-                <br />
-                <li>Content books and homework booklets</li>
-                <br />
-                <li>Continuous revision of key skills</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $60 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 What Happens Next</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options will be provided after the trial class to confirm enrolment</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Fees are charged termly</li>
-                <br />
-                <li>Enrolment is confirmed once payment is received</li>
-                <br />
-                <li>LMS access is provided upon confirmation</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir</p>
-            <p>Director | Aspire Academics—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to clearly outline the updated Year 3 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that our Year 3 pricing has been updated from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
+                  <li>Increased lesson structure and planning</li>
+                  <li>Improved resources and homework materials</li>
+                  <li>Additional academic support options for families who require more personalised guidance</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 3 Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE - $45 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>2 hours per week of English and Mathematics</li>
+                  <li>Structured weekly lessons aligned to school expectations and curriculum</li>
+                  <li>Content books and homework booklets</li>
+                  <li>Ongoing revision of core literacy and numeracy skills</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE - $60 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes) to provide personalised feedback and support</li>
+                  <li>Full access to our online Resource Bank, including extra practice questions and revision material</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 YEAR 3 - POST REGISTRATION
+ASPIRE ACADEMICS
+Year 3 Program Registration
 
-Dear Parents and Guardians,
+Dear {{parentName}},
 
-Thank you for completing your child's registration for the Aspire Academics Year 3 program.
+Thank you for taking the time to complete your Aspire Academics registration form.
 
-Below is an overview of the program structure, pricing, and next steps.
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+
+We are writing to clearly outline the updated Year 3 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 YEAR 3 PROGRAM OPTIONS
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+
+Please note that our Year 3 pricing has been updated from last year. This update reflects:
+
+• The introduction of a new Learning Management System (LMS) for clearer communication and organisation
+• Increased lesson structure and planning
+• Improved resources and homework materials
+• Additional academic support options for families who require more personalised guidance
+
+These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEAR 3 PROGRAM OPTIONS
 
 STANDARD PACKAGE - $45 per week
 
-• 2 hours per week (English & Mathematics)
-• Structured weekly lessons
+• 2 hours per week of English and Mathematics
+• Structured weekly lessons aligned to school expectations and curriculum
 • Content books and homework booklets
-• Continuous revision of key skills
+• Ongoing revision of core literacy and numeracy skills
 • Email support (72-hour response time)
 
 PREMIUM PACKAGE - $60 per week
 
 Includes everything in the Standard Package, PLUS:
 
-• Weekly one-on-one consult (30 minutes)
-• Full access to our Resource Bank
+• Weekly one-on-one consult (30 minutes) to provide personalised feedback and support
+• Full access to our online Resource Bank, including extra practice questions and revision material
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 WHAT HAPPENS NEXT
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options will be provided after the trial class to confirm enrolment
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Fees are charged termly
-• Enrolment is confirmed once payment is received
-• LMS access is provided upon confirmation
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
 Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -639,99 +780,233 @@ export function generateYear4PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 4 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Year 4 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 YEAR 4 - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for completing your child's registration for the Aspire Academics Year 4 program.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Year 4 Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $55 per week</p>
-            <ul>
-                <li>2.5 hours per week (English & Mathematics)</li>
-                <br />
-                <li>Structured, curriculum-aligned lessons</li>
-                <br />
-                <li>Ongoing revision</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $65 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options will follow after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Termly payment structure</li>
-                <br />
-                <li>Enrolment confirmed upon payment</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to clearly outline the updated Year 4 pricing and program structure for 2026, along with the next steps as we finalise classes.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that Year 4 pricing has changed from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
+                  <li>Increased lesson structure and planning</li>
+                  <li>Improved resources and homework materials</li>
+                  <li>Additional academic support options for families who require more personalised guidance</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These updates allow us to maintain small class sizes while delivering more consistent and effective learning outcomes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 4 Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE - $55 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>2.5 hours per week of English and Mathematics</li>
+                  <li>Structured, curriculum-aligned lessons</li>
+                  <li>Content books and homework booklets</li>
+                  <li>Ongoing revision of core skills</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE - $65 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes)</li>
+                  <li>Full access to our online Resource Bank</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 YEAR 4 - POST REGISTRATION
+ASPIRE ACADEMICS
+Year 4 Program Registration
 
-Dear Parents and Guardians,
+Dear {{parentName}},
 
-Thank you for completing your child's registration for the Aspire Academics Year 4 program.
+Thank you for taking the time to complete your Aspire Academics registration form.
+
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+
+We are writing to clearly outline the updated Year 4 pricing and program structure for 2026, along with the next steps as we finalise classes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 YEAR 4 PROGRAM OPTIONS
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+
+Please note that Year 4 pricing has changed from last year. This update reflects:
+
+• The introduction of a new Learning Management System (LMS) for clearer communication and organisation
+• Increased lesson structure and planning
+• Improved resources and homework materials
+• Additional academic support options for families who require more personalised guidance
+
+These updates allow us to maintain small class sizes while delivering more consistent and effective learning outcomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEAR 4 PROGRAM OPTIONS
 
 STANDARD PACKAGE - $55 per week
 
-• 2.5 hours per week (English & Mathematics)
+• 2.5 hours per week of English and Mathematics
 • Structured, curriculum-aligned lessons
-• Ongoing revision
+• Content books and homework booklets
+• Ongoing revision of core skills
 • Email support (72-hour response time)
 
 PREMIUM PACKAGE - $65 per week
@@ -739,24 +1014,43 @@ PREMIUM PACKAGE - $65 per week
 Includes everything in the Standard Package, PLUS:
 
 • Weekly one-on-one consult (30 minutes)
-• Full access to our Resource Bank
+• Full access to our online Resource Bank
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options will follow after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Termly payment structure
-• Enrolment confirmed upon payment
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -770,127 +1064,277 @@ export function generateYear5PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 5 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Year 5 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 YEAR 5 - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for registering your child for the Aspire Academics Year 5 program.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Year 5 Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $65 per week</p>
-            <ul>
-                <li>3 hours per week (English & Mathematics)</li>
-                <br />
-                <li>Structured lessons aligned to upper-primary expectations</li>
-                <br />
-                <li>Content books and homework booklets</li>
-                <br />
-                <li>Continuous revision</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $80 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options provided after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Fees charged termly</li>
-                <br />
-                <li>Enrolment confirmed upon payment</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to clearly outline the updated Year 5 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that our Year 5 pricing has been updated from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
+                  <li>Increased lesson structure and planning</li>
+                  <li>Improved resources and homework materials</li>
+                  <li>Additional academic support options for families who require more personalised guidance</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 5 Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE – $65 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>3 hours per week of English and Mathematics</li>
+                  <li>Structured lessons aligned to upper-primary expectations</li>
+                  <li>Content books and homework booklets</li>
+                  <li>Continuous revision and consolidation</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE – $80 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes)</li>
+                  <li>Full access to our online Resource Bank</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 YEAR 5 - POST REGISTRATION
+ASPIRE ACADEMICS
+Year 5 Program Registration
 
-Dear Parents and Guardians,
+Dear {{parentName}},
 
-Thank you for registering your child for the Aspire Academics Year 5 program.
+Thank you for taking the time to complete your Aspire Academics registration form.
+
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+
+We are writing to clearly outline the updated Year 5 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 YEAR 5 PROGRAM OPTIONS
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
 
-STANDARD PACKAGE - $65 per week
+Please note that our Year 5 pricing has been updated from last year. This update reflects:
 
-• 3 hours per week (English & Mathematics)
+• The introduction of a new Learning Management System (LMS) for clearer communication and organisation
+• Increased lesson structure and planning
+• Improved resources and homework materials
+• Additional academic support options for families who require more personalised guidance
+
+These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEAR 5 PROGRAM OPTIONS
+
+STANDARD PACKAGE – $65 per week
+
+• 3 hours per week of English and Mathematics
 • Structured lessons aligned to upper-primary expectations
 • Content books and homework booklets
-• Continuous revision
+• Continuous revision and consolidation
 • Email support (72-hour response time)
 
-PREMIUM PACKAGE - $80 per week
+PREMIUM PACKAGE – $80 per week
 
 Includes everything in the Standard Package, PLUS:
 
 • Weekly one-on-one consult (30 minutes)
-• Full access to our Resource Bank
+• Full access to our online Resource Bank
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options provided after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Fees charged termly
-• Enrolment confirmed upon payment
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -904,105 +1348,234 @@ export function generateYear6PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 6 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Year 6 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 YEAR 6 - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for completing registration for the Aspire Academics Year 6 program.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Year 6 Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $65 per week</p>
-            <ul>
-                <li>3 hours per week (English & Mathematics)</li>
-                <br />
-                <li>Focus on upper-primary mastery and transition to secondary</li>
-                <br />
-                <li>Structured revision and exam-style practice</li>
-                <br />
-                <li>Homework resources</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $80 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options will follow after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Term-based payments</li>
-                <br />
-                <li>Enrolment confirmed once payment is received</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to clearly outline the updated Year 6 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that our Year 6 pricing has been updated from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
+                  <li>Increased lesson structure and planning</li>
+                  <li>Improved resources and homework materials</li>
+                  <li>Additional academic support options for families who require more personalised guidance</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 6 Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE – $65 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>3 hours per week of English and Mathematics</li>
+                  <li>Focus on mastery and secondary-school readiness</li>
+                  <li>Structured revision and exam-style practice</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE – $80 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes)</li>
+                  <li>Full access to our Resource Bank</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 YEAR 6 - POST REGISTRATION
+ASPIRE ACADEMICS
+Year 6 Program Registration
 
-Dear Parents and Guardians,
+Dear {{parentName}},
 
-Thank you for completing registration for the Aspire Academics Year 6 program.
+Thank you for taking the time to complete your Aspire Academics registration form.
+
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+
+We are writing to clearly outline the updated Year 6 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 YEAR 6 PROGRAM OPTIONS
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
 
-STANDARD PACKAGE - $65 per week
+Please note that our Year 6 pricing has been updated from last year. This update reflects:
 
-• 3 hours per week (English & Mathematics)
-• Focus on upper-primary mastery and transition to secondary
+• The introduction of a new Learning Management System (LMS) for clearer communication and organisation
+• Increased lesson structure and planning
+• Improved resources and homework materials
+• Additional academic support options for families who require more personalised guidance
+
+These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEAR 6 PROGRAM OPTIONS
+
+STANDARD PACKAGE – $65 per week
+
+• 3 hours per week of English and Mathematics
+• Focus on mastery and secondary-school readiness
 • Structured revision and exam-style practice
-• Homework resources
 • Email support (72-hour response time)
 
-PREMIUM PACKAGE - $80 per week
+PREMIUM PACKAGE – $80 per week
 
 Includes everything in the Standard Package, PLUS:
 
@@ -1011,20 +1584,39 @@ Includes everything in the Standard Package, PLUS:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options will follow after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Term-based payments
-• Enrolment confirmed once payment is received
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -1038,105 +1630,234 @@ export function generateYear7PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 7 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Year 7 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 YEAR 7 - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for registering your child for the Aspire Academics Year 7 program.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Year 7 Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $75 per week</p>
-            <ul>
-                <li>Weekly English & Mathematics classes</li>
-                <br />
-                <li>Curriculum-aligned lessons</li>
-                <br />
-                <li>Ongoing revision and skill development</li>
-                <br />
-                <li>Homework and practice resources</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $90 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options will be sent after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Fees charged termly</li>
-                <br />
-                <li>Enrolment confirmed upon payment</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to clearly outline the updated Year 7 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that our Year 7 pricing has been updated from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
+                  <li>Increased lesson structure and planning</li>
+                  <li>Improved resources and homework materials</li>
+                  <li>Additional academic support options for families who require more personalised guidance</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 7 Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE – $75 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly English and Mathematics classes</li>
+                  <li>Curriculum-aligned lessons</li>
+                  <li>Continuous revision and skill development</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE – $90 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes)</li>
+                  <li>Full access to our Resource Bank</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 YEAR 7 - POST REGISTRATION
+ASPIRE ACADEMICS
+Year 7 Program Registration
 
-Dear Parents and Guardians,
+Dear {{parentName}},
 
-Thank you for registering your child for the Aspire Academics Year 7 program.
+Thank you for taking the time to complete your Aspire Academics registration form.
+
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+
+We are writing to clearly outline the updated Year 7 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 YEAR 7 PROGRAM OPTIONS
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
 
-STANDARD PACKAGE - $75 per week
+Please note that our Year 7 pricing has been updated from last year. This update reflects:
 
-• Weekly English & Mathematics classes
+• The introduction of a new Learning Management System (LMS) for clearer communication and organisation
+• Increased lesson structure and planning
+• Improved resources and homework materials
+• Additional academic support options for families who require more personalised guidance
+
+These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEAR 7 PROGRAM OPTIONS
+
+STANDARD PACKAGE – $75 per week
+
+• Weekly English and Mathematics classes
 • Curriculum-aligned lessons
-• Ongoing revision and skill development
-• Homework and practice resources
+• Continuous revision and skill development
 • Email support (72-hour response time)
 
-PREMIUM PACKAGE - $90 per week
+PREMIUM PACKAGE – $90 per week
 
 Includes everything in the Standard Package, PLUS:
 
@@ -1145,20 +1866,39 @@ Includes everything in the Standard Package, PLUS:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options will be sent after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Fees charged termly
-• Enrolment confirmed upon payment
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -1172,105 +1912,234 @@ export function generateYear8PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 8 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Year 8 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 YEAR 8 - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for completing registration for the Aspire Academics Year 8 program.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Year 8 Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $75 per week</p>
-            <ul>
-                <li>Weekly English & Mathematics classes</li>
-                <br />
-                <li>Structured, curriculum-aligned lessons</li>
-                <br />
-                <li>Continuous revision of key topics</li>
-                <br />
-                <li>Homework and practice resources</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $90 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options provided after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Term-based payments</li>
-                <br />
-                <li>Enrolment confirmed upon payment</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to clearly outline the updated Year 8 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that our Year 8 pricing has been updated from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
+                  <li>Increased lesson structure and planning</li>
+                  <li>Improved resources and homework materials</li>
+                  <li>Additional academic support options for families who require more personalised guidance</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 8 Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE – $75 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly English and Mathematics classes</li>
+                  <li>Structured, curriculum-aligned lessons</li>
+                  <li>Continuous revision of key topics</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE – $90 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes)</li>
+                  <li>Full access to our Resource Bank</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 YEAR 8 - POST REGISTRATION
+ASPIRE ACADEMICS
+Year 8 Program Registration
 
-Dear Parents and Guardians,
+Dear {{parentName}},
 
-Thank you for completing registration for the Aspire Academics Year 8 program.
+Thank you for taking the time to complete your Aspire Academics registration form.
+
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+
+We are writing to clearly outline the updated Year 8 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 YEAR 8 PROGRAM OPTIONS
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
 
-STANDARD PACKAGE - $75 per week
+Please note that our Year 8 pricing has been updated from last year. This update reflects:
 
-• Weekly English & Mathematics classes
+• The introduction of a new Learning Management System (LMS) for clearer communication and organisation
+• Increased lesson structure and planning
+• Improved resources and homework materials
+• Additional academic support options for families who require more personalised guidance
+
+These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEAR 8 PROGRAM OPTIONS
+
+STANDARD PACKAGE – $75 per week
+
+• Weekly English and Mathematics classes
 • Structured, curriculum-aligned lessons
 • Continuous revision of key topics
-• Homework and practice resources
 • Email support (72-hour response time)
 
-PREMIUM PACKAGE - $90 per week
+PREMIUM PACKAGE – $90 per week
 
 Includes everything in the Standard Package, PLUS:
 
@@ -1279,20 +2148,39 @@ Includes everything in the Standard Package, PLUS:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options provided after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Term-based payments
-• Enrolment confirmed upon payment
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -1306,105 +2194,234 @@ export function generateYear9PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 9 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Year 9 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 YEAR 9 - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for registering your child for the Aspire Academics Year 9 program.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Year 9 Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $90 per week</p>
-            <ul>
-                <li>Weekly English & Mathematics classes</li>
-                <br />
-                <li>Strong focus on exam skills and reasoning</li>
-                <br />
-                <li>Structured revision</li>
-                <br />
-                <li>Homework and exam-style practice</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $100 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options sent after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Fees charged termly</li>
-                <br />
-                <li>Enrolment confirmed once payment is received</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to clearly outline the updated Year 9 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that our Year 9 pricing has been updated from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
+                  <li>Increased lesson structure and planning</li>
+                  <li>Improved resources and homework materials</li>
+                  <li>Additional academic support options for families who require more personalised guidance</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 9 Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE – $90 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly English and Mathematics classes</li>
+                  <li>Focus on exam skills, reasoning, and application</li>
+                  <li>Structured revision and exam-style practice</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE – $100 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes)</li>
+                  <li>Full access to our Resource Bank</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 YEAR 9 - POST REGISTRATION
+ASPIRE ACADEMICS
+Year 9 Program Registration
 
-Dear Parents and Guardians,
+Dear {{parentName}},
 
-Thank you for registering your child for the Aspire Academics Year 9 program.
+Thank you for taking the time to complete your Aspire Academics registration form.
+
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+
+We are writing to clearly outline the updated Year 9 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 YEAR 9 PROGRAM OPTIONS
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
 
-STANDARD PACKAGE - $90 per week
+Please note that our Year 9 pricing has been updated from last year. This update reflects:
 
-• Weekly English & Mathematics classes
-• Strong focus on exam skills and reasoning
-• Structured revision
-• Homework and exam-style practice
+• The introduction of a new Learning Management System (LMS) for clearer communication and organisation
+• Increased lesson structure and planning
+• Improved resources and homework materials
+• Additional academic support options for families who require more personalised guidance
+
+These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEAR 9 PROGRAM OPTIONS
+
+STANDARD PACKAGE – $90 per week
+
+• Weekly English and Mathematics classes
+• Focus on exam skills, reasoning, and application
+• Structured revision and exam-style practice
 • Email support (72-hour response time)
 
-PREMIUM PACKAGE - $100 per week
+PREMIUM PACKAGE – $100 per week
 
 Includes everything in the Standard Package, PLUS:
 
@@ -1413,20 +2430,39 @@ Includes everything in the Standard Package, PLUS:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options sent after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Fees charged termly
-• Enrolment confirmed once payment is received
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -1440,127 +2476,275 @@ export function generateYear10PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 10 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Year 10 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 YEAR 10 - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for completing registration for the Aspire Academics Year 10 program.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Year 10 Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $90 per week</p>
-            <ul>
-                <li>Weekly English & Mathematics classes</li>
-                <br />
-                <li>Focus on exam preparation and skill mastery</li>
-                <br />
-                <li>Structured revision of core topics</li>
-                <br />
-                <li>Homework and exam-style practice</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $100 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options provided after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Term-based payments</li>
-                <br />
-                <li>Enrolment confirmed upon payment</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to clearly outline the updated Year 10 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that our Year 10 pricing has been updated from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
+                  <li>Increased lesson structure and planning</li>
+                  <li>Improved resources and homework materials</li>
+                  <li>Additional academic support options for families who require more personalised guidance</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 10 Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE – $90 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly English and Mathematics classes</li>
+                  <li>Focus on exam readiness and skill mastery</li>
+                  <li>Structured revision of core topics</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE – $100 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes)</li>
+                  <li>Full access to our online Resource Bank</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 YEAR 10 - POST REGISTRATION
+ASPIRE ACADEMICS
+Year 10 Program Registration
 
-Dear Parents and Guardians,
+Dear {{parentName}},
 
-Thank you for completing registration for the Aspire Academics Year 10 program.
+Thank you for taking the time to complete your Aspire Academics registration form.
+
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed as part of our term onboarding.
+
+We are writing to clearly outline the updated Year 10 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 YEAR 10 PROGRAM OPTIONS
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
 
-STANDARD PACKAGE - $90 per week
+Please note that our Year 10 pricing has been updated from last year. This update reflects:
 
-• Weekly English & Mathematics classes
-• Focus on exam preparation and skill mastery
+• The introduction of a new Learning Management System (LMS) for clearer communication and organisation
+• Increased lesson structure and planning
+• Improved resources and homework materials
+• Additional academic support options for families who require more personalised guidance
+
+These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEAR 10 PROGRAM OPTIONS
+
+STANDARD PACKAGE – $90 per week
+
+• Weekly English and Mathematics classes
+• Focus on exam readiness and skill mastery
 • Structured revision of core topics
-• Homework and exam-style practice
 • Email support (72-hour response time)
 
-PREMIUM PACKAGE - $100 per week
+PREMIUM PACKAGE – $100 per week
 
 Includes everything in the Standard Package, PLUS:
 
 • Weekly one-on-one consult (30 minutes)
-• Full access to our Resource Bank
+• Full access to our online Resource Bank
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options provided after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Term-based payments
-• Enrolment confirmed upon payment
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -1574,106 +2758,248 @@ export function generateYear11PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VCE Year 11 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">VCE Year 11 Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 VCE YEAR 11 - ALL SUBJECTS</h1>
-            <br />
-            <p>Dear Parents and Students,</p>
-            <br />
-            <p>Thank you for registering for Aspire Academics VCE Year 11 tutoring.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>🎓 VCE Year 11 Program</h2>
-            <ul>
-                <li>1.5-hour weekly classes</li>
-                <br />
-                <li>Subjects include Chemistry, Biology, Mathematical Methods and more</li>
-                <br />
-                <li>Exam-aligned teaching focused on content mastery</li>
-            </ul>
-            <br />
-            <p>Weekly Fee: $60</p>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options will follow after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Term-based payments</li>
-                <br />
-                <li>Enrolment confirmed once payment is received</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}} and {{studentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for registering for Aspire Academics VCE Year 11 tutoring.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to confirm the updated pricing structure for 2026, along with important information regarding trial classes and enrolment.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that VCE Year 11 pricing has changed from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Increased subject depth and curriculum alignment</li>
+                  <li>Improved lesson structure and assessment preparation</li>
+                  <li>Enhanced resources and practice materials</li>
+                  <li>Introduction of our new LMS for clearer communication and resource access</li>
+                </ul>
+              </div>
+
+              <!-- Program Overview -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">VCE Year 11 Program Overview</h2>
+
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>1.5-hour weekly classes</li>
+                  <li>Subjects include Chemistry, Biology, Mathematical Methods, General Maths, Specialist Maths, HHD, Psychology and other VCE offerings</li>
+                  <li>Focus on content mastery, application, and assessment readiness</li>
+                  <li>SAC Preparation + Notes</li>
+                  <li>Mentorship for mastery in Exam Situations</li>
+                </ul>
+                <p style="color: #002366; font-size: 18px; font-weight: bold; margin: 20px 0 0 0;">
+                  Weekly Fee: $60
+                </p>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 VCE YEAR 11 - ALL SUBJECTS
+ASPIRE ACADEMICS
+VCE Year 11 Program Registration
 
-Dear Parents and Students,
+Dear {{parentName}} and {{studentName}},
 
 Thank you for registering for Aspire Academics VCE Year 11 tutoring.
 
+We are writing to confirm the updated pricing structure for 2026, along with important information regarding trial classes and enrolment.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎓 VCE YEAR 11 PROGRAM
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+
+Please note that VCE Year 11 pricing has changed from last year. This update reflects:
+
+• Increased subject depth and curriculum alignment
+• Improved lesson structure and assessment preparation
+• Enhanced resources and practice materials
+• Introduction of our new LMS for clearer communication and resource access
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+VCE YEAR 11 PROGRAM OVERVIEW
 
 • 1.5-hour weekly classes
-• Subjects include Chemistry, Biology, Mathematical Methods and more
-• Exam-aligned teaching focused on content mastery
+• Subjects include Chemistry, Biology, Mathematical Methods, General Maths, Specialist Maths, HHD, Psychology and other VCE offerings
+• Focus on content mastery, application, and assessment readiness
+• SAC Preparation + Notes
+• Mentorship for mastery in Exam Situations
 
 Weekly Fee: $60
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options will follow after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Term-based payments
-• Enrolment confirmed once payment is received
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
@@ -1687,106 +3013,258 @@ export function generateYear12PricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VCE Year 12 Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">VCE Year 12 Registration Confirmation</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 VCE YEAR 12 - ALL SUBJECTS</h1>
-            <br />
-            <p>Dear Parents and Students,</p>
-            <br />
-            <p>Thank you for registering for Aspire Academics VCE Year 12 tutoring.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>🎓 VCE Year 12 Program</h2>
-            <ul>
-                <li>2-hour weekly classes</li>
-                <br />
-                <li>Subjects include Chemistry, Biology, Mathematical Methods and more</li>
-                <br />
-                <li>Focus on exam readiness and performance</li>
-            </ul>
-            <br />
-            <p>Weekly Fee: $80</p>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options provided after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Fees charged termly</li>
-                <br />
-                <li>Enrolment confirmed upon payment</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}} and {{studentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for registering for Aspire Academics VCE Year 12 tutoring.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                As students enter a critical exam year, we are writing to outline the updated pricing and program structure for 2026, along with next steps.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that VCE Year 12 pricing has changed from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Extended lesson duration to support exam preparation</li>
+                  <li>Increased focus on exam technique and assessment strategy</li>
+                  <li>Improved revision systems and targeted practice</li>
+                  <li>Enhanced communication and tracking through our LMS</li>
+                </ul>
+              </div>
+
+              <!-- VCE Year 12 Program Overview -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">VCE Year 12 Program Overview</h2>
+
+              <!-- Program Details -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li><strong>2-hour weekly classes</strong></li>
+                  <li>Subjects include <strong>Chemistry, Biology, Mathematical Methods, General Maths, Specialist Maths, HHD, Psychology</strong> and other VCE offerings</li>
+                  <li>Strong emphasis on <strong>exam readiness, confidence, and performance</strong></li>
+                  <li><strong>SAC Preparation + Notes</strong></li>
+                  <li><strong>Mentorship for mastery in Exam Situations</strong></li>
+                </ul>
+              </div>
+
+              <!-- Pricing -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px; text-align: center;">
+                <h3 style="color: #002366; margin: 0 0 10px 0; font-size: 24px; font-weight: bold;">Weekly Fee: $80</h3>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 VCE YEAR 12 - ALL SUBJECTS
+ASPIRE ACADEMICS
+VCE Year 12 Registration Confirmation
 
-Dear Parents and Students,
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Dear {{parentName}} and {{studentName}},
 
 Thank you for registering for Aspire Academics VCE Year 12 tutoring.
 
+As students enter a critical exam year, we are writing to outline the updated pricing and program structure for 2026, along with next steps.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎓 VCE YEAR 12 PROGRAM
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+
+Please note that VCE Year 12 pricing has changed from last year. This update reflects:
+
+• Extended lesson duration to support exam preparation
+• Increased focus on exam technique and assessment strategy
+• Improved revision systems and targeted practice
+• Enhanced communication and tracking through our LMS
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+VCE YEAR 12 PROGRAM OVERVIEW
 
 • 2-hour weekly classes
-• Subjects include Chemistry, Biology, Mathematical Methods and more
-• Focus on exam readiness and performance
+• Subjects include Chemistry, Biology, Mathematical Methods, General Maths, Specialist Maths, HHD, Psychology and other VCE offerings
+• Strong emphasis on exam readiness, confidence, and performance
+• SAC Preparation + Notes
+• Mentorship for mastery in Exam Situations
 
-Weekly Fee: $80
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🎯 NEXT STEPS
-
-• Trial class details will be sent shortly
-• Payment options provided after the trial class
+WEEKLY FEE: $80
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+TRIAL CLASSES & PAYMENTS
 
-• Fees charged termly
-• Enrolment confirmed upon payment
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+TERM PAYMENT: Standard payment for a 10-week term.
+SEMESTER PAYMENT: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling:  10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CLASS SCHEDULE
+
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+[Aspire Academics Logo]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics. If you have any questions, please contact us.
   `.trim();
 
   return { html, text };
@@ -1797,128 +3275,271 @@ export function generateSelectiveEntryPricingEmailTemplate(): EmailTemplate {
   const html = `
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 19.5px;
-            font-size: 13px;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selective Entry Registration Confirmation - Aspire Academics</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-        h1 {
-            font-size: 19.5px;
-        }
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #002366; padding: 40px 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Aspire Academics</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Selective Entry Program Registration</p>
+            </td>
+          </tr>
 
-        h2 {
-            font-size: 15px;
-        }
-    </style>
-    <body>
-        <header>
-            <h1>📩 SELECTIVE ENTRY - POST REGISTRATION</h1>
-            <br />
-            <p>Dear Parents and Guardians,</p>
-            <br />
-            <p>Thank you for registering your child for the Aspire Academics Selective Entry Program.</p>
-            <hr />
-        </header>
-        <section>
-            <h2>📘 Selective Entry Program Options</h2>
-            <br />
-            <p>STANDARD PACKAGE - $80 per week</p>
-            <ul>
-                <li>Weekly exam-focused English & Mathematics</li>
-                <br />
-                <li>ACER-style and selective exam preparation</li>
-                <br />
-                <li>Continuous revision of tested concepts</li>
-                <br />
-                <li>Practice and exam-style questions</li>
-                <br />
-                <li>Email support (72-hour response time)</li>
-            </ul>
-            <br />
-            <p>PREMIUM PACKAGE - $100 per week</p>
-            <p>Includes everything in the Standard Package, PLUS:</p>
-            <ul>
-                <li>Weekly one-on-one consult (30 minutes)</li>
-                <br />
-                <li>Full access to our Selective Entry Resource Bank</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>🎯 Next Steps</h2>
-            <ul>
-                <li>Trial class details will be sent shortly</li>
-                <br />
-                <li>Payment options will follow after the trial class</li>
-            </ul>
-        </section>
-        <hr />
-        <section>
-            <h2>💳 Payment Policy</h2>
-            <ul>
-                <li>Fees charged termly</li>
-                <br />
-                <li>Enrolment confirmed upon payment</li>
-            </ul>
-        </section>
-        <section>
-            <p>Kind regards,</p>
-            <p>Yaseen Muntasir—</p>
-        </section>
-    </body>
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+
+              <!-- Greeting -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                Dear {{parentName}},
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
+                Thank you for registering your child for the Aspire Academics Selective Entry Program.
+              </p>
+
+              <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
+                We are writing to outline the updated pricing and program structure for 2026, and to explain the next steps as we finalise trial classes and placements.
+              </p>
+
+              <!-- Important Update Section -->
+              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                  Please note that Selective Entry pricing has changed from last year. This update reflects:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Full alignment with current ACER-style and selective exam requirements</li>
+                  <li>Increased volume of exam-style questions and structured revision</li>
+                  <li>Improved lesson sequencing across English and Mathematics</li>
+                  <li>Introduction of our new Learning Management System (LMS) for clearer communication, resources, and tracking</li>
+                </ul>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
+                  These changes allow us to deliver a more structured, exam-focused program while maintaining small group sizes.
+                </p>
+              </div>
+
+              <!-- Program Options -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Selective Entry Program Options</h2>
+
+              <!-- Standard Package -->
+              <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">STANDARD PACKAGE – $80 per week</h3>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly exam-focused English and Mathematics classes</li>
+                  <li>Coverage of all tested areas (reading, writing, reasoning, and maths)</li>
+                  <li>Continuous revision of high-frequency exam concepts</li>
+                  <li>Practice and exam-style questions</li>
+                  <li>Email support (72-hour response time)</li>
+                </ul>
+              </div>
+
+              <!-- Premium Package -->
+              <div style="background-color: #e8f4f8; border: 2px solid #FF8C00; border-radius: 6px; padding: 20px; margin-bottom: 30px;">
+                <h3 style="color: #002366; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">PREMIUM PACKAGE – $100 per week</h3>
+                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-style: italic;">
+                  Includes everything in the Standard Package, PLUS:
+                </p>
+                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                  <li>Weekly one-on-one consult (30 minutes) for personalised guidance</li>
+                  <li>Full access to our Selective Entry Resource Bank, including additional practice sets and revision material</li>
+                </ul>
+              </div>
+
+              <!-- Trial Classes & Payments -->
+              <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Trial Classes & Payments</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
+                As part of our enrolment process:
+              </p>
+
+              <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0 0 20px 0; padding-left: 20px;">
+                <li>You will receive trial class details shortly, including the class time and location</li>
+              </ul>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Payment Options are as follows:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 20px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    <strong>Term Payment:</strong> Standard payment for a 10-week term.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>Semester Payment:</strong> Covers two consecutive terms. A 10% discount is applied.
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0; font-weight: bold;">
+                Sibling Discounts:
+              </p>
+
+              <table width="100%" cellpadding="10" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; margin-bottom: 30px;">
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; width: 40%;">
+                    <strong>1 sibling:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px;">
+                    10% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>2 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    15% off each enrolment
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    <strong>3 siblings:</strong>
+                  </td>
+                  <td style="color: #333333; font-size: 15px; padding: 10px 20px; border-top: 1px solid #e0e0e0;">
+                    20% off each enrolment
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Class Schedule -->
+              <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Class Schedule</h2>
+
+              <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
+              </p>
+
+              <!-- Signature -->
+              <p style="color: #333333; font-size: 16px; margin: 0;">
+                Kind regards,
+              </p>
+              <p style="color: #002366; font-size: 16px; font-weight: bold; margin: 5px 0;">
+                Yaseen Muntasir
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- Logo -->
+              <img src="https://aspireacademics.au/logo.png" alt="Aspire Academics Logo" style="width: 120px; height: auto; margin-top: 10px;" />
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+              <p style="color: #666666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong>Aspire Academics</strong><br>
+                Melbourne, Victoria, Australia
+              </p>
+              <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
+                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+              </p>
+              <p style="color: #999999; font-size: 12px; margin: 0;">
+                This email was sent by Aspire Academics. If you have any questions, please contact us.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
   `.trim();
 
   // Plain Text Email Template
   const text = `
-📩 SELECTIVE ENTRY - POST REGISTRATION
+ASPIRE ACADEMICS
+Selective Entry Program Registration
 
-Dear Parents and Students,
+Dear {{parentName}},
 
 Thank you for registering your child for the Aspire Academics Selective Entry Program.
 
+We are writing to outline the updated pricing and program structure for 2026, and to explain the next steps as we finalise trial classes and placements.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📘 📘 Selective Entry Program Options
+IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
 
-STANDARD PACKAGE - $80 per week
+Please note that Selective Entry pricing has changed from last year. This update reflects:
 
-• Weekly exam-focused English & Mathematics
-• ACER-style and selective exam preparation
-• Structured revision of core topics
-• Continuous revision of tested concepts
+• Full alignment with current ACER-style and selective exam requirements
+• Increased volume of exam-style questions and structured revision
+• Improved lesson sequencing across English and Mathematics
+• Introduction of our new Learning Management System (LMS) for clearer communication, resources, and tracking
+
+These changes allow us to deliver a more structured, exam-focused program while maintaining small group sizes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SELECTIVE ENTRY PROGRAM OPTIONS
+
+STANDARD PACKAGE – $80 per week
+
+• Weekly exam-focused English and Mathematics classes
+• Coverage of all tested areas (reading, writing, reasoning, and maths)
+• Continuous revision of high-frequency exam concepts
 • Practice and exam-style questions
 • Email support (72-hour response time)
 
-PREMIUM PACKAGE - $100 per week
+PREMIUM PACKAGE – $100 per week
 
 Includes everything in the Standard Package, PLUS:
 
-• Weekly one-on-one consult (30 minutes)
-• Full access to our Selective Entry Resource Bank
+• Weekly one-on-one consult (30 minutes) for personalised guidance
+• Full access to our Selective Entry Resource Bank, including additional practice sets and revision material
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 NEXT STEPS
+TRIAL CLASSES & PAYMENTS
 
-• Trial class details will be sent shortly
-• Payment options will follow after the trial class
+As part of our enrolment process:
+
+• You will receive trial class details shortly, including the class time and location
+
+Payment Options are as follows:
+
+Term Payment: Standard payment for a 10-week term.
+Semester Payment: Covers two consecutive terms. A 10% discount is applied.
+
+Sibling Discounts:
+
+1 sibling: 10% off each enrolment
+2 siblings: 15% off each enrolment
+3 siblings: 20% off each enrolment
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💳 PAYMENT POLICY
+CLASS SCHEDULE
 
-• Fees charged termly
-• Enrolment confirmed upon payment
+A member of our team will be in touch within the next 48-72 hours to allocate students into respective classes with timings confirmed.
 
 Kind regards,
 Yaseen Muntasir
+Director | Aspire Academics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Aspire Academics
+Melbourne, Victoria, Australia
+Email: admin@aspireacademics.au
+
+This email was sent by Aspire Academics.
   `.trim();
 
   return { html, text };
