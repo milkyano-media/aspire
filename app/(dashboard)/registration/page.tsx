@@ -229,7 +229,7 @@ export default function RegistrationPage() {
         }
       }
       if (
-        validationFailCount > 0 &&
+        validationFailCount > 0 ||
         studentExistingValidationError.length > 0
       ) {
         window.scrollTo({ top: 0, behavior: "smooth" });
