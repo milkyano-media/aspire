@@ -44,6 +44,8 @@ export default function RegistrationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [submitError, setSubmitError] = useState<string>("");
+  const [studentExistingValidationError, setStudentExistingValidationError] =
+    useState<string[]>([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [parentData, setParentData] = useState<ParentData>({
     name: "",
@@ -171,6 +173,14 @@ export default function RegistrationPage() {
       if (!studentData.preference) {
         errors.push(`Student ${studentNum}: Learning preference is required`);
       }
+      if (
+        studentData.email.trim().toLowerCase() ===
+        parentData.email.trim().toLowerCase()
+      ) {
+        errors.push(
+          `Student ${studentNum}: Student must not have the same email with parent`,
+        );
+      }
     });
 
     return errors;
@@ -181,6 +191,7 @@ export default function RegistrationPage() {
     setValidationErrors([]);
     setSubmitError("");
     setSubmitSuccess(false);
+    setStudentExistingValidationError([]);
 
     // Validate form
     const errors = validateForm();
@@ -196,6 +207,34 @@ export default function RegistrationPage() {
     try {
       const studentsArray = students.map((student) => studentsData[student.id]);
       const failedStudents: number[] = [];
+      let validationFailCount = 0;
+
+      // validate each student
+      for (let i = 0; i < studentsArray.length; i++) {
+        const student = studentsArray[i];
+        const response = await fetch("/api/wise/validate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(student),
+        });
+        if (!response.ok) {
+          validationFailCount++;
+          const { message } = await response.json();
+          setStudentExistingValidationError((prev) => [
+            ...prev,
+            `Student ${i + 1}: ${message}`,
+          ]);
+        }
+      }
+      if (
+        validationFailCount > 0 &&
+        studentExistingValidationError.length > 0
+      ) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
 
       // Submit each student
       for (let i = 0; i < studentsArray.length; i++) {
@@ -218,7 +257,7 @@ export default function RegistrationPage() {
 
       if (failedStudents.length > 0) {
         setSubmitError(
-          `Failed to register student(s): ${failedStudents.join(", ")}. Please try again.`,
+          `We couldn't complete the registration for student${failedStudents.length > 1 ? "s" : ""} ${failedStudents.join(", ")}. Please try again or contact us for assistance.`,
         );
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
@@ -228,7 +267,7 @@ export default function RegistrationPage() {
     } catch (err) {
       console.error(err);
       setSubmitError(
-        "An error occurred while submitting the registration. Please check your connection and try again.",
+        "We're having trouble processing your registration. Please check your internet connection and try again. If the problem persists, please contact us for help.",
       );
       window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
@@ -279,6 +318,23 @@ export default function RegistrationPage() {
               <AlertDescription className="text-yellow-700">
                 <ul className="list-disc list-inside space-y-1 mt-2">
                   {validationErrors.map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))}
+                </ul>
+              </AlertDescription>
+            </Alert>
+          )}
+
+          {/* studentExistingValidationError Errors */}
+          {studentExistingValidationError.length > 0 && (
+            <Alert className="bg-red-50 border-red-200">
+              <AlertCircle className="h-5 w-5 text-red-600" />
+              <AlertTitle className="text-red-800 font-bold">
+                Please fix the following errors:
+              </AlertTitle>
+              <AlertDescription className="text-red-700">
+                <ul className="list-disc list-inside space-y-1 mt-2">
+                  {studentExistingValidationError.map((error, index) => (
                     <li key={index}>{error}</li>
                   ))}
                 </ul>
