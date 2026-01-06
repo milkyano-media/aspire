@@ -224,7 +224,7 @@ export default function RegistrationPage() {
           const { message } = await response.json();
           setStudentExistingValidationError((prev) => [
             ...prev,
-            `Failed to register student ${i + 1}: ${message}`,
+            `Student ${i + 1}: ${message}`,
           ]);
         }
       }
@@ -257,7 +257,7 @@ export default function RegistrationPage() {
 
       if (failedStudents.length > 0) {
         setSubmitError(
-          `Failed to register student(s): ${failedStudents.join(", ")}. Please try again.`,
+          `We couldn't complete the registration for student${failedStudents.length > 1 ? "s" : ""} ${failedStudents.join(", ")}. Please try again or contact us for assistance.`,
         );
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
@@ -267,7 +267,7 @@ export default function RegistrationPage() {
     } catch (err) {
       console.error(err);
       setSubmitError(
-        "An error occurred while submitting the registration. Please check your connection and try again.",
+        "We're having trouble processing your registration. Please check your internet connection and try again. If the problem persists, please contact us for help.",
       );
       window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {

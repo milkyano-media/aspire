@@ -43,7 +43,8 @@ export async function POST(request: Request) {
     );
     const createStudentJson = await createStudentResponse.json();
     if (!createStudentResponse.ok) {
-      throw new Error(createStudentJson.message);
+      const errorMessage = createStudentJson.message || "Unable to create student account";
+      throw new Error(`Registration failed: ${errorMessage}. Please check your details and try again`);
     }
     const studentId = createStudentJson.data.user._id;
 
@@ -118,7 +119,7 @@ export async function POST(request: Request) {
     console.debug(
       `updateStudentRegistrationFieldBody: ${JSON.stringify(updateStudentRegistrationFieldBody)}`,
     );
-    await fetch(
+    const updateStudentResponse = await fetch(
       `https://${wiseBaseUrl}/institutes/${wiseInstituteId}/students/${studentId}/registration`,
       {
         method: "PUT",
@@ -132,6 +133,12 @@ export async function POST(request: Request) {
         body: JSON.stringify(updateStudentRegistrationFieldBody),
       },
     );
+
+    if (!updateStudentResponse.ok) {
+      const updateErrorJson = await updateStudentResponse.json();
+      const errorMessage = updateErrorJson.message || "Unable to save student information";
+      throw new Error(`Failed to complete registration: ${errorMessage}. Please contact support for assistance`);
+    }
 
     // Send confirmation email to parent (non-blocking - silent failure)
     try {
@@ -203,9 +210,11 @@ export async function POST(request: Request) {
       },
     );
   } catch (err) {
+    console.error("Registration error:", err);
+    const errorMessage = (err as Error).message || "An unexpected error occurred during registration";
     return Response.json(
       {
-        message: (err as Error).message,
+        message: errorMessage,
       },
       {
         status: 500,

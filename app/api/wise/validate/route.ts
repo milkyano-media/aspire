@@ -35,7 +35,7 @@ async function validateByName(queryString: URLSearchParams): Promise<void> {
     let newStudentName = queryString.get("searchTerm");
     if (!newStudentName) {
       throw new Error(
-        "Error while validate existing student name: Student name is empty",
+        "Student name is required for validation",
       );
     }
     newStudentName = newStudentName.trim().toLowerCase();
@@ -55,7 +55,7 @@ async function validateByName(queryString: URLSearchParams): Promise<void> {
     );
     if (!getAllStudents.ok) {
       throw new Error(
-        "Error while validate existing student name: Something went wrong",
+        "Unable to verify student details. Please try again later or contact support if the issue persists",
       );
     }
     const response: GetAllStudentResponse = await getAllStudents.json();
@@ -67,7 +67,7 @@ async function validateByName(queryString: URLSearchParams): Promise<void> {
       const sanitizedExistingStudent = student.name.trim().toLowerCase();
       if (sanitizedExistingStudent === newStudentName) {
         throw new Error(
-          "Error while validate existing student name: Student name already exists on LMS",
+          "A student with this name is already registered. If you believe this is an error, please contact us",
         );
       }
     }
@@ -83,7 +83,7 @@ async function validateByEmail(queryString: URLSearchParams): Promise<void> {
     let newStudentEmail = queryString.get("searchTerm");
     if (!newStudentEmail) {
       throw new Error(
-        "Error while validate existing student email: Student email is empty",
+        "Student email is required for validation",
       );
     }
     newStudentEmail = newStudentEmail.trim().toLowerCase();
@@ -103,7 +103,7 @@ async function validateByEmail(queryString: URLSearchParams): Promise<void> {
     );
     if (!getAllStudents.ok) {
       throw new Error(
-        "Error while validate existing student email: Something went wrong",
+        "Unable to verify student details. Please try again later or contact support if the issue persists",
       );
     }
     const response: GetAllStudentResponse = await getAllStudents.json();
@@ -115,7 +115,7 @@ async function validateByEmail(queryString: URLSearchParams): Promise<void> {
       const sanitizedExistingStudent = student.email.trim().toLowerCase();
       if (sanitizedExistingStudent === newStudentEmail) {
         throw new Error(
-          "Error while validate existing student email: Student email already exists on LMS",
+          "This email address is already registered. Please use a different email or contact us if you need assistance",
         );
       }
     }
@@ -133,7 +133,7 @@ async function validateByPhoneNumber(
     let newStudentPhoneNumber = queryString.get("searchTerm");
     if (!newStudentPhoneNumber) {
       throw new Error(
-        "Error while validate existing student phone number: Student phone number is empty",
+        "Student phone number is required for validation",
       );
     }
     newStudentPhoneNumber = newStudentPhoneNumber.trim().toLowerCase();
@@ -153,7 +153,7 @@ async function validateByPhoneNumber(
     );
     if (!getAllStudents.ok) {
       throw new Error(
-        "Error while validate existing student phone number: Something went wrong",
+        "Unable to verify student details. Please try again later or contact support if the issue persists",
       );
     }
     const response: GetAllStudentResponse = await getAllStudents.json();
@@ -165,7 +165,7 @@ async function validateByPhoneNumber(
       const sanitizedExistingStudent = student.phoneNumber.trim().toLowerCase();
       if (sanitizedExistingStudent === newStudentPhoneNumber) {
         throw new Error(
-          "Error while validate existing student phone number: Student phone number already exists on LMS",
+          "This phone number is already registered. Please use a different phone number or contact us if you need assistance",
         );
       }
     }
