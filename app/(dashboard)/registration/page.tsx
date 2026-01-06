@@ -209,6 +209,33 @@ export default function RegistrationPage() {
       const failedStudents: number[] = [];
       let validationFailCount = 0;
 
+      if (studentsArray.length > 1) {
+        // validate no email overlap
+        const studentEmailSet = new Set();
+        for (const student of studentsArray) {
+          studentEmailSet.add(student.email);
+        }
+        if (studentEmailSet.size !== studentsArray.length) {
+          setSubmitError("All student must have different email");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+
+        // validate no phone number overlap
+        const studentPhoneNumberExists = studentsArray.filter(
+          (student) => student.phoneNumber,
+        );
+        const studentPhoneNumberSet = new Set();
+        for (const student of studentPhoneNumberExists) {
+          studentPhoneNumberSet.add(student.phoneNumber);
+        }
+        if (studentPhoneNumberSet.size !== studentPhoneNumberExists.length) {
+          setSubmitError("All student must have different phone number");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+      }
+
       // validate each student
       for (let i = 0; i < studentsArray.length; i++) {
         const student = studentsArray[i];
