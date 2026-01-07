@@ -132,7 +132,7 @@ export default function StudentForm({
               >
                 Student Email{" "}
                 <span className="text-gray-500 text-xs">
-                  (Required for Authentication)
+                  (Used for LMS Login)
                 </span>
               </Label>
               <Input
