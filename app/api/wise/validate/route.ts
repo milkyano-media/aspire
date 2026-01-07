@@ -30,15 +30,43 @@ interface GetAllStudentResponse {
   data: GetAllStudents;
 }
 
-async function validateByName(queryString: URLSearchParams): Promise<void> {
+interface RegistrationDataField {
+  questionText: string;
+  questionId: string;
+  required: boolean;
+  type: string;
+  answer: string;
+}
+
+interface RegistrationData {
+  fields: RegistrationDataField[];
+}
+
+interface StudentReport {
+  registrationData: RegistrationData;
+}
+
+interface StudentRegistrationData {
+  studentReport: StudentReport;
+}
+
+interface StudentRegistrationDataResponse {
+  status: number;
+  message: string;
+  data: StudentRegistrationData;
+}
+
+async function validateByName(
+  student: any,
+  queryString: URLSearchParams,
+): Promise<void> {
   try {
     let newStudentName = queryString.get("searchTerm");
     if (!newStudentName) {
-      throw new Error(
-        "Student name is required for validation",
-      );
+      throw new Error("Student name is required for validation");
     }
     newStudentName = newStudentName.trim().toLowerCase();
+    const newStudentSchoolGrade = student.schoolGrade;
 
     const getAllStudents = await fetch(
       `https://${wiseBaseUrl}/institutes/v3/${wiseInstituteId}/students?${queryString.toString()}`,
@@ -66,9 +94,38 @@ async function validateByName(queryString: URLSearchParams): Promise<void> {
     for (const student of response.data.students) {
       const sanitizedExistingStudent = student.name.trim().toLowerCase();
       if (sanitizedExistingStudent === newStudentName) {
-        throw new Error(
-          "A student with this name is already registered. If you believe this is an error, please contact us",
+        const getStudentRegistrationData = await fetch(
+          `https://${wiseBaseUrl}/public/institutes/${wiseInstituteId}/studentReports/${student._id}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Basic ${wiseAuthentication}`,
+              "x-api-key": `${wiseApiKey}`,
+              "x-wise-namespace": `${wiseNamespace}`,
+              "Content-Type": "application/json",
+              "User-Agent": `${wiseUserAgent}`,
+            },
+          },
         );
+        if (!getStudentRegistrationData.ok) {
+          throw new Error(
+            "Unable to verify student details. Please try again later or contact support if the issue persists",
+          );
+        }
+        const studentRegistrationDataJson: StudentRegistrationDataResponse =
+          await getStudentRegistrationData.json();
+        const studentFieldIndex =
+          studentRegistrationDataJson.data.studentReport.registrationData.fields.findIndex(
+            (element) => element.questionId === "awkv8xxa",
+          );
+        if (
+          studentRegistrationDataJson.data.studentReport.registrationData
+            .fields[studentFieldIndex].answer === newStudentSchoolGrade
+        ) {
+          throw new Error(
+            "A student with this name is already registered. If you believe this is an error, please contact us",
+          );
+        }
       }
     }
 
@@ -82,9 +139,7 @@ async function validateByEmail(queryString: URLSearchParams): Promise<void> {
   try {
     let newStudentEmail = queryString.get("searchTerm");
     if (!newStudentEmail) {
-      throw new Error(
-        "Student email is required for validation",
-      );
+      throw new Error("Student email is required for validation");
     }
     newStudentEmail = newStudentEmail.trim().toLowerCase();
 
@@ -132,9 +187,7 @@ async function validateByPhoneNumber(
   try {
     let newStudentPhoneNumber = queryString.get("searchTerm");
     if (!newStudentPhoneNumber) {
-      throw new Error(
-        "Student phone number is required for validation",
-      );
+      throw new Error("Student phone number is required for validation");
     }
     newStudentPhoneNumber = newStudentPhoneNumber.trim().toLowerCase();
 
@@ -182,6 +235,7 @@ export async function POST(request: Request) {
     const student = reqBody;
 
     await validateByName(
+      student,
       new URLSearchParams({
         status: "ACCEPTED",
         page_size: "1",
