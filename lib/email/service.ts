@@ -7,6 +7,7 @@ import {
   generateEmailTemplate,
   generateCustomEmailTemplate, replaceTemplateVariables,
   generateRegistrationEmailTemplate,
+  generateEnrollmentEmailTemplate,
   generateYear3PricingEmailTemplate,
   generateYear4PricingEmailTemplate,
   generateYear5PricingEmailTemplate,
@@ -218,6 +219,92 @@ export async function sendRegistrationConfirmationEmail(
     console.error("Failed to send registration confirmation email:", {
       error: errorMessage,
       recipient: data.parent.email,
+    });
+
+    return {
+      success: false,
+      error: errorMessage,
+    };
+  }
+}
+
+/**
+ * Send enrollment confirmation email to parent with portal access instructions
+ *
+ * @param parentEmail - Parent's email address
+ * @param parentName - Parent's name for personalization
+ * @param studentName - Student's name for personalization
+ * @returns Promise with success status and optional error message
+ */
+export async function sendEnrollmentEmail(
+  parentEmail: string,
+  parentName: string,
+  studentName: string,
+): Promise<EmailResult> {
+  try {
+    // Validate environment variables
+    if (!validateSmtpConfig()) {
+      return {
+        success: false,
+        error: "Email service not configured - missing SMTP credentials",
+      };
+    }
+
+    // Create transporter
+    const transporter = createTransporter();
+
+    // Generate email templates
+    const { html, text } = generateEnrollmentEmailTemplate();
+
+    // Replace template variables with actual values
+    const personalizedHtml = replaceTemplateVariables(html, {
+      parentName,
+      studentName,
+      parentEmail,
+      studentEmail: '',
+    });
+
+    const personalizedText = replaceTemplateVariables(text, {
+      parentName,
+      studentName,
+      parentEmail,
+      studentEmail: '',
+    });
+
+    // Email options
+    const mailOptions = {
+      from: {
+        name: process.env.SMTP_FROM_NAME || "Aspire Academics",
+        address: process.env.SMTP_FROM_EMAIL || "admin@aspireacademics.au",
+      },
+      to: parentEmail,
+      subject: "Welcome to Aspire Academics Portal - Access Instructions",
+      text: personalizedText,
+      html: personalizedHtml,
+    };
+
+    // Send email with 10-second timeout
+    const sendPromise = transporter.sendMail(mailOptions);
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(
+        () => reject(new Error("Email sending timeout after 10 seconds")),
+        10000,
+      ),
+    );
+
+    await Promise.race([sendPromise, timeoutPromise]);
+
+    console.log(
+      `Enrollment email sent successfully to: ${parentEmail}`,
+    );
+
+    return { success: true };
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Failed to send enrollment email:", {
+      error: errorMessage,
+      recipient: parentEmail,
     });
 
     return {
