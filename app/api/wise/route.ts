@@ -141,43 +141,43 @@ export async function POST(request: Request) {
     }
 
     // Send confirmation email to parent (non-blocking - silent failure)
-    try {
-      const emailResult = await sendRegistrationConfirmationEmail({
-        parent: {
-          name: parent.name,
-          email: parent.email,
-          phoneNumber: parent.phoneNumber,
-          relationship: parent.relationship,
-          address: parent.address,
-        },
-        student: {
-          name: student.name,
-          email: student.email,
-          phoneNumber: student.phoneNumber,
-          gender: student.gender,
-          dateOfBirth: student.dateOfBirth,
-          schoolGrade: student.schoolGrade,
-          vceClass: student.vceClass,
-          schoolName: student.schoolName,
-          additionalDetails: student.additionalDetails,
-          preference: student.preference,
-        },
-      });
+    // try {
+    //   const emailResult = await sendRegistrationConfirmationEmail({
+    //     parent: {
+    //       name: parent.name,
+    //       email: parent.email,
+    //       phoneNumber: parent.phoneNumber,
+    //       relationship: parent.relationship,
+    //       address: parent.address,
+    //     },
+    //     student: {
+    //       name: student.name,
+    //       email: student.email,
+    //       phoneNumber: student.phoneNumber,
+    //       gender: student.gender,
+    //       dateOfBirth: student.dateOfBirth,
+    //       schoolGrade: student.schoolGrade,
+    //       vceClass: student.vceClass,
+    //       schoolName: student.schoolName,
+    //       additionalDetails: student.additionalDetails,
+    //       preference: student.preference,
+    //     },
+    //   });
 
-      if (!emailResult.success) {
-        console.error(
-          "Failed to send registration confirmation email:",
-          emailResult.error,
-        );
-        // Continue - don't fail registration if email fails
-      }
-    } catch (emailError) {
-      console.error(
-        "Unexpected error sending registration confirmation email:",
-        emailError,
-      );
-      // Continue - don't fail registration if email fails
-    }
+    //   if (!emailResult.success) {
+    //     console.error(
+    //       "Failed to send registration confirmation email:",
+    //       emailResult.error,
+    //     );
+    //     // Continue - don't fail registration if email fails
+    //   }
+    // } catch (emailError) {
+    //   console.error(
+    //     "Unexpected error sending registration confirmation email:",
+    //     emailError,
+    //   );
+    //   // Continue - don't fail registration if email fails
+    // }
 
     // Send grade-specific pricing email to parent (non-blocking - silent failure)
     try {

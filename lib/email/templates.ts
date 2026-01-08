@@ -223,7 +223,7 @@ export function generateEmailTemplate(data: EmailFormData): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This is an automated confirmation email. Please do not reply directly to this message.
@@ -282,7 +282,7 @@ The Aspire Academics Team
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This is an automated confirmation email.
   `.trim();
@@ -453,7 +453,7 @@ export function generateCustomEmailTemplate(
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -480,7 +480,7 @@ ${plainTextBody}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -538,7 +538,7 @@ export function generateYear3PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that our Year 3 pricing has been updated from last year. This update reflects:
                 </p>
@@ -671,7 +671,7 @@ export function generateYear3PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -702,7 +702,7 @@ We are writing to clearly outline the updated Year 3 pricing and program structu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that our Year 3 pricing has been updated from last year. This update reflects:
 
@@ -764,7 +764,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -822,7 +822,7 @@ export function generateYear4PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that Year 4 pricing has changed from last year. This update reflects:
                 </p>
@@ -955,7 +955,7 @@ export function generateYear4PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -986,7 +986,7 @@ We are writing to clearly outline the updated Year 4 pricing and program structu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that Year 4 pricing has changed from last year. This update reflects:
 
@@ -1048,7 +1048,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -1106,7 +1106,7 @@ export function generateYear5PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that our Year 5 pricing has been updated from last year. This update reflects:
                 </p>
@@ -1239,7 +1239,7 @@ export function generateYear5PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -1270,7 +1270,7 @@ We are writing to clearly outline the updated Year 5 pricing and program structu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that our Year 5 pricing has been updated from last year. This update reflects:
 
@@ -1332,7 +1332,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -1390,7 +1390,7 @@ export function generateYear6PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that our Year 6 pricing has been updated from last year. This update reflects:
                 </p>
@@ -1522,7 +1522,7 @@ export function generateYear6PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -1553,7 +1553,7 @@ We are writing to clearly outline the updated Year 6 pricing and program structu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that our Year 6 pricing has been updated from last year. This update reflects:
 
@@ -1614,7 +1614,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -1672,7 +1672,7 @@ export function generateYear7PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that our Year 7 pricing has been updated from last year. This update reflects:
                 </p>
@@ -1804,7 +1804,7 @@ export function generateYear7PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -1835,7 +1835,7 @@ We are writing to clearly outline the updated Year 7 pricing and program structu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that our Year 7 pricing has been updated from last year. This update reflects:
 
@@ -1896,7 +1896,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -1954,7 +1954,7 @@ export function generateYear8PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that our Year 8 pricing has been updated from last year. This update reflects:
                 </p>
@@ -2086,7 +2086,7 @@ export function generateYear8PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -2117,7 +2117,7 @@ We are writing to clearly outline the updated Year 8 pricing and program structu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that our Year 8 pricing has been updated from last year. This update reflects:
 
@@ -2178,7 +2178,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -2236,7 +2236,7 @@ export function generateYear9PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that our Year 9 pricing has been updated from last year. This update reflects:
                 </p>
@@ -2368,7 +2368,7 @@ export function generateYear9PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -2399,7 +2399,7 @@ We are writing to clearly outline the updated Year 9 pricing and program structu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that our Year 9 pricing has been updated from last year. This update reflects:
 
@@ -2460,7 +2460,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -2518,7 +2518,7 @@ export function generateYear10PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that our Year 10 pricing has been updated from last year. This update reflects:
                 </p>
@@ -2650,7 +2650,7 @@ export function generateYear10PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -2681,7 +2681,7 @@ We are writing to clearly outline the updated Year 10 pricing and program struct
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that our Year 10 pricing has been updated from last year. This update reflects:
 
@@ -2742,7 +2742,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -2796,7 +2796,7 @@ export function generateYear11PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that VCE Year 11 pricing has changed from last year. This update reflects:
                 </p>
@@ -2915,7 +2915,7 @@ export function generateYear11PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -2944,7 +2944,7 @@ We are writing to confirm the updated pricing structure for 2026, along with imp
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that VCE Year 11 pricing has changed from last year. This update reflects:
 
@@ -2997,7 +2997,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
@@ -3051,7 +3051,7 @@ export function generateYear12PricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that VCE Year 12 pricing has changed from last year. This update reflects:
                 </p>
@@ -3173,7 +3173,7 @@ export function generateYear12PricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -3204,7 +3204,7 @@ As students enter a critical exam year, we are writing to outline the updated pr
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that VCE Year 12 pricing has changed from last year. This update reflects:
 
@@ -3262,7 +3262,7 @@ Director | Aspire Academics
 
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics. If you have any questions, please contact us.
   `.trim();
@@ -3313,7 +3313,7 @@ export function generateSelectiveEntryPricingEmailTemplate(): EmailTemplate {
 
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">Important Update: Pricing Changes from Last Year</h2>
+                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
                   Please note that Selective Entry pricing has changed from last year. This update reflects:
                 </p>
@@ -3446,7 +3446,7 @@ export function generateSelectiveEntryPricingEmailTemplate(): EmailTemplate {
                 Melbourne, Victoria, Australia
               </p>
               <p style="color: #666666; font-size: 14px; margin: 0 0 15px 0;">
-                Email: <a href="mailto:admin@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">admin@aspireacademics.au</a>
+                Email: <a href="mailto:info@aspireacademics.au" style="color: #FF8C00; text-decoration: none;">info@aspireacademics.au</a>
               </p>
               <p style="color: #999999; font-size: 12px; margin: 0;">
                 This email was sent by Aspire Academics. If you have any questions, please contact us.
@@ -3475,7 +3475,7 @@ We are writing to outline the updated pricing and program structure for 2026, an
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-IMPORTANT UPDATE: PRICING CHANGES FROM LAST YEAR
+New Pricing Structure
 
 Please note that Selective Entry pricing has changed from last year. This update reflects:
 
@@ -3537,7 +3537,7 @@ Director | Aspire Academics
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Aspire Academics
 Melbourne, Victoria, Australia
-Email: admin@aspireacademics.au
+Email: info@aspireacademics.au
 
 This email was sent by Aspire Academics.
   `.trim();
