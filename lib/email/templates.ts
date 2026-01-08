@@ -539,9 +539,6 @@ export function generateYear3PricingEmailTemplate(): EmailTemplate {
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
                 <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
-                  Please note that our Year 3 pricing has been updated from last year. This update reflects:
-                </p>
                 <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
                   <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
                   <li>Increased lesson structure and planning</li>
@@ -549,7 +546,7 @@ export function generateYear3PricingEmailTemplate(): EmailTemplate {
                   <li>Additional academic support options for families who require more personalised guidance</li>
                 </ul>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
                 </p>
               </div>
 
@@ -704,14 +701,12 @@ We are writing to clearly outline the updated Year 3 pricing and program structu
 
 New Pricing Structure
 
-Please note that our Year 3 pricing has been updated from last year. This update reflects:
-
 • The introduction of a new Learning Management System (LMS) for clearer communication and organisation
 • Increased lesson structure and planning
 • Improved resources and homework materials
 • Additional academic support options for families who require more personalised guidance
 
-These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -1107,9 +1102,6 @@ export function generateYear5PricingEmailTemplate(): EmailTemplate {
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
                 <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
-                  Please note that our Year 5 pricing has been updated from last year. This update reflects:
-                </p>
                 <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
                   <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
                   <li>Increased lesson structure and planning</li>
@@ -1117,7 +1109,7 @@ export function generateYear5PricingEmailTemplate(): EmailTemplate {
                   <li>Additional academic support options for families who require more personalised guidance</li>
                 </ul>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
                 </p>
               </div>
 
@@ -1272,14 +1264,12 @@ We are writing to clearly outline the updated Year 5 pricing and program structu
 
 New Pricing Structure
 
-Please note that our Year 5 pricing has been updated from last year. This update reflects:
-
 • The introduction of a new Learning Management System (LMS) for clearer communication and organisation
 • Increased lesson structure and planning
 • Improved resources and homework materials
 • Additional academic support options for families who require more personalised guidance
 
-These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -1391,9 +1381,6 @@ export function generateYear6PricingEmailTemplate(): EmailTemplate {
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
                 <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
-                  Please note that our Year 6 pricing has been updated from last year. This update reflects:
-                </p>
                 <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
                   <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
                   <li>Increased lesson structure and planning</li>
@@ -1401,7 +1388,7 @@ export function generateYear6PricingEmailTemplate(): EmailTemplate {
                   <li>Additional academic support options for families who require more personalised guidance</li>
                 </ul>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
                 </p>
               </div>
 
@@ -1555,14 +1542,12 @@ We are writing to clearly outline the updated Year 6 pricing and program structu
 
 New Pricing Structure
 
-Please note that our Year 6 pricing has been updated from last year. This update reflects:
-
 • The introduction of a new Learning Management System (LMS) for clearer communication and organisation
 • Increased lesson structure and planning
 • Improved resources and homework materials
 • Additional academic support options for families who require more personalised guidance
 
-These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -1673,9 +1658,6 @@ export function generateYear7PricingEmailTemplate(): EmailTemplate {
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
                 <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
-                  Please note that our Year 7 pricing has been updated from last year. This update reflects:
-                </p>
                 <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
                   <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
                   <li>Increased lesson structure and planning</li>
@@ -1683,7 +1665,7 @@ export function generateYear7PricingEmailTemplate(): EmailTemplate {
                   <li>Additional academic support options for families who require more personalised guidance</li>
                 </ul>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
                 </p>
               </div>
 
@@ -1837,14 +1819,12 @@ We are writing to clearly outline the updated Year 7 pricing and program structu
 
 New Pricing Structure
 
-Please note that our Year 7 pricing has been updated from last year. This update reflects:
-
 • The introduction of a new Learning Management System (LMS) for clearer communication and organisation
 • Increased lesson structure and planning
 • Improved resources and homework materials
 • Additional academic support options for families who require more personalised guidance
 
-These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -1955,9 +1935,6 @@ export function generateYear8PricingEmailTemplate(): EmailTemplate {
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
                 <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
-                  Please note that our Year 8 pricing has been updated from last year. This update reflects:
-                </p>
                 <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
                   <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
                   <li>Increased lesson structure and planning</li>
@@ -1965,7 +1942,7 @@ export function generateYear8PricingEmailTemplate(): EmailTemplate {
                   <li>Additional academic support options for families who require more personalised guidance</li>
                 </ul>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
                 </p>
               </div>
 
@@ -2119,14 +2096,12 @@ We are writing to clearly outline the updated Year 8 pricing and program structu
 
 New Pricing Structure
 
-Please note that our Year 8 pricing has been updated from last year. This update reflects:
-
 • The introduction of a new Learning Management System (LMS) for clearer communication and organisation
 • Increased lesson structure and planning
 • Improved resources and homework materials
 • Additional academic support options for families who require more personalised guidance
 
-These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -2237,9 +2212,6 @@ export function generateYear9PricingEmailTemplate(): EmailTemplate {
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
                 <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
-                  Please note that our Year 9 pricing has been updated from last year. This update reflects:
-                </p>
                 <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
                   <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
                   <li>Increased lesson structure and planning</li>
@@ -2247,7 +2219,7 @@ export function generateYear9PricingEmailTemplate(): EmailTemplate {
                   <li>Additional academic support options for families who require more personalised guidance</li>
                 </ul>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
                 </p>
               </div>
 
@@ -2401,14 +2373,12 @@ We are writing to clearly outline the updated Year 9 pricing and program structu
 
 New Pricing Structure
 
-Please note that our Year 9 pricing has been updated from last year. This update reflects:
-
 • The introduction of a new Learning Management System (LMS) for clearer communication and organisation
 • Increased lesson structure and planning
 • Improved resources and homework materials
 • Additional academic support options for families who require more personalised guidance
 
-These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -2519,9 +2489,7 @@ export function generateYear10PricingEmailTemplate(): EmailTemplate {
               <!-- Important Update Section -->
               <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
                 <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
-                  Please note that our Year 10 pricing has been updated from last year. This update reflects:
-                </p>
+
                 <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
                   <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
                   <li>Increased lesson structure and planning</li>
@@ -2529,7 +2497,7 @@ export function generateYear10PricingEmailTemplate(): EmailTemplate {
                   <li>Additional academic support options for families who require more personalised guidance</li>
                 </ul>
                 <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
                 </p>
               </div>
 
@@ -2683,14 +2651,12 @@ We are writing to clearly outline the updated Year 10 pricing and program struct
 
 New Pricing Structure
 
-Please note that our Year 10 pricing has been updated from last year. This update reflects:
-
 • The introduction of a new Learning Management System (LMS) for clearer communication and organisation
 • Increased lesson structure and planning
 • Improved resources and homework materials
 • Additional academic support options for families who require more personalised guidance
 
-These changes allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
+These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
