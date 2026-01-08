@@ -213,6 +213,13 @@ function Header() {
               >
                 Contact Us
               </Link>
+              <Link
+                href="/registration"
+                className="block px-4 py-3 text-base font-semibold text-gray-200 hover:bg-gray-700 hover:text-white rounded-md transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Registration
+              </Link>
               <SmoothScrollLink
                 href="/#form"
                 className="block px-4 py-3 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-3xl text-center transition-colors"
