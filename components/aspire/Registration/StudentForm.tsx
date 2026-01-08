@@ -109,7 +109,7 @@ export default function StudentForm({
       <CardContent className="p-6 md:p-8 space-y-6">
         <form className="space-y-6">
           {/* Top Row: Name, Email, Phone */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <Label
                 className="text-sm font-semibold"
@@ -141,22 +141,6 @@ export default function StudentForm({
                 placeholder="Email Address"
                 value={data.email}
                 onChange={(e) => onChange({ email: e.target.value })}
-                className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label
-                className="text-sm font-semibold"
-                htmlFor={`student${studentNumber}PhoneNumber`}
-              >
-                Student Phone <span className="text-gray-500">(Optional)</span>
-              </Label>
-              <Input
-                type="tel"
-                id={`student${studentNumber}PhoneNumber`}
-                placeholder="e.g. +61 412 345 678"
-                value={data.phoneNumber}
-                onChange={(e) => handlePhoneChange(e.target.value)}
                 className="w-full h-12 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all"
               />
             </div>
