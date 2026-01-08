@@ -3621,6 +3621,89 @@ Director | Aspire Academics
   return { html, text };
 }
 
+export function generateEnrollmentEmailTemplate(): EmailTemplate {
+  // HTML Email Template
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            body {
+                font-family: sans-serif;
+                line-height: 19.5px;
+                font-size: 13px;
+            }
+
+            .text-primary {
+                font-size: 15px;
+                font-weight: 700;
+            }
+
+            .code-box {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                padding: 10px;
+                margin: 10px 0;
+                font-family: monospace;
+                font-size: 16px;
+                font-weight: 700;
+                text-align: center;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Dear {{parentName}},</p>
+        <br />
+        <p>
+            We're happy to share that your child is now enrolled in our Aspire Academics Portal.
+        </p>
+        <br />
+        <p>
+            {{studentName}} can access the ASPIRE portal through the mobile app or website. When opening it for the first time, you'll be asked to enter an institution code.
+        </p>
+        <br />
+        <p class="text-primary">Institution Code:</p>
+        <div class="code-box">aspireacademics</div>
+        <br />
+        <p>
+            Once the code is entered, you can log in through the app or your web browser.
+        </p>
+        <br />
+        <p>
+            If you have any questions or need help getting started, please don't hesitate to reach out, we're always happy to help.
+        </p>
+        <br />
+        <p>Warm regards,</p>
+        <p>Aspire Academics Team</p>
+    </body>
+</html>
+  `.trim();
+
+  // Plain Text Email Template
+  const text = `
+Dear {{parentName}},
+
+We're happy to share that your child is now enrolled in our Aspire Academics Portal.
+
+{{studentName}} can access the ASPIRE portal through the mobile app or website. When opening it for the first time, you'll be asked to enter an institution code.
+
+Institution Code:
+aspireacademics
+
+Once the code is entered, you can log in through the app or your web browser.
+
+If you have any questions or need help getting started, please don't hesitate to reach out, we're always happy to help.
+
+Warm regards,
+Aspire Academics Team
+  `.trim();
+
+  return { html, text };
+}
+
 /**
  * Supported template variables for email personalization
  */
