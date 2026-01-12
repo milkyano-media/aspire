@@ -128,6 +128,10 @@ export default function RegistrationPage() {
     }
     if (!parentData.phoneNumber.trim()) {
       errors.push("Parent phone number is required");
+    } else {
+      if (parentData.phoneNumber.trim().length > 12) {
+        errors.push("Invalid parent phone number");
+      }
     }
     if (!parentData.relationship) {
       errors.push("Parent relationship is required");
@@ -217,20 +221,6 @@ export default function RegistrationPage() {
         }
         if (studentEmailSet.size !== studentsArray.length) {
           setSubmitError("All student must have different email");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          return;
-        }
-
-        // validate no phone number overlap
-        const studentPhoneNumberExists = studentsArray.filter(
-          (student) => student.phoneNumber,
-        );
-        const studentPhoneNumberSet = new Set();
-        for (const student of studentPhoneNumberExists) {
-          studentPhoneNumberSet.add(student.phoneNumber);
-        }
-        if (studentPhoneNumberSet.size !== studentPhoneNumberExists.length) {
-          setSubmitError("All student must have different phone number");
           window.scrollTo({ top: 0, behavior: "smooth" });
           return;
         }

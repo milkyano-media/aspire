@@ -1,7 +1,4 @@
-import {
-  sendRegistrationConfirmationEmail,
-  sendGradePricingEmail,
-} from "@/lib/email/service";
+import { sendGradePricingEmail } from "@/lib/email/service";
 
 const wiseBaseUrl = process.env.WISELMS_API_HOST;
 const wiseInstituteId = process.env.WISELMS_INSTITUTE_ID;
@@ -43,8 +40,11 @@ export async function POST(request: Request) {
     );
     const createStudentJson = await createStudentResponse.json();
     if (!createStudentResponse.ok) {
-      const errorMessage = createStudentJson.message || "Unable to create student account";
-      throw new Error(`Registration failed: ${errorMessage}. Please check your details and try again`);
+      const errorMessage =
+        createStudentJson.message || "Unable to create student account";
+      throw new Error(
+        `Registration failed: ${errorMessage}. Please check your details and try again`,
+      );
     }
     const studentId = createStudentJson.data.user._id;
 
@@ -136,48 +136,12 @@ export async function POST(request: Request) {
 
     if (!updateStudentResponse.ok) {
       const updateErrorJson = await updateStudentResponse.json();
-      const errorMessage = updateErrorJson.message || "Unable to save student information";
-      throw new Error(`Failed to complete registration: ${errorMessage}. Please contact support for assistance`);
+      const errorMessage =
+        updateErrorJson.message || "Unable to save student information";
+      throw new Error(
+        `Failed to complete registration: ${errorMessage}. Please contact support for assistance`,
+      );
     }
-
-    // Send confirmation email to parent (non-blocking - silent failure)
-    // try {
-    //   const emailResult = await sendRegistrationConfirmationEmail({
-    //     parent: {
-    //       name: parent.name,
-    //       email: parent.email,
-    //       phoneNumber: parent.phoneNumber,
-    //       relationship: parent.relationship,
-    //       address: parent.address,
-    //     },
-    //     student: {
-    //       name: student.name,
-    //       email: student.email,
-    //       phoneNumber: student.phoneNumber,
-    //       gender: student.gender,
-    //       dateOfBirth: student.dateOfBirth,
-    //       schoolGrade: student.schoolGrade,
-    //       vceClass: student.vceClass,
-    //       schoolName: student.schoolName,
-    //       additionalDetails: student.additionalDetails,
-    //       preference: student.preference,
-    //     },
-    //   });
-
-    //   if (!emailResult.success) {
-    //     console.error(
-    //       "Failed to send registration confirmation email:",
-    //       emailResult.error,
-    //     );
-    //     // Continue - don't fail registration if email fails
-    //   }
-    // } catch (emailError) {
-    //   console.error(
-    //     "Unexpected error sending registration confirmation email:",
-    //     emailError,
-    //   );
-    //   // Continue - don't fail registration if email fails
-    // }
 
     // Send grade-specific pricing email to parent (non-blocking - silent failure)
     try {
@@ -213,7 +177,9 @@ export async function POST(request: Request) {
     );
   } catch (err) {
     console.error("Registration error:", err);
-    const errorMessage = (err as Error).message || "An unexpected error occurred during registration";
+    const errorMessage =
+      (err as Error).message ||
+      "An unexpected error occurred during registration";
     return Response.json(
       {
         message: errorMessage,
