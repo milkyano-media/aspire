@@ -181,54 +181,6 @@ async function validateByEmail(queryString: URLSearchParams): Promise<void> {
   }
 }
 
-async function validateByPhoneNumber(
-  queryString: URLSearchParams,
-): Promise<void> {
-  try {
-    let newStudentPhoneNumber = queryString.get("searchTerm");
-    if (!newStudentPhoneNumber) {
-      throw new Error("Student phone number is required for validation");
-    }
-    newStudentPhoneNumber = newStudentPhoneNumber.trim().toLowerCase();
-
-    const getAllStudents = await fetch(
-      `https://${wiseBaseUrl}/institutes/v3/${wiseInstituteId}/students?${queryString.toString()}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Basic ${wiseAuthentication}`,
-          "x-api-key": `${wiseApiKey}`,
-          "x-wise-namespace": `${wiseNamespace}`,
-          "Content-Type": "application/json",
-          "User-Agent": `${wiseUserAgent}`,
-        },
-      },
-    );
-    if (!getAllStudents.ok) {
-      throw new Error(
-        "Unable to verify student details. Please try again later or contact support if the issue persists",
-      );
-    }
-    const response: GetAllStudentResponse = await getAllStudents.json();
-    if (response.data.count === 0) {
-      return;
-    }
-
-    for (const student of response.data.students) {
-      const sanitizedExistingStudent = student.phoneNumber.trim().toLowerCase();
-      if (sanitizedExistingStudent === newStudentPhoneNumber) {
-        throw new Error(
-          "This phone number is already registered. Please use a different phone number or contact us if you need assistance",
-        );
-      }
-    }
-
-    return;
-  } catch (err) {
-    throw err;
-  }
-}
-
 export async function POST(request: Request) {
   try {
     const reqBody = await request.json();
@@ -252,17 +204,6 @@ export async function POST(request: Request) {
         searchTerm: student.email,
       }),
     );
-
-    if (student.phoneNumber) {
-      await validateByPhoneNumber(
-        new URLSearchParams({
-          status: "ACCEPTED",
-          page_size: "1",
-          page_number: "1",
-          searchTerm: student.phoneNumber,
-        }),
-      );
-    }
 
     return Response.json(
       { message: "Student not registered" },
