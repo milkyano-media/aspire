@@ -80,7 +80,7 @@ function UserMenu() {
           asChild
           className="rounded-full bg-white hover:bg-gray-100 text-[#002366] border border-white "
         >
-          <Link href="https://aspireacademics.wise.live/login">
+          <Link href="https://portal.aspireacademics.au/login">
             Portal Login
           </Link>
         </Button>
@@ -231,7 +231,7 @@ function Header() {
                 Book Free Trial
               </SmoothScrollLink>
               <Link
-                href="https://aspireacademics.wise.live/login"
+                href="https://portal.aspireacademics.au/login"
                 className="block px-4 py-3 text-sm font-semibold text-[#002366] bg-white hover:bg-gray-100 rounded-3xl text-center border border-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
