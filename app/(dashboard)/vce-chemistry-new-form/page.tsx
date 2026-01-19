@@ -45,10 +45,10 @@ export default function VCEChemistryNewFormPage() {
       <FaqSection />
 
       {/* Final CTA Section */}
-      <CtaSection
+      {/* <CtaSection
         title="Let's Make This School Year Count"
         description="Get the academic support your child deserves. Book your free trial now, no obligations"
-      />
+      /> */}
 
       {/* New Contour-style Form */}
       <ContourFormSection subject="Chemistry" />
