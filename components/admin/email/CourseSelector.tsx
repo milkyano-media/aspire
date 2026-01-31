@@ -21,8 +21,9 @@ export function CourseSelector({
   isLoading = false,
 }: CourseSelectorProps) {
   // Filter courses to only show those with "Students" in name
-  const studentCourses = courses.filter((course) =>
-    course.name.includes("Activities") // Case-sensitive
+  const studentCourses = courses.filter(
+    (course) =>
+      course.name.includes("Activities") || course.name.includes("VCE"), // Case-sensitive
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
