@@ -1,8 +1,18 @@
 "use client";
 
-import { useState, useActionState, useCallback, useEffect, startTransition } from "react";
+import {
+  useState,
+  useActionState,
+  useCallback,
+  useEffect,
+  startTransition,
+} from "react";
 import { StudentWithParent, WiseLMSCourse } from "@/lib/wiselms/types";
-import { fetchCourseStudents, sendBulkParentEmail, fetchWiseLMSCourses } from "@/app/admin/email-actions";
+import {
+  fetchCourseStudents,
+  sendBulkParentEmail,
+  fetchWiseLMSCourses,
+} from "@/app/admin/email-actions";
 import { CourseSelector } from "./CourseSelector";
 import { StudentSelectionTable } from "./StudentSelectionTable";
 import { EmailEditor } from "./EmailEditor";
@@ -39,7 +49,9 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
   // Step 2: Student data & selection
   const [students, setStudents] = useState<StudentWithParent[]>([]);
   const [isLoadingStudents, setIsLoadingStudents] = useState(false);
-  const [selectedRecipients, setSelectedRecipients] = useState<StudentWithParent[]>([]);
+  const [selectedRecipients, setSelectedRecipients] = useState<
+    StudentWithParent[]
+  >([]);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   // Step 3: Email composition
@@ -49,7 +61,10 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   // Step 4: Send email
-  const [sendState, sendAction, isSending] = useActionState(sendBulkParentEmail, {});
+  const [sendState, sendAction, isSending] = useActionState(
+    sendBulkParentEmail,
+    {},
+  );
 
   // Fetch courses from WiseLMS on mount
   useEffect(() => {
@@ -60,15 +75,21 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
       try {
         const result = await fetchWiseLMSCourses();
 
-        if ('error' in result && result.error) {
+        if ("error" in result && result.error) {
           setCoursesError(result.error);
           setCourses([]);
-        } else if ('success' in result && result.success && 'data' in result && result.data) {
+        } else if (
+          "success" in result &&
+          result.success &&
+          "data" in result &&
+          result.data
+        ) {
           setCourses(result.data as WiseLMSCourse[]);
           setCoursesError(null);
         }
       } catch (error) {
-        const errorMsg = error instanceof Error ? error.message : "Unknown error";
+        const errorMsg =
+          error instanceof Error ? error.message : "Unknown error";
         setCoursesError(`Failed to load courses: ${errorMsg}`);
         setCourses([]);
       } finally {
@@ -88,8 +109,8 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
     setSelectedRecipients([]);
 
     // Find course name from selected course
-    const selectedCourse = courses.find(c => c._id === wiseCourseId);
-    const courseName = selectedCourse?.name || 'Course';
+    const selectedCourse = courses.find((c) => c._id === wiseCourseId);
+    const courseName = selectedCourse?.name || "Course";
 
     try {
       // Create FormData for the action
@@ -98,15 +119,22 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
 
       const result = await fetchCourseStudents({}, formData);
 
-      if ('error' in result && result.error) {
+      if ("error" in result && result.error) {
         setFetchError(result.error);
         setStudents([]);
-      } else if ('success' in result && result.success && 'data' in result && result.data) {
+      } else if (
+        "success" in result &&
+        result.success &&
+        "data" in result &&
+        result.data
+      ) {
         // Add courseName to each student
-        const studentsWithCourse = (result.data as StudentWithParent[]).map(student => ({
-          ...student,
-          courseName: courseName
-        }));
+        const studentsWithCourse = (result.data as StudentWithParent[]).map(
+          (student) => ({
+            ...student,
+            courseName: courseName,
+          }),
+        );
         setStudents(studentsWithCourse);
         setFetchError(null);
       }
@@ -120,9 +148,12 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
   };
 
   // Handle recipient selection change
-  const handleSelectionChange = useCallback((recipients: StudentWithParent[]) => {
-    setSelectedRecipients(recipients);
-  }, []);
+  const handleSelectionChange = useCallback(
+    (recipients: StudentWithParent[]) => {
+      setSelectedRecipients(recipients);
+    },
+    [],
+  );
 
   // Handle send email
   const handleSendEmail = () => {
@@ -139,11 +170,11 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
 
   // Reset form on successful send and show toast notifications
   useEffect(() => {
-    if ('success' in sendState && sendState.success) {
+    if ("success" in sendState && sendState.success) {
       // Show success toast
       toast.success(sendState.success, {
         duration: 5000,
-        position: 'top-right',
+        position: "top-right",
       });
 
       // Reset form after successful send
@@ -152,11 +183,11 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
       setAttachments([]);
       setSelectedRecipients([]);
       // Keep course and students loaded for convenience
-    } else if ('error' in sendState && sendState.error) {
+    } else if ("error" in sendState && sendState.error) {
       // Show error toast
       toast.error(sendState.error, {
         duration: 5000,
-        position: 'top-right',
+        position: "top-right",
       });
     }
   }, [sendState]);
@@ -172,9 +203,9 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
       <div className="border-b pb-4">
         <h2 className="text-2xl font-bold text-[#002366]">Email Composer</h2>
         <p className="text-gray-600 mt-1">
-          {userRole === 'admin'
-            ? 'Send custom emails to parents of students enrolled in courses'
-            : 'Send custom emails to parents in your assigned courses'}
+          {userRole === "admin"
+            ? "Send custom emails to parents of students enrolled in courses"
+            : "Send custom emails to parents in your assigned courses"}
         </p>
       </div>
 
@@ -316,7 +347,7 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
 
           <div className="space-y-4">
             {/* Success Message */}
-            {'success' in sendState && sendState.success && (
+            {"success" in sendState && sendState.success && (
               <div className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
                 <CheckCircle className="h-5 w-5 flex-shrink-0" />
                 <span>{sendState.success}</span>
@@ -324,7 +355,7 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
             )}
 
             {/* Error Message */}
-            {'error' in sendState && sendState.error && (
+            {"error" in sendState && sendState.error && (
               <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
                 <AlertCircle className="h-5 w-5 flex-shrink-0" />
                 <span>{sendState.error}</span>
@@ -357,11 +388,11 @@ export function EmailComposerTab({ userRole }: EmailComposerTabProps) {
                 parentEmail: selectedRecipients[0].parentEmail,
               }
             : {
-                parentName: 'John Smith',
-                studentName: 'Emma Smith',
-                courseName: 'VCE Mathematics',
-                studentEmail: 'emma.smith@example.com',
-                parentEmail: 'john.smith@example.com',
+                parentName: "John Smith",
+                studentName: "Emma Smith",
+                courseName: "VCE Mathematics",
+                studentEmail: "emma.smith@example.com",
+                parentEmail: "john.smith@example.com",
               }
         }
       />
