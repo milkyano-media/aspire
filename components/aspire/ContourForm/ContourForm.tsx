@@ -46,6 +46,22 @@ export function ContourForm({ onSuccess, subject }: ContourFormProps) {
   const [visibleSteps, setVisibleSteps] = useState(1);
   const [roleSelected, setRoleSelected] = useState(false);
 
+  // Listen for Calendly events and prevent any redirect behavior
+  useEffect(() => {
+    const handleCalendlyEvent = (e: MessageEvent) => {
+      if (e.data.event && e.data.event.indexOf('calendly') === 0) {
+        // Prevent any redirect that Calendly might trigger
+        if (e.data.event === 'calendly.event_scheduled') {
+          // Event was scheduled successfully, stay on current page
+          console.log('Calendly event scheduled');
+        }
+      }
+    };
+
+    window.addEventListener('message', handleCalendlyEvent);
+    return () => window.removeEventListener('message', handleCalendlyEvent);
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -164,8 +180,12 @@ export function ContourForm({ onSuccess, subject }: ContourFormProps) {
 
       setTimeout(() => {
         if (typeof window !== 'undefined' && window.Calendly) {
+          // Get the base Calendly URL and add redirect_url to stay on current page
+          const calendlyUrl = new URL(process.env.NEXT_PUBLIC_CALENDLY_URL!);
+          calendlyUrl.searchParams.set('redirect_url', window.location.href);
+
           window.Calendly.initPopupWidget({
-            url: process.env.NEXT_PUBLIC_CALENDLY_URL!,
+            url: calendlyUrl.toString(),
             prefill: {
               name: data.name,
               email: data.email,

@@ -45,10 +45,10 @@ export default function VCEChemistryPage() {
       <FaqSection />
 
       {/* Final CTA Section */}
-      <CtaSection
+      {/* <CtaSection
         title="Let's Make This School Year Count"
         description="Get the academic support your child deserves. Book your free trial now, no obligations"
-      />
+      /> */}
 
       {/* Consultation Form Section */}
       <ConsultationFormSection />
