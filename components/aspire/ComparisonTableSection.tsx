@@ -12,21 +12,30 @@ import {
 
 export function ComparisonTableSection() {
   const features = [
-    { name: "In-Person\nTruganina Lessons", aspire: true, others: false },
-    { name: "Flat Monthly Pricing", aspire: true, others: false },
-    {
-      name: "Trial Class Before\nCommitting",
-      aspire: true,
-      others: false,
-    },
-    {
-      name: "Progress Tracking &\nFeedback",
-      aspire: true,
-      others: false,
-    },
-    { name: "In-Person\nTruganina Lessons", aspire: true, others: "???" },
-    { name: "In-Person\nTruganina Lessons", aspire: true, others: false },
-  ];
+  { name: "In-Person\nTruganina Lessons", aspire: true, others: false },
+  { name: "Flat Monthly Pricing", aspire: true, others: false },
+  {
+    name: "Trial Class Before\nCommitting",
+    aspire: true,
+    others: false,
+  },
+  {
+    name: "Qualified &\nExperienced Tutors",
+    aspire: true,
+    others: false,
+  },
+  {
+    name: "Progress Tracking &\nFeedback",
+    aspire: true,
+    others: "???",
+  },
+  {
+    name: "Personalised Learning\nPlans",
+    aspire: true,
+    others: false,
+  },
+];
+
 
   return (
     <Section variant="medium-blue" className="py-12 bg-[#0144AB]">
