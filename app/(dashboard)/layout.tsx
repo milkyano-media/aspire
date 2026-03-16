@@ -65,6 +65,12 @@ function UserMenu() {
         >
           Registration
         </Link>
+        <Link
+          href="/mock-exam-registration"
+          className="text-base font-semibold hover:text-white text-gray-200 transition-colors"
+        >
+          Mock Exam Registration
+        </Link>
         <Button
           asChild
           className="rounded-full bg-orange-500 hover:bg-orange-600 text-white"
