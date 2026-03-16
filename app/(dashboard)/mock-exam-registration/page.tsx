@@ -2,12 +2,26 @@
 
 import { Footer } from "@/components/aspire/Footer";
 import MockExamHero from "@/components/aspire/MockExamRegistration/MockExamHero";
+import ParentForm from "@/components/aspire/Registration/ParentForm";
 import MockExamStudentForm from "@/components/aspire/MockExamRegistration/MockExamStudentForm";
 import TermAndCondition from "@/components/aspire/Registration/TermAndCondition";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ArrowRightIcon, AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
+import {
+  ArrowRightIcon,
+  AlertCircle,
+  CheckCircle2,
+  Loader2,
+} from "lucide-react";
 import { useState } from "react";
+
+interface ParentData {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  relationship: string;
+  address: string;
+}
 
 interface StudentData {
   name: string;
@@ -19,9 +33,21 @@ interface StudentData {
 export default function MockExamRegistrationPage() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
+  const [studentExistingValidationError, setStudentExistingValidationError] =
+    useState<string[]>([]);
+
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const [parentData, setParentData] = useState<ParentData>({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    relationship: "",
+    address: "",
+  });
 
   const [studentData, setStudentData] = useState<StudentData>({
     name: "",
@@ -30,6 +56,10 @@ export default function MockExamRegistrationPage() {
     yearLevel: "",
   });
 
+  const handleParentChange = (data: Partial<ParentData>) => {
+    setParentData((prev) => ({ ...prev, ...data }));
+  };
+
   const handleStudentChange = (data: Partial<StudentData>) => {
     setStudentData((prev) => ({ ...prev, ...data }));
   };
@@ -37,9 +67,28 @@ export default function MockExamRegistrationPage() {
   const validateForm = (): string[] => {
     const errors: string[] = [];
 
-    if (!studentData.name.trim()) {
-      errors.push("Student name is required");
+    /* Parent validation */
+
+    if (!parentData.name.trim()) errors.push("Parent name is required");
+
+    if (!parentData.email.trim()) {
+      errors.push("Parent email is required");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(parentData.email)) {
+      errors.push("Parent email is invalid");
     }
+
+    if (!parentData.phoneNumber.trim())
+      errors.push("Parent phone number is required");
+
+    if (!parentData.relationship)
+      errors.push("Parent relationship is required");
+
+    if (!parentData.address.trim())
+      errors.push("Parent address is required");
+
+    /* Student validation */
+
+    if (!studentData.name.trim()) errors.push("Student name is required");
 
     if (!studentData.email.trim()) {
       errors.push("Student email is required");
@@ -47,12 +96,15 @@ export default function MockExamRegistrationPage() {
       errors.push("Student email is invalid");
     }
 
-    if (!studentData.gender) {
-      errors.push("Gender is required");
-    }
+    if (!studentData.gender) errors.push("Student gender is required");
 
-    if (!studentData.yearLevel) {
-      errors.push("Current year level is required");
+    if (!studentData.yearLevel) errors.push("Student year level is required");
+
+    if (
+      studentData.email.trim().toLowerCase() ===
+      parentData.email.trim().toLowerCase()
+    ) {
+      errors.push("Student email must not be the same as parent email");
     }
 
     return errors;
@@ -62,8 +114,10 @@ export default function MockExamRegistrationPage() {
     setValidationErrors([]);
     setSubmitError("");
     setSubmitSuccess(false);
+    setStudentExistingValidationError([]);
 
     const errors = validateForm();
+
     if (errors.length > 0) {
       setValidationErrors(errors);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -73,12 +127,40 @@ export default function MockExamRegistrationPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/mock-exam", {
+      /* Validate student email in WISE */
+
+      const validateResponse = await fetch("/api/mock-exam/validate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(studentData),
+      });
+
+      if (!validateResponse.ok) {
+        const { message } = await validateResponse.json();
+
+        setStudentExistingValidationError([
+          `Student: ${message}`,
+        ]);
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        setIsSubmitting(false);
+        return;
+      }
+
+      /* Submit registration */
+
+      const response = await fetch("/api/mock-exam", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          parent: parentData,
+          student: studentData,
+        }),
       });
 
       if (!response.ok) {
@@ -87,17 +169,23 @@ export default function MockExamRegistrationPage() {
       }
 
       setSubmitSuccess(true);
+
       window.scrollTo({ top: 0, behavior: "smooth" });
 
     } catch (err) {
+
       console.error(err);
+
       setSubmitError(
         "We couldn't submit your mock exam registration. Please try again later.",
       );
+
       window.scrollTo({ top: 0, behavior: "smooth" });
 
     } finally {
+
       setIsSubmitting(false);
+
     }
   };
 
@@ -107,9 +195,11 @@ export default function MockExamRegistrationPage() {
       <MockExamHero />
 
       <section className="w-full px-4 md:px-10 lg:px-40 py-8">
+
         <div className="max-w-[960px] mx-auto space-y-8">
 
           {/* Success */}
+
           {submitSuccess && (
             <Alert className="bg-green-50 border-green-200">
               <CheckCircle2 className="h-5 w-5 text-green-600" />
@@ -124,6 +214,7 @@ export default function MockExamRegistrationPage() {
           )}
 
           {/* Error */}
+
           {submitError && (
             <Alert className="bg-red-50 border-red-200">
               <AlertCircle className="h-5 w-5 text-red-600" />
@@ -136,7 +227,8 @@ export default function MockExamRegistrationPage() {
             </Alert>
           )}
 
-          {/* Validation */}
+          {/* Validation Errors */}
+
           {validationErrors.length > 0 && (
             <Alert className="bg-yellow-50 border-yellow-200">
               <AlertCircle className="h-5 w-5 text-yellow-600" />
@@ -153,6 +245,26 @@ export default function MockExamRegistrationPage() {
             </Alert>
           )}
 
+          {/* Student existing validation */}
+
+          {studentExistingValidationError.length > 0 && (
+            <Alert className="bg-red-50 border-red-200">
+              <AlertCircle className="h-5 w-5 text-red-600" />
+              <AlertTitle className="text-red-800 font-bold">
+                Please fix the following errors:
+              </AlertTitle>
+              <AlertDescription className="text-red-700">
+                <ul className="list-disc list-inside space-y-1 mt-2">
+                  {studentExistingValidationError.map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))}
+                </ul>
+              </AlertDescription>
+            </Alert>
+          )}
+
+          <ParentForm data={parentData} onChange={handleParentChange} />
+
           <MockExamStudentForm
             data={studentData}
             onChange={handleStudentChange}
@@ -164,6 +276,7 @@ export default function MockExamRegistrationPage() {
           />
 
           <div className="flex flex-col md:flex-row gap-4 pt-4 pb-12">
+
             <div className="flex-grow"></div>
 
             <Button
@@ -186,7 +299,9 @@ export default function MockExamRegistrationPage() {
             </Button>
 
           </div>
+
         </div>
+
       </section>
 
       <Footer />

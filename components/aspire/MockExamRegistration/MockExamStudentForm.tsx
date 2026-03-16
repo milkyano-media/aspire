@@ -90,11 +90,11 @@ export default function MockExamStudentForm({
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="6">Year 6</SelectItem>
-              <SelectItem value="7">Year 7</SelectItem>
-              <SelectItem value="8">Year 8</SelectItem>
-              <SelectItem value="9">Year 9</SelectItem>
-              <SelectItem value="10">Year 10</SelectItem>
+              <SelectItem value="Year 6">Year 6</SelectItem>
+              <SelectItem value="Year 7">Year 7</SelectItem>
+              <SelectItem value="Year 8">Year 8</SelectItem>
+              <SelectItem value="Year 9">Year 9</SelectItem>
+              <SelectItem value="Year 10">Year 10</SelectItem>
             </SelectContent>
           </Select>
         </div>

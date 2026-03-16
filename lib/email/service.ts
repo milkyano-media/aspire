@@ -390,6 +390,26 @@ export async function sendGradePricingEmail(
         emailTemplate = generateSelectiveEntryPricingEmailTemplate();
         subject = "Selective Entry Program Details & Pricing - Aspire Academics";
         break;
+      case "Year 6":
+        emailTemplate = generateYear6PricingEmailTemplate();
+        subject = "YEAR 6";
+        break;
+      case "Year 7":
+        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
+        subject = "n";
+        break;
+      case "Year 8": 
+        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
+        subject = "n";
+        break;
+      case "Year 9":
+        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
+        subject = "n";
+        break;
+      case "Year 10": 
+        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
+        subject = "n";
+        break;
       default:
         return {
           success: false,

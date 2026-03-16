@@ -8,14 +8,14 @@ const wiseNamespace = process.env.WISELMS_NAMESPACE;
 const wiseUserAgent = process.env.WISELMS_USER_AGENT;
 
 export async function POST(request: Request) {
-
   try {
-
-    const student = await request.json();
-
     const vendorUserId = crypto.randomUUID();
+    const reqBody = await request.json();
+    const { student, parent } = reqBody;
 
-    const createStudentBody = {
+    /* CREATE STUDENT */
+
+    const createStudentResponseBody = {
       vendorUserId,
       name: student.name,
       email: student.email,
@@ -28,28 +28,31 @@ export async function POST(request: Request) {
         method: "POST",
         headers: {
           Authorization: `Basic ${wiseAuthentication}`,
-          "x-api-key": wiseApiKey!,
-          "x-wise-namespace": wiseNamespace!,
+          "x-api-key": `${wiseApiKey}`,
+          "x-wise-namespace": `${wiseNamespace}`,
           "Content-Type": "application/json",
-          "User-Agent": wiseUserAgent!,
+          "User-Agent": `${wiseUserAgent}`,
         },
-        body: JSON.stringify(createStudentBody),
-      },
+        body: JSON.stringify(createStudentResponseBody),
+      }
     );
 
     const createStudentJson = await createStudentResponse.json();
 
     if (!createStudentResponse.ok) {
-      throw new Error(createStudentJson.message || "Failed to create student");
+      const errorMessage =
+        createStudentJson.message || "Unable to create student account";
+
+      throw new Error(
+        `Registration failed: ${errorMessage}. Please check your details and try again`
+      );
     }
 
     const studentId = createStudentJson.data.user._id;
 
-    /**
-     * Update registration fields
-     */
+    /* UPDATE REGISTRATION FIELD */
 
-    const registrationBody = {
+    const updateStudentRegistrationFieldBody = {
       answers: [
         {
           questionId: "user_name",
@@ -60,66 +63,90 @@ export async function POST(request: Request) {
           answer: student.email,
         },
         {
-          questionId: "mock_exam_gender",
+          questionId: "a5iicjzo",
           answer: student.gender,
         },
         {
-          questionId: "mock_exam_year_level",
+          questionId: "xah2ac4z", 
           answer: student.yearLevel,
+        },
+        {
+          questionId: "z3xugv7s",
+          answer: parent.name,
+        },
+        {
+          questionId: "khfnust3",
+          answer: parent.email,
+        },
+        {
+          questionId: "auhyhiuy",
+          answer: parent.phoneNumber,
+        },
+        {
+          questionId: "6p1zmkvj",
+          answer: parent.address,
+        },
+        {
+          questionId: "srxs890l",
+          answer: parent.relationship,
         },
       ],
     };
 
-    const updateRegistration = await fetch(
+    const updateStudentResponse = await fetch(
       `https://${wiseBaseUrl}/institutes/${wiseInstituteId}/students/${studentId}/registration`,
       {
         method: "PUT",
         headers: {
           Authorization: `Basic ${wiseAuthentication}`,
-          "x-api-key": wiseApiKey!,
-          "x-wise-namespace": wiseNamespace!,
+          "x-api-key": `${wiseApiKey}`,
+          "x-wise-namespace": `${wiseNamespace}`,
           "Content-Type": "application/json",
-          "User-Agent": wiseUserAgent!,
+          "User-Agent": `${wiseUserAgent}`,
         },
-        body: JSON.stringify(registrationBody),
-      },
+        body: JSON.stringify(updateStudentRegistrationFieldBody),
+      }
     );
 
-    if (!updateRegistration.ok) {
-      throw new Error("Failed to update student registration");
+    if (!updateStudentResponse.ok) {
+      const updateErrorJson = await updateStudentResponse.json();
+
+      const errorMessage =
+        updateErrorJson.message || "Unable to save student information";
+
+      throw new Error(
+        `Failed to complete registration: ${errorMessage}. Please contact support`
+      );
     }
 
-    /**
-     * Optional email notification
-     */
+    /* SEND EMAIL */
 
     try {
-
       await sendGradePricingEmail(
-        student.email,
-        student.name,
+        parent.email,
+        parent.name,
         student.name,
         student.yearLevel
       );
-
-    } catch (emailError) {
-      console.error("Email error:", emailError);
+    } catch (err) {
+      console.error("Email send failed", err);
     }
 
     return Response.json(
-      { message: "Mock exam registration success" },
+      { message: "success" },
       { status: 200 }
     );
 
   } catch (err) {
+    console.error("Mock exam registration error:", err);
 
-    console.error("Mock exam error:", err);
+    const errorMessage =
+      (err as Error).message ||
+      "An unexpected error occurred during registration";
 
     return Response.json(
-      { message: (err as Error).message },
+      { message: errorMessage },
       { status: 500 }
     );
-
   }
-
 }
