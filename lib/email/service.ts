@@ -19,6 +19,7 @@ import {
   generateYear11PricingEmailTemplate,
   generateYear12PricingEmailTemplate,
   generateSelectiveEntryPricingEmailTemplate,
+  generateMockExamPricingEmailTemplate,
 } from "./templates";
 
 // Email data type without the terms checkbox
@@ -391,24 +392,24 @@ export async function sendGradePricingEmail(
         subject = "Selective Entry Program Details & Pricing - Aspire Academics";
         break;
       case "Year 6":
-        emailTemplate = generateYear6PricingEmailTemplate();
-        subject = "YEAR 6";
+        emailTemplate = generateMockExamPricingEmailTemplate();
+        subject = "Year 6 Mock Exam Program Details & Pricing - Aspire Academics";
         break;
       case "Year 7":
-        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
-        subject = "n";
+        emailTemplate = generateMockExamPricingEmailTemplate();
+        subject = "Year 7 Mock Exam Program Details & Pricing - Aspire Academics";
         break;
       case "Year 8": 
-        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
-        subject = "n";
+        emailTemplate = generateMockExamPricingEmailTemplate();
+        subject = "Year 8 Mock Exam Program Details & Pricing - Aspire Academics";
         break;
       case "Year 9":
-        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
-        subject = "n";
+        emailTemplate = generateMockExamPricingEmailTemplate();
+        subject = "Year 9 Mock Exam Program Details & Pricing - Aspire Academics";
         break;
       case "Year 10": 
-        emailTemplate = generateSelectiveEntryPricingEmailTemplate();
-        subject = "n";
+        emailTemplate = generateMockExamPricingEmailTemplate();
+        subject = "Year 10 Mock Exam Program Details & Pricing - Aspire Academics";
         break;
       default:
         return {

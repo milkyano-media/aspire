@@ -538,23 +538,6 @@ export function generateYear4PricingEmailTemplate(): EmailTemplate {
                 We are writing to clearly outline the updated Year 4 pricing and program structure for 2026, along with the next steps as we finalise classes.
               </p>
 
-              <!-- Important Update Section -->
-              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">
-                  Please note that Year 4 pricing has changed from last year. This update reflects:
-                </p>
-                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
-                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
-                  <li>Increased lesson structure and planning</li>
-                  <li>Improved resources and homework materials</li>
-                  <li>Additional academic support options for families who require more personalised guidance</li>
-                </ul>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These updates allow us to maintain small class sizes while delivering more consistent and effective learning outcomes.
-                </p>
-              </div>
-
               <!-- Program Options -->
               <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 4 Program Options</h2>
 
@@ -822,20 +805,6 @@ export function generateYear5PricingEmailTemplate(): EmailTemplate {
                 We are writing to clearly outline the updated Year 5 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
               </p>
 
-              <!-- Important Update Section -->
-              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
-                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
-                  <li>Increased lesson structure and planning</li>
-                  <li>Improved resources and homework materials</li>
-                  <li>Additional academic support options for families who require more personalised guidance</li>
-                </ul>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
-                </p>
-              </div>
-
               <!-- Program Options -->
               <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 5 Program Options</h2>
 
@@ -1101,20 +1070,6 @@ export function generateYear6PricingEmailTemplate(): EmailTemplate {
                 We are writing to clearly outline the updated Year 6 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
               </p>
 
-              <!-- Important Update Section -->
-              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
-                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
-                  <li>Increased lesson structure and planning</li>
-                  <li>Improved resources and homework materials</li>
-                  <li>Additional academic support options for families who require more personalised guidance</li>
-                </ul>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
-                </p>
-              </div>
-
               <!-- Program Options -->
               <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 6 Program Options</h2>
 
@@ -1377,20 +1332,6 @@ export function generateYear7PricingEmailTemplate(): EmailTemplate {
               <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
                 We are writing to clearly outline the updated Year 7 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
               </p>
-
-              <!-- Important Update Section -->
-              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
-                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
-                  <li>Increased lesson structure and planning</li>
-                  <li>Improved resources and homework materials</li>
-                  <li>Additional academic support options for families who require more personalised guidance</li>
-                </ul>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
-                </p>
-              </div>
 
               <!-- Program Options -->
               <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 7 Program Options</h2>
@@ -1655,20 +1596,6 @@ export function generateYear8PricingEmailTemplate(): EmailTemplate {
                 We are writing to clearly outline the updated Year 8 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
               </p>
 
-              <!-- Important Update Section -->
-              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
-                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
-                  <li>Increased lesson structure and planning</li>
-                  <li>Improved resources and homework materials</li>
-                  <li>Additional academic support options for families who require more personalised guidance</li>
-                </ul>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
-                </p>
-              </div>
-
               <!-- Program Options -->
               <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 8 Program Options</h2>
 
@@ -1932,20 +1859,6 @@ export function generateYear9PricingEmailTemplate(): EmailTemplate {
                 We are writing to clearly outline the updated Year 9 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
               </p>
 
-              <!-- Important Update Section -->
-              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
-                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
-                  <li>Increased lesson structure and planning</li>
-                  <li>Improved resources and homework materials</li>
-                  <li>Additional academic support options for families who require more personalised guidance</li>
-                </ul>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
-                </p>
-              </div>
-
               <!-- Program Options -->
               <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 9 Program Options</h2>
 
@@ -2208,21 +2121,6 @@ export function generateYear10PricingEmailTemplate(): EmailTemplate {
               <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
                 We are writing to clearly outline the updated Year 10 pricing and program structure for 2026, and to explain the next steps as we finalise classes for the upcoming term.
               </p>
-
-              <!-- Important Update Section -->
-              <div style="background-color: #fff3e6; border-left: 4px solid #FF8C00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-                <h2 style="color: #002366; margin: 0 0 15px 0; font-size: 20px; font-weight: bold;">New Pricing Structure</h2>
-
-                <ul style="color: #333333; font-size: 15px; line-height: 1.8; margin: 0; padding-left: 20px;">
-                  <li>The introduction of a new Learning Management System (LMS) for clearer communication and organisation</li>
-                  <li>Increased lesson structure and planning</li>
-                  <li>Improved resources and homework materials</li>
-                  <li>Additional academic support options for families who require more personalised guidance</li>
-                </ul>
-                <p style="color: #333333; font-size: 15px; line-height: 1.6; margin: 15px 0 0 0;">
-                  These allow us to maintain small group sizes while continuing to deliver high-quality teaching and strong learning outcomes.
-                </p>
-              </div>
 
               <!-- Program Options -->
               <h2 style="color: #002366; margin: 0 0 20px 0; font-size: 22px; font-weight: bold; border-bottom: 2px solid #FF8C00; padding-bottom: 10px;">Year 10 Program Options</h2>
@@ -3343,6 +3241,204 @@ Director | Aspire Academics
 
   return { html, text };
 }
+
+export function generateMockExamPricingEmailTemplate(): EmailTemplate {
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Exam Registration - Aspire Academics</title>
+</head>
+<body style="margin:0; padding:0; font-family: Arial, sans-serif; background-color:#f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:8px; overflow:hidden;">
+
+          <!-- HEADER -->
+          <tr>
+            <td style="background:#002366; padding:30px; text-align:center;">
+              <h1 style="color:#ffffff; margin:0;">Aspire Academics</h1>
+              <p style="color:#ffffff; margin-top:8px;">Selective Entry Performance Program</p>
+            </td>
+          </tr>
+
+          <!-- CONTENT -->
+          <tr>
+            <td style="padding:30px; color:#333333; font-size:16px; line-height:1.6;">
+
+              <p>Dear {{parentName}},</p>
+
+              <p>
+                Thank you for taking the time to complete your Aspire Academics registration form.
+              </p>
+
+              <p>
+                We are pleased to confirm that we have successfully received your submission. 
+                Your child’s details are now being processed as part of our onboarding for the 
+                Aspire Selective Entry Performance Program.
+              </p>
+
+              <!-- PROGRAM INFO -->
+              <div style="background:#f1f3f6; padding:15px; border-radius:5px; margin:20px 0;">
+                <strong>Aspire Selective Entry Performance Program</strong><br>
+                <span style="font-size:13px; color:#666;">4 Weeks | Face-to-Face | Truganina</span>
+              </div>
+
+              <p>
+                <strong>Location:</strong> Unit 15 / 150 Palmers Road, Truganina VIC 3029
+              </p>
+
+              <p><strong>Please see the two package options available below:</strong></p>
+
+              <!-- PACKAGES -->
+              <table width="100%" cellpadding="10" cellspacing="0" style="margin-top:15px;">
+                <tr>
+
+                  <!-- PERFORMANCE -->
+                  <td width="50%" style="background:#f8f9fa; vertical-align:top; border-radius:6px;">
+                    <h3 style="margin-top:0;">Performance Package</h3>
+                    <p style="font-size:18px; color:#002366;"><strong>$300</strong></p>
+
+                    <ul style="padding-left:18px;">
+                      <li>4 full face-to-face mock exams</li>
+                      <li>Full video work solutions</li>
+                      <li>Written worked solutions through the Aspire portal</li>
+                      <li>Performance ranking aligned with Victorian standards</li>
+                      <li>Targeted weekly worksheets based on student results</li>
+                    </ul>
+                  </td>
+
+                  <!-- PERFORMANCE PLUS -->
+                  <td width="50%" style="background:#e8f4f8; border:2px solid #FF8C00; vertical-align:top; border-radius:6px;">
+                    <h3 style="margin-top:0;">Performance Plus Package</h3>
+                    <p style="font-size:18px; color:#002366;"><strong>$425</strong></p>
+
+                    <p style="font-style:italic;">
+                      Designed for families wanting more personalised support, deeper feedback, and clearer strategy across the month.
+                    </p>
+
+                    <ul style="padding-left:18px;">
+                      <li>Everything in the Performance Package</li>
+                      <li>1 private 30-minute one-on-one consult</li>
+                      <li>Personalised feedback summary</li>
+                      <li>Additional targeted revision support</li>
+                      <li>Greater worksheet support and academic guidance</li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </table>
+
+              <!-- PROGRAM FOCUS -->
+              <h3 style="margin-top:30px;">Program Focus</h3>
+              <p>
+                Each mock exam is used to identify student strengths and weaknesses so we can 
+                provide more targeted support and revision between exams.
+              </p>
+
+              <!-- NEXT STEPS -->
+              <h3>Next Steps</h3>
+              <p>
+                A member of our team will be in touch shortly with further details regarding scheduling, 
+                program commencement, and package confirmation.
+              </p>
+
+              <p>
+                If a package has not yet been selected, our team will assist families in finalising 
+                whether they would like to proceed with the Performance Package or the Performance Plus Package.
+              </p>
+
+              <!-- SIGNATURE -->
+              <p style="margin:20px 0 0 0;">Kind regards,</p>
+
+              <p style="color:#002366; font-weight:bold; margin:5px 0;">
+                Yaseen Muntasir
+              </p>
+
+              <p style="color:#666666; margin:0 0 20px 0;">
+                Director | Aspire Academics
+              </p>
+
+              <!-- LOGO -->
+              <img 
+                src="https://aspireacademics.au/logo.png" 
+                alt="Aspire Academics Logo" 
+                style="width:120px; height:auto; margin-top:10px;" 
+              />
+
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="background:#f8f9fa; padding:20px; text-align:center;">
+              <p style="margin:0;"><strong>Aspire Academics</strong></p>
+              <p style="margin:5px 0;">Melbourne, Victoria, Australia</p>
+              <p style="margin:0;">
+                Email: <a href="mailto:info@aspireacademics.au" style="color:#FF8C00; text-decoration:none;">
+                  info@aspireacademics.au
+                </a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim();
+
+  const text = `
+ASPIRE ACADEMICS
+Selective Entry Performance Program
+
+Dear {{parentName}},
+
+Thank you for taking the time to complete your Aspire Academics registration form.
+
+We are pleased to confirm that we have successfully received your submission. Your child's details are now being processed.
+
+PROGRAM DETAILS
+4 Weeks | Face-to-Face | Truganina
+Location: Unit 15 / 150 Palmers Road, Truganina VIC 3029
+
+━━━━━━━━━━━━━━━━━━━
+
+PERFORMANCE PACKAGE – $300
+• 4 full mock exams
+• Video solutions
+• Written solutions
+• Performance ranking
+• Weekly worksheets
+
+PERFORMANCE PLUS PACKAGE – $425
+Includes everything above plus:
+• 1-on-1 consult
+• Personalised feedback
+• Extra revision support
+• Academic guidance
+
+━━━━━━━━━━━━━━━━━━━
+
+PROGRAM FOCUS
+Each exam identifies strengths and weaknesses for targeted improvement.
+
+NEXT STEPS
+Our team will contact you shortly with scheduling and confirmation.
+
+Kind regards,
+Yaseen Muntasir
+Director | Aspire Academics
+`.trim();
+
+  return { html, text };
+}
+
 
 export { generateEnrollmentEmailTemplate, generateYear3PricingEmailTemplate };
 
