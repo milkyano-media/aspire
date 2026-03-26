@@ -13,6 +13,13 @@ export async function POST(request: Request) {
     const reqBody = await request.json();
     const { student, parent } = reqBody;
 
+    if (student.name.length > 30) {
+      return Response.json(
+        { message: "Student name must be 30 characters or less" },
+        { status: 400 }
+      );
+    }
+
     /* CREATE STUDENT */
 
     const createStudentResponseBody = {

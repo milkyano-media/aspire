@@ -88,7 +88,11 @@ export default function MockExamRegistrationPage() {
 
     /* Student validation */
 
-    if (!studentData.name.trim()) errors.push("Student name is required");
+    if (!studentData.name.trim()) {
+      errors.push("Student name is required");
+    } else if (studentData.name.trim().length > 30) {
+      errors.push("Student name must be 30 characters or less");
+    }
 
     if (!studentData.email.trim()) {
       errors.push("Student email is required");
